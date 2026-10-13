@@ -1,0 +1,19 @@
+{
+  "_como": "Uma troca por cena, na ordem. A 1a em 0. Use 'palavra' (entra NA palavra), 'n' (número da palavra no transcript.json) ou 'em' (segundo). 'in' = segundo da cena onde começa (sem 'in' pega o meio). 'vel' 1.5 = acelerada (padrão 1).",
+  "trocas": [
+    {"cena": "00", "em": 0, "in": 0.3},
+    {"cena": "01", "palavra": "Vocês"},
+    {"cena": "02", "palavra": "então hoje"},
+    {"cena": "03", "palavra": "Essa", "in": 1.2},
+    {"cena": "04", "palavra": "Contour"},
+    {"cena": "05", "palavra": "peles"},
+    {"cena": "06", "palavra": "primer"},
+    {"cena": "06", "palavra": "máxima", "in": 3.0},
+    {"cena": "07", "palavra": "fio", "vez": 2}
+  ],
+  "resultado": [
+    {"cena": "08", "dur": 1.6, "in": 0.4},
+    {"cena": "09", "dur": 5.0}
+  ],
+  "luz": true
+}

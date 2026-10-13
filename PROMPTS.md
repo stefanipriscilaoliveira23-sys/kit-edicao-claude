@@ -164,6 +164,59 @@ Vou colocar a música no Instagram. Me entrega sem som, cortado no ritmo de [128
 
 ---
 
+## Narradinho (vídeo narrado)
+
+Vídeo tipo vlog: várias cenas gravadas + a sua narração gravada à parte. A cena troca na palavra que você fala
+(falou "primer", entra o primer), legenda pequena, título grande elegante, clarão de luz no começo e no resultado,
+música baixinha que sobe no final.
+
+**Separe antes:** os vídeos das cenas numerados na ordem (00 = você olhando pra câmera na abertura, depois 01, 02, 03...,
+e o resultado da cliente por último). A narração num áudio separado (celular a um palmo da boca, lugar sem eco, frases
+inteiras; errou, repete a frase inteira). Se tiver, o texto da narração e a música.
+
+**Prompt 1: mandar o material**
+```
+Faz um narradinho com este material.
+
+Estou mandando:
+1. Os vídeos das cenas numerados na ordem (01, 02, 03...). O vídeo 00 é a minha abertura olhando para a câmera e os últimos são o resultado da cliente.
+2. A minha narração gravada em um áudio separado.
+3. O texto da narração que eu usei como roteiro (se eu mandei).
+4. A música (se eu mandei). Se eu não mandei, escolha uma instrumental calma.
+
+Antes de editar, confira se está tudo certo: me diga quantos vídeos recebeu, quanto tempo tem cada um, quanto tempo tem a narração, e me mostre a transcrição da narração para eu conferir os nomes dos produtos. Não comece a edição ainda.
+```
+
+**Prompt 2: aprovar a montagem limpa**
+```
+A transcrição está certa. Agora faça a montagem limpa do narradinho, ainda sem legenda e sem música:
+
+1. Limpe a narração: tire os respiros, as pausas, os "éé" e as frases que eu errei (fique sempre com a última vez que eu falei a frase). Emende uma frase na outra, sem silêncio entre elas.
+2. Coloque as cenas na ordem dos números, cada uma em cima do trecho da fala que fala daquilo.
+3. Quando eu falar o nome de um produto, a cena do produto tem que entrar exatamente nessa palavra, mesmo no meio da frase.
+4. Corte cada cena do tamanho da fala. Nenhuma cena pode ficar parada mais de 5 segundos.
+5. Tire o som original de todos os vídeos. Só fica a minha voz.
+
+Me mande o vídeo e uma tabela com: número da cena, segundo em que começa, e o trecho da fala que ela cobre. Eu vou assistir e te falar o que mudar.
+```
+
+**Prompt 3: edição completa**
+```
+Aprovei a montagem do narradinho. Agora termine a edição:
+
+1. Abertura: o meu vídeo 00 com a frase do começo escrita em cima, uma parte em letra pequena e o nome da técnica grande em letra elegante inclinada. Depois um clarão de luz para entrar no procedimento.
+2. Legenda: branca, sem fundo, letra minúscula, pequena, de 2 a 3 palavras por vez, no meio da tela um pouco para baixo, acompanhando a minha fala.
+3. Nos momentos mais importantes, coloque um texto maior: o nome da técnica, o pedido da cliente em lista no alto da tela, e uma palavra de resultado em letra elegante.
+4. Transição: corte seco entre as cenas. Clarão de luz só na entrada do resultado. Escurecer no fim.
+5. Música instrumental o vídeo todo, baixinha atrás da minha voz, e que suba no final, quando entra o resultado.
+6. Resultado da cliente no final só com música, uns 6 segundos.
+7. Exporte em vertical 1080x1920, pronto para postar.
+
+Me mande o vídeo final e uma lista curta do que você fez.
+```
+
+---
+
 ## Atualizar o kit
 
 ```

@@ -152,6 +152,8 @@ Pra editar o vídeo da pessoa (legenda, títulos, efeitos, sons), nesta ordem:
 4. **Toda correção vira regra:** cada ajuste que a pessoa aprovar entra, com data, em "Regras aprovadas" do
    `MINHA-MARCA.md` (e no `marca.json` quando for valor de script). Nunca deixe a regra só na conversa.
 
+**Formatos com nome:** Narradinho → `modelo-edicao/receita-narradinho/NARRADINHO.md` (vídeo narrado tipo vlog: cenas numeradas 00, 01, 02... + narração gravada à parte; a cena troca na palavra que cita a coisa nova). Quando a pessoa pedir "faz um narradinho", ler esse arquivo e seguir os 2 portões (montagem limpa com tabela cena x fala; depois edição completa). Os 3 prompts prontos estão no fim dele.
+
 ## Roteiro antes de gravar (passos 0 a 4)
 
 Quando a pessoa escrever "passo 0", "passo 1", "passo 2", "passo 3", "passo 4", "roteiro novo" ou "perguntas do vídeo sobre X",

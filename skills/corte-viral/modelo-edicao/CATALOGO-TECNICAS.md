@@ -172,6 +172,14 @@ Cores: creme `#FCE478` + branco. Som: S1 + S2. Esforço alto: gravação em vár
 Câmera parada. Texto: legenda serifada pequena (Calistoga), manuscrita pra listas, T11.
 Cartões: C6, C7, C20, C21, C22, C23, C24, C25. Cores: creme, verde-escuro, preto. Som: sem música, S3. Esforço médio.
 
+## Formatos com nome
+
+Formatos inteiros (gravação + edição) com nome próprio. A pessoa pede pelo nome.
+
+| Nome | O que é | Receita |
+| --- | --- | --- |
+| **Narradinho** | Vídeo narrado tipo vlog: cenas gravadas numeradas (00 abertura, 01, 02...) + narração gravada à parte, frases emendadas (≈0,1 s), cena troca na palavra que cita a coisa nova, som das cenas sai, legenda pequena branca de 2 a 3 palavras, títulos grandes em itálico elegante, corte seco com clarão de luz só no gancho e no resultado, música 9 dB abaixo da voz que sobe no resultado, fim escuro. | `receita-narradinho/NARRADINHO.md` |
+
 ## Como aplicar
 
 1. Ler `JEITO-DA-MARCA.md` (regras de corte, voz, grafia, entrega), o `~/minha-marca/MINHA-MARCA.md` e depois este arquivo.

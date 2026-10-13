@@ -1,0 +1,25 @@
+{
+  "_como": "Tempo de cada texto: 'de' em segundos OU 'palavra' (entra na palavra). 'ate' em segundos. *palavra* = itálico elegante.",
+  "legenda": {"top": 1180, "tamanho": 50, "palavras": 3, "minusculas": true},
+  "titulos": [
+    {"pequeno": "vem comigo fazer um", "grande": "Efeito Fox", "de": 0.0, "ate": 3.0, "top": 800}
+  ],
+  "listas": [
+    {"itens": [{"texto": "Técnica *natural*", "palavra": "natural"},
+               {"texto": "Combinar com o cabelo claro", "palavra": "combinasse"}],
+     "ate": 14.0, "top": 210}
+  ],
+  "destaques": [
+    {"texto": "Efeito Fox com fios", "palavra": "efeito", "ate": 16.5, "estilo": "forte"},
+    {"texto": "Simétrico & harmônico", "palavra": "simétrico", "ate": 49.0, "estilo": "elegante"}
+  ],
+  "flashes": "auto",
+  "escurecer": "auto",
+  "fim_escuro": 0.8,
+  "musica": "",
+  "musica_inicio": 0,
+  "musica_db": -9,
+  "subida_db": 8,
+  "sfx": [],
+  "trocas_texto": {"leste": "Lash"}
+}
