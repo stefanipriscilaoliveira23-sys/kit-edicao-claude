@@ -22,7 +22,7 @@ Pra atualizar depois, é só mandar: **"Atualiza meu kit de edição."**
 |---|---|
 | **corte-viral** | Escreve tudo o que foi falado no vídeo, acha os trechos com chance de viralizar, corta e deixa o vídeo em pé. Também traz o modelo de edição: tira silêncio e erro, limpa a voz, coloca título, legenda, emojis e sons. |
 | **conteudo-amarelinho** | Formato de carrossel "Amarelinho": foto do dia a dia escurecida e letra grande creme, com cara de story. Peça: "faz um amarelinho". |
-| **motion-vox** (em breve) | Animações de "mesa de papel" por cima do vídeo (objetos recortados, fita, setas desenhadas à mão). Quando falta um objeto, o Claude gera. |
+| **motion-vox** | Animações de "mesa de papel" por cima do vídeo (objetos recortados, fita, setas desenhadas à mão). Quando falta um objeto, o Claude gera. Alguns objetos ainda serão gerados na primeira vez que forem usados (9 já vêm prontos; os outros 7 o Claude cria na primeira cena que pedir cada um). |
 | **hyperframes** e **media-use** | O motor que monta o vídeo final e o banco de efeitos sonoros. Instalados direto da fonte oficial (gratuitos). |
 | **design-system-da-marca** | Regras visuais dos seus carrosséis e peças, puxadas do seu Manual da Marca. |
 | **roteirista-de-carrossel** | Organiza a sua copy lâmina por lâmina. |
