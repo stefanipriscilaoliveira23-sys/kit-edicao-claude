@@ -1,0 +1,32 @@
+{
+  "tema": "agenda da semana",
+  "fonte": "auto",
+  "assinatura": "SEU NOME • SEU NEGÓCIO • O QUE VOCÊ ENSINA",
+  "perfil": {
+    "arroba": "seuperfil",
+    "linha2": "siga o perfil",
+    "foto": ""
+  },
+  "laminas": [
+    {
+      "tipo": "capa",
+      "texto": "a semana fica\nleve quando\nvocê organiza\na agenda no\ndomingo à noite",
+      "fundo": "",
+      "emojis": [
+        "💖",
+        "✨"
+      ]
+    },
+    {
+      "tipo": "miolo",
+      "texto": "em 3 passos:\n1. anota tudo\n_(tira da cabeça)_\n2. escolhe só\n3 prioridades\n3. dá horário\n_(o que tem hora,\nacontece)_",
+      "fundo": ""
+    },
+    {
+      "tipo": "final",
+      "texto": "se esse post\nte ajudou, salva\npra domingo!",
+      "nota": "Ah, e comenta “agenda”\nque eu te mando o\nmodelo que eu uso.",
+      "fundo": ""
+    }
+  ]
+}

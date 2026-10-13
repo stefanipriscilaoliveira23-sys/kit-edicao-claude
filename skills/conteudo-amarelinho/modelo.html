@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Modelo do formato "Conteúdo amarelinho" (1080x1350).
+     O gerar.py troca os marcadores {{...}}. Para mexer no visual, mude as variáveis do :root. -->
+{{FONTES}}
+<style>
+:root{
+  /* ===== cores ===== */
+  --cor-texto: #FFF4C9;             /* o "amarelinho": cor da LETRA principal */
+  --cor-assinatura: rgba(255,248,235,.72); /* faixa de cima e de baixo */
+  --cor-nota: #FBF3E4;              /* letra de mão da última lâmina */
+  --cor-fundo: #3A2618;             /* base marrom quando não há foto */
+  --veu: rgba(28,16,8,.50);         /* película escura por cima da foto (0 a 1) */
+  --granulado: .55;                 /* força do granulado (pontinhos claros de filme) */
+
+  /* ===== letra ===== */
+  --fonte: "SF Pro Display", "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --fonte-mao: "Playpen Sans", "Mynerve", "Patrick Hand", cursive;  /* letra de mão */
+  --espacamento: -0.06em;           /* o "-60" do Canva */
+  --peso: 700;                      /* negrito */
+  --peso-leve: 400;                 /* trechos marcados com _assim_ */
+  --tamanho: 128px;                 /* tamanho máximo; o robô diminui se não couber */
+  --tamanho-minimo: 84px;
+  --entrelinha: .98;
+  --tamanho-capa: 134px;            /* capa: letra um pouco maior */
+  --entrelinha-capa: .91;           /* e linhas mais juntas */
+
+  /* ===== medidas (px em 1080x1350) ===== */
+  --margem-lateral: 140px;          /* texto ocupa no máximo 800px de largura */
+  --area-texto-topo: 250px;
+  --area-texto-base: 250px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#000}
+.lamina{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--cor-fundo);
+  font-family:var(--fonte);color:var(--cor-texto);-webkit-font-smoothing:antialiased}
+
+/* fundo: foto do dia a dia (ou luz de abajur desenhada, quando não houver foto) */
+.foto{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.92) sepia(.12)}
+.foto.sem-foto{background:
+   radial-gradient(ellipse 17% 11% at 9% 22%, rgba(255,236,200,.95), rgba(255,214,160,.0) 100%),
+   radial-gradient(ellipse 34% 26% at 10% 28%, rgba(255,190,110,.75), transparent 72%),
+   radial-gradient(ellipse 22% 48% at 6% 66%, rgba(40,22,12,.85), transparent 80%),
+   radial-gradient(ellipse 40% 30% at 78% 18%, rgba(200,170,140,.45), transparent 75%),
+   radial-gradient(ellipse 50% 55% at 80% 80%, rgba(110,66,40,.70), transparent 72%),
+   linear-gradient(90deg, transparent 0 45.6%, rgba(0,0,0,.22) 46% 46.6%, transparent 47%),
+   linear-gradient(170deg,#8a6a50 0%,#6a4a33 40%,#3d2616 100%);
+   filter:blur(6px);inset:-20px}
+.veu{position:absolute;inset:0;background:var(--veu)}
+.grao{position:absolute;inset:0;opacity:var(--granulado);pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='1' seed='7' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 .97  0 0 0 0 .92  1.6 0 0 0 -.62'/><feComponentTransfer><feFuncA type='table' tableValues='0 0 .55 1'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size:400px 400px}
+
+/* faixa fina de cima e de baixo (nome • marca • assunto) */
+.assinatura{position:absolute;left:0;right:0;text-align:center;font-family:"Inter",var(--fonte);
+  font-size:14.5px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;color:var(--cor-assinatura);white-space:nowrap}
+.assinatura.topo{top:49px}
+.assinatura.base{bottom:49px}
+
+/* bloco central */
+.bloco{position:absolute;left:var(--margem-lateral);right:var(--margem-lateral);
+  top:var(--area-texto-topo);bottom:var(--area-texto-base);
+  display:flex;flex-direction:column;align-items:center;justify-content:center}
+.texto{font-size:var(--tamanho);font-weight:var(--peso);letter-spacing:var(--espacamento);
+  line-height:var(--entrelinha);text-align:center;width:100%;overflow-wrap:break-word;
+  font-optical-sizing:auto;font-feature-settings:"kern" 1}
+.capa .texto{line-height:var(--entrelinha-capa)}
+.texto .leve{font-weight:var(--peso-leve)}
+.nota{margin-top:40px;font-family:var(--fonte-mao);color:var(--cor-nota);font-size:60px;line-height:1.12;
+  letter-spacing:0;text-align:center;max-width:720px;font-weight:400}
+.seta{position:absolute;inset:0;pointer-events:none;overflow:visible}
+
+/* capa: selo de perfil estilo menção do story */
+.selo{position:absolute;top:192px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:14px}
+.selo .anel{width:64px;height:64px;border-radius:50%;padding:3px;
+  background:conic-gradient(from 200deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75)}
+.selo .anel div{width:100%;height:100%;border-radius:50%;border:3px solid #fff;background:#d9c7b5 center/cover;
+  display:flex;align-items:center;justify-content:center;font:700 26px var(--fonte);color:#6b4a33}
+.selo .nomes{font-family:"Inter",var(--fonte);color:#fff;line-height:1.3;letter-spacing:-.01em}
+.selo .nomes b{display:block;font-size:19px;font-weight:700}
+.selo .nomes span{display:block;font-size:17.5px;font-weight:400;opacity:.92}
+
+.emoji{position:absolute;font-size:66px;line-height:1;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+.emoji.e1{top:212px;left:262px;transform:rotate(-8deg)}
+.emoji.e2{top:1090px;left:856px}
+
+/* capa: ícones das abas do perfil (grade, reels, repost, marcados) */
+.abas{position:absolute;top:1116px;left:0;right:0;display:flex;justify-content:center;gap:86px}
+.abas div{width:27px;height:27px;position:relative;opacity:.85}
+.abas div:first-child::after{content:"";position:absolute;left:-20px;right:-20px;bottom:-21px;height:2.5px;background:rgba(255,255,255,.85);border-radius:2px}
+.abas svg{width:27px;height:27px;stroke:#fff;fill:none;stroke-width:2}
+</style>
+</head>
+<body>
+<div class="lamina {{TIPO}}">
+  {{FUNDO}}
+  <div class="veu"></div>
+  {{ASSINATURA}}
+  <div class="grao"></div>
+  {{EXTRAS}}
+  <div class="bloco" id="bloco">
+    <div class="texto" id="texto">{{TEXTO}}</div>
+    {{NOTA}}
+  </div>
+  <svg class="seta" id="seta"></svg>
+</div>
+<script>
+// 1) diminui a letra até o bloco caber na área; 2) desenha a seta à mão da última lâmina
+(async () => {
+  try { await document.fonts.ready; } catch(e) {}
+  const bloco = document.getElementById('bloco'), texto = document.getElementById('texto');
+  const css = getComputedStyle(document.documentElement);
+  const capa = document.querySelector('.lamina').classList.contains('capa');
+  let t = parseFloat(css.getPropertyValue(capa ? '--tamanho-capa' : '--tamanho')), min = parseFloat(css.getPropertyValue('--tamanho-minimo'));
+  // se a copy veio com quebras de linha (\n), cada linha tem que caber inteira, sem o navegador quebrar de novo
+  const linhasPedidas = (texto.innerHTML.match(/<br>/g) || []).length + 1;
+  const linhasDesenhadas = () => {
+    const g = document.createRange(); g.selectNodeContents(texto);
+    const tops = [];
+    for (const r of g.getClientRects()) { if (r.width < 2) continue; if (!tops.some(y => Math.abs(y - r.top) < t * 0.5)) tops.push(r.top); }
+    return tops.length;
+  };
+  const cabe = () => bloco.scrollHeight <= bloco.clientHeight + 1 && texto.scrollWidth <= texto.clientWidth + 1
+                     && (linhasPedidas < 2 || linhasDesenhadas() <= linhasPedidas);
+  texto.style.fontSize = t + 'px';
+  while (!cabe() && t > min) { t -= 2; texto.style.fontSize = t + 'px'; }
+
+  const nota = document.getElementById('nota');
+  if (nota && nota.dataset.seta !== 'nao') {
+    const linhas = r => { const g = document.createRange(); g.selectNodeContents(r); return [...g.getClientRects()].filter(x => x.width > 4); };
+    const lt = linhas(texto), ln = linhas(nota);
+    if (lt.length && ln.length) {
+      const fim = lt.reduce((a, b) => (b.bottom > a.bottom + 4 ? b : (Math.abs(b.bottom - a.bottom) <= 4 && b.right > a.right ? b : a)));
+      const ini = ln[0];
+      const x1 = Math.min(fim.right + 22, 1010), y1 = fim.top + fim.height * .55;
+      const x2 = ini.right + 16, y2 = ini.top + ini.height * .55;
+      const cx = Math.max(x1, x2) + 60;
+      const d = `M ${x1} ${y1} C ${cx} ${y1 + 40}, ${cx} ${y2 - 10}, ${x2} ${y2}`;
+      const ang = Math.atan2(y2 - (y2 - 10), x2 - cx);
+      const p = (a, l) => `${x2 + Math.cos(ang + a) * l} ${y2 + Math.sin(ang + a) * l}`;
+      document.getElementById('seta').innerHTML =
+        `<path d="${d}" fill="none" stroke="var(--cor-nota)" stroke-width="3.2" stroke-linecap="round"/>` +
+        `<path d="M ${p(Math.PI - .55, 26)} L ${x2} ${y2} L ${p(Math.PI + .55, 26)}" fill="none" stroke="var(--cor-nota)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>`;
+    }
+  }
+  document.body.setAttribute('data-pronto', '1');
+})();
+</script>
+</body>
+</html>
