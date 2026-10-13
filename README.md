@@ -25,6 +25,7 @@ Pra atualizar depois, é só mandar: **"Atualiza meu kit de edição."**
 | **hyperframes** e **media-use** | O motor que monta o vídeo final e o banco de efeitos sonoros. Instalados direto da fonte oficial (gratuitos). |
 | **design-system-da-marca** | Regras visuais dos seus carrosséis e peças, puxadas do seu Manual da Marca. |
 | **roteirista-de-carrossel** | Organiza a sua copy lâmina por lâmina. |
+| **sanfoninha** | Formato de Reels "Sanfoninha": junta de 8 a 15 vídeos curtos do atendimento, corta tudo na batida da música e cada cena entra e sai com zoom ou giro, terminando no resultado. Peça: "faz um sanfoninha". |
 | **Manual da Marca** | A pasta `minha-marca` no seu computador. Todas as skills leem dela antes de trabalhar. |
 
 ## O segredo: o Manual da Marca

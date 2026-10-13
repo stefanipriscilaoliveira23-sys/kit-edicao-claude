@@ -130,6 +130,40 @@ Se faltar algum objeto, me passa o pedido pra eu gerar no ChatGPT.
 
 ---
 
+## Sanfoninha (zoom na batida)
+
+**Separe antes:** de 8 a 15 vídeos curtos em pé (3 a 6 segundos cada), numerados na ordem do atendimento
+(01, 02, 03...), com o resultado por último. E a música (arquivo mp3 e o segundo em que ela começa), ou avise
+que vai colocar a música no Instagram.
+
+**Prompt 1 (rápido)**
+```
+Claude, faz meu vídeo no formato Sanfoninha.
+Mandei 10 vídeos numerados de 01 a 10, na ordem do atendimento. O 10 é o resultado.
+Pega o melhor pedacinho de cada um (meio segundo a 1 segundo), cada cena entra com zoom rápido
+e sai com zoom pra dentro, zoom pra fora ou giro, sempre cortando na batida da música que eu mandei.
+Começa com o plano aberto dando um zoom forte em mim e termina no resultado com zoom lento, escurecendo no final.
+Vertical, até 20 segundos, sem texto na tela.
+```
+
+**Prompt 2 (completo, com música e flash antes do resultado)**
+```
+Claude, quero um Sanfoninha de 15 segundos com estes 12 vídeos (01 a 12, já na ordem).
+Música: o arquivo musica.mp3, começando no segundo 0:12. Corta tudo na batida.
+Estrutura: 2 segundos de gancho com o vídeo 01 (zoom forte no meu rosto),
+processo com os vídeos 02 a 09 (1 ou 2 batidas cada, alternando zoom pra dentro, zoom pra fora e giro),
+um flash bem rápido repetindo 4 cenas do processo, e os últimos 4 segundos só com o resultado (vídeos 10 a 12)
+em corte seco com zoom lento e escurecendo no fim.
+Coloca no começo o texto: "[texto do gancho]". Me entrega vertical 9:16 em mp4.
+```
+
+Vai colocar a música no Instagram? Troque a linha da música por:
+```
+Vou colocar a música no Instagram. Me entrega sem som, cortado no ritmo de [128] BPM.
+```
+
+---
+
 ## Atualizar o kit
 
 ```
