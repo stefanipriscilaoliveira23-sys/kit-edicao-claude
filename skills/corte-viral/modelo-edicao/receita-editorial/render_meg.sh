@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # fundo (HyperFrames) -> máscara da pessoa -> junta (pessoa por cima do fundo nas janelas) -> frente (HyperFrames) -> mixa
 # Uso (de dentro da pasta da receita, onde ficam configs.json e assets/): ./render_meg.sh <nome>
-# A máscara da pessoa (texto ATRÁS da pessoa, T11/C4) só existe no Mac. Nos outros sistemas o fundo vai sem recorte:
-# nesse caso não use elementos de trás por cima do rosto (ou use a skill embedded-captions do HyperFrames).
+# A máscara da pessoa (texto ATRÁS da pessoa, T11/C4) sai do mascara.py, no Windows e no Mac (recorte do HyperFrames;
+# MASCARA_MOTOR=vision usa o Vision do Mac, mais rápido). Se não houver recorte (sem Node/HyperFrames), o fundo vai sem
+# recorte: nesse caso não use elementos de trás por cima do rosto.
 set -e
 n=$1; cd "$(dirname "$0")"
 PY3="$(command -v python3 || command -v python)"
@@ -10,15 +11,15 @@ MARCA=../marca.py; [ -f "$MARCA" ] || MARCA="$HOME/.claude/skills/corte-viral/mo
 PY="$("$PY3" "$MARCA" python 2>/dev/null || echo "$PY3")"
 TRAB="$("$PY3" "$MARCA" pasta trabalho)"
 HF="$TRAB/hf/node_modules/.bin/hyperframes"; [ -x "$HF" ] || HF="$HF.cmd"
-MASC="$("$PY3" "$MARCA" mascara)"
+MASC="$("$PY" "$MARCA" mascara 2>/dev/null)"
 [ -f $n/atras/render.mp4 ] || (cd $n/atras && "$HF" render -o render.mp4 > render.log 2>&1)
 echo "fundo ok $(date +%H:%M)"
 if [ -n "$MASC" ]; then
-  [ -f $n/mask.mp4 ] || "$MASC" $n/source.mp4 $n/mask.mp4 1080
+  [ -f $n/mask.mp4 ] || "$PY" "$MASC" $n/source.mp4 $n/mask.mp4 1080
   echo "mascara ok $(date +%H:%M)"
   EN=$("$PY3" -c "import json;j=json.load(open('$n/meta.json'))['janelas_mascara'];print('+'.join(f'between(t,{a:.3f},{b:.3f})' for a,b in j))")
 else
-  echo "sem mascara-pessoa neste computador: base = source"; EN=""
+  echo "sem recorte da pessoa neste computador (ver INSTALAR.md): base = source"; EN=""
 fi
 if [ -z "$EN" ]; then ffmpeg -nostdin -v error -y -i $n/source.mp4 -map 0:v -c:v copy $n/frente/base.mp4; else ffmpeg -nostdin -v error -y -i $n/atras/render.mp4 -i $n/source.mp4 -i $n/mask.mp4 -filter_complex \
  "[2:v]scale=1080:1920,format=gray,gblur=sigma=1.6[m];[1:v]format=yuva420p[p0];[p0][m]alphamerge[p];[0:v][p]overlay=0:0:enable='$EN',format=yuv420p[v]" \

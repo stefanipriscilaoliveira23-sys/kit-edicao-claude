@@ -61,8 +61,9 @@ Falar com a aluna sempre em português simples, sem termo técnico.
 - Script de referência: `lista_tv.py` + `lista_cfg.py` com a receita (`exemplo-receita-lista.json`).
 
 ## Depoimentos de clientes/alunas
-- Close da cintura pra cima direto do 4K (`retrato.py`, só Mac; caixa manual em `caixa-forcada.json` quando a pessoa está de
-  lado ou em dupla). Em outro sistema, ou quando a pessoa se mexe: `retrato_seguir.py` (recorte acompanha o rosto). Sem desfoque.
+- Close da cintura pra cima direto do 4K (`retrato.py`, Windows e Mac, acha a pessoa pelo `mascara.py`; caixa manual em
+  `caixa-forcada.json` quando a pessoa está de lado ou em dupla). Quando a pessoa se mexe: `retrato_seguir.py` (recorte
+  acompanha o rosto). Sem desfoque.
 - Vídeo "sem interlocutor": tirar a entrevistadora, "com certeza"/"sim" que respondem pergunta e o silêncio ouvindo a
   pergunta (`plano_close.py` + `limpar.py`). A pergunta pode virar pílula "💬 pergunta" (`configs_v2.py`).
 - Foco em resultado, objeção e transformação pra vender o serviço/produto da aluna; nada sobre o evento em si.
@@ -120,9 +121,15 @@ nunca npx em paralelo: ele se atualiza no meio e quebra) via run_in_background �
 - Destaque na cor de DESTAQUE do manual. Cor de destaque some em cima de roupa escura: na legenda a palavra-chave vai em
   itálico (fonte TÍTULO ITÁLICO) BRANCA com sublinhado na cor de destaque que corre; em cima da parede clara, texto na cor de
   TEXTO e itálico na cor de destaque (T10, T16, T19). Cor cheia só em etiquetas/números.
-- Texto atrás da pessoa (T11/C4): renderiza a camada de trás no HyperFrames, junta com a pessoa recortada (`mascara-pessoa`
-  1080 + alphamerge, só Mac) nas janelas dos elementos de trás, e renderiza a camada da frente (legenda + cartões) por cima.
-  Tudo de trás fica acima da cabeça (topo 0–330 px no plano aberto). Fora do Mac: sem recorte (ou skill embedded-captions).
+- Texto atrás da pessoa (T11/C4): renderiza a camada de trás no HyperFrames, junta com a pessoa recortada (`mascara.py`
+  1080 + alphamerge) nas janelas dos elementos de trás, e renderiza a camada da frente (legenda + cartões) por cima.
+  Tudo de trás fica acima da cabeça (topo 0–330 px no plano aberto). Funciona no Windows e no Mac.
+- Recorte da pessoa (`mascara.py <entrada> <saida> [largura]`): o padrão é o `remove-background` do HyperFrames fixo da
+  pasta `hf/` (modelo u2net_human_seg, Apache 2.0, roda no computador, sem internet depois da 1ª vez; na 1ª vez baixa sozinho
+  ~168 MB pra `~/.cache/hyperframes`). Saída igual à do antigo binário do Mac: mp4 cinza, branco = pessoa, mesmo fps e
+  número de quadros. A máscara é suavizada no tempo (borda não treme). No Mac, `MASCARA_MOTOR=vision` usa o Vision da
+  Apple (`mascara-pessoa/`), bem mais rápido. Objeto grande colado na pessoa pode entrar no recorte e objeto na mão pode
+  sumir: conferir 2 ou 3 quadros da junção antes do render da frente.
 - Âncoras do config batem com a transcrição FINAL (números viram algarismo: "1." "O 1 e o 2"); trocar na legenda por extenso via `fix`.
 - No fim, `cortar_pausas.py` tira do final.mp4 os silêncios > 0,5 s da voz. Trilha só se o manual pedir (`trilha` no marca.json),
   a -13 dB.

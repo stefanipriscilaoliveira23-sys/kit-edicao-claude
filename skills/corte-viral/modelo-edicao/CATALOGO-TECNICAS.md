@@ -70,7 +70,7 @@ misturada com serifada itálica creme ("just *not true.*", "automate *everything
 
 **T11 Texto atrás da pessoa** · ref `m_atras` · Meg 092 0:03, 097 0:01; Marc 0:01, 0:04
 A frase fica entre o fundo e a pessoa (a cabeça passa por cima das letras). Usar o recorte da pessoa
-(`mascara-pessoa/`) ou a skill `embedded-captions`. Marc: palavra única gigante pesada branca com sombra atrás da cabeça.
+(`mascara.py`, Windows e Mac) ou a skill `embedded-captions`. Marc: palavra única gigante pesada branca com sombra atrás da cabeça.
 
 **T12 Faixa de contexto fixa no topo** · ref `m_contexto` · Meg 073 0:02–0:14
 Depois do gancho, frase pequena parada no topo por 10–12 s dizendo pra quem é o vídeo, sans + trechos em itálico.

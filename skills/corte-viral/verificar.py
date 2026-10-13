@@ -7,6 +7,7 @@ Roda antes do primeiro projeto. E mais barato descobrir aqui do que no meio de
 uma run que ja gastou a transcricao.
 
     python3 ~/.claude/skills/corte-viral/verificar.py
+    python3 ~/.claude/skills/corte-viral/verificar.py --testar-recorte   (testa de verdade o recorte da pessoa)
 """
 from __future__ import annotations
 
@@ -224,6 +225,7 @@ def checar_edicao() -> None:
         linha(AVISO, "node ausente", "instale o Node 22 (INSTALAR.md) pra renderizar com o HyperFrames")
         avisos.append("node ausente")
     sys.path.insert(0, str(ROOT / "modelo-edicao"))
+    checar_recorte()
     try:
         import marca  # noqa: E402
         falta = marca.faltando()
@@ -234,6 +236,69 @@ def checar_edicao() -> None:
             linha(OK, "manual da marca", str(marca.ARQ_MARCA))
     except Exception as exc:  # pragma: no cover
         linha(AVISO, "marca.py", str(exc)[:80])
+
+
+def checar_recorte() -> None:
+    """Recorte da pessoa (texto ATRÁS da pessoa e close do retrato.py): mascara.py, Windows e Mac."""
+    import os
+    try:
+        import mascara  # noqa: E402
+    except Exception as exc:
+        linha(AVISO, "mascara.py", f"nao carregou: {str(exc)[:80]}")
+        avisos.append("recorte da pessoa indisponivel")
+        return
+    try:
+        motor = mascara.escolher_motor()
+    except SystemExit as exc:
+        linha(AVISO, "recorte da pessoa indisponivel", str(exc))
+        avisos.append("recorte da pessoa indisponivel (texto atras da pessoa fica de fora)")
+        return
+    cmd = mascara.cmd_hyperframes() or []
+    if motor == "hyperframes" and any("npx" in os.path.basename(c) for c in cmd[:1]):
+        linha(AVISO, "recorte da pessoa via npx",
+              "funciona, mas rode o modelo-edicao/preparar_pasta.py pra instalar o HyperFrames fixo (hf/)")
+        avisos.append("HyperFrames fixo ausente (recorte via npx)")
+    else:
+        linha(OK, f"recorte da pessoa ({motor})", " ".join(cmd[-1:]) if motor == "hyperframes" else "Vision do Mac")
+    modelo = Path.home() / ".cache" / "hyperframes" / "background-removal" / "models" / "u2net_human_seg.onnx"
+    if motor == "hyperframes":
+        if modelo.exists():
+            linha(OK, "modelo do recorte", str(modelo))
+        else:
+            linha(AVISO, "modelo do recorte ainda nao baixado",
+                  "baixa sozinho (~168 MB) no primeiro uso; pra adiantar: verificar.py --testar-recorte")
+    if "--testar-recorte" in sys.argv:
+        _testar_recorte(mascara)
+
+
+def _testar_recorte(mascara) -> None:
+    """Teste de verdade: gera 1 s de video, recorta e confere o formato da mascara."""
+    import json
+    import tempfile
+    import time
+    ffmpeg = mascara.FFMPEG
+    if not ffmpeg:
+        linha(FALHA, "teste do recorte", "sem ffmpeg")
+        problemas.append("teste do recorte falhou")
+        return
+    with tempfile.TemporaryDirectory() as tmp:
+        ent, sai = str(Path(tmp) / "teste.mp4"), str(Path(tmp) / "mascara.mp4")
+        subprocess.run([ffmpeg, "-v", "error", "-y", "-f", "lavfi", "-i", "testsrc2=s=360x640:r=30:d=1",
+                        "-pix_fmt", "yuv420p", ent], check=True)
+        t0 = time.time()
+        try:
+            mascara.gerar(ent, sai, 270)
+            info = json.loads(subprocess.run([mascara.FFPROBE, "-v", "error", "-count_frames", "-show_entries",
+                                              "stream=width,height,nb_read_frames", "-of", "json", sai],
+                                             capture_output=True, text=True).stdout)["streams"][0]
+            ok = (info["width"], info["height"], int(info["nb_read_frames"])) == (270, 480, 30)
+        except (SystemExit, Exception) as exc:
+            ok, info = False, str(exc)[:120]
+        if ok:
+            linha(OK, "teste do recorte", f"30 quadros 270x480 em {time.time() - t0:.0f} s")
+        else:
+            linha(FALHA, "teste do recorte", str(info))
+            problemas.append("teste do recorte falhou")
 
 
 def main() -> int:

@@ -243,7 +243,7 @@ def python():
 
 
 def binario(*partes):
-    """Ferramenta da skill (deep-filter, olhar, mascara-pessoa). None se não existir neste computador."""
+    """Ferramenta da skill (deep-filter, olhar, mascara-pessoa do Mac). None se não existir neste computador."""
     p = os.path.join(SKILL_RAIZ, *partes)
     for c in (p, p + ".exe"):
         if os.path.exists(c) and os.access(c, os.X_OK):
@@ -258,9 +258,19 @@ def cmd_olhar():
 
 
 def cmd_mascara():
-    """Recorte da pessoa (só Mac, Vision). None nos outros sistemas: as técnicas de 'texto atrás da pessoa' ficam de fora."""
-    b = binario("modelo-edicao", "mascara-pessoa", "mascara-pessoa")
-    return b if b and sys.platform == "darwin" else None
+    """Recorte da pessoa (Windows e Mac): comando (lista) do mascara.py, que usa o recorte do HyperFrames
+    (ou o Vision do Mac, se pedido). Uso: cmd_mascara() + [entrada, saida, largura]. None se não houver como recortar."""
+    arq = next((p for p in (os.path.join(AQUI, "mascara.py"), os.path.join(SKILL_RAIZ, "modelo-edicao", "mascara.py"))
+                if os.path.exists(p)), None)
+    if not arq:
+        return None
+    try:
+        sys.path.insert(0, os.path.dirname(arq))
+        import mascara
+        mascara.escolher_motor()
+    except (SystemExit, Exception):
+        return None
+    return [python(), arq]
 
 
 if __name__ == "__main__":
@@ -287,7 +297,8 @@ if __name__ == "__main__":
     elif a[0] == "python":
         print(python())
     elif a[0] == "mascara":
-        print(cmd_mascara() or "")
+        c = cmd_mascara()               # caminho do mascara.py (rodar com o Python da skill); vazio = sem recorte
+        print(c[1] if c else "")
     elif a[0] == "deepfilter":
         print(binario("bin", "deep-filter") or "")
     elif a[0] == "som":

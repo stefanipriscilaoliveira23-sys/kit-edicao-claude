@@ -2,7 +2,7 @@
 # Monta a base de um vídeo: source enquadrado -> corta silêncio pelo áudio -> transcreve de novo.
 # Rodar de dentro da pasta ed/ do trabalho (onde ficam os scripts copiados pelo preparar_pasta.py).
 # Uso: ./base.sh <nome> fixo|seguir|lista [transcricao.json | receita.json]
-#   fixo   = close da cintura pra cima (retrato.py, só Mac)
+#   fixo   = close da cintura pra cima (retrato.py; recorte da pessoa pelo mascara.py, Windows e Mac)
 #   seguir = close que acompanha o rosto (retrato_seguir.py, qualquer sistema; precisa do csv do olhar em ../trans/<arquivo>)
 #   lista  = vídeo de lista com slide na TV (lista_tv.py <receita.json>)
 cd "$(dirname "$0")"

@@ -1,16 +1,17 @@
 # Close da cintura pra cima + luz melhor (sem desfoque de fundo).
 # Uso: python3 retrato.py <nome-do-corte-v2>
-# 1) acha a pessoa no bruto (máscara do macOS) -> caixa do close
+# 1) acha a pessoa no bruto (máscara do mascara.py) -> caixa do close
 # 2) renderiza o corte direto do 4K já recortado (nitidez) em 1080x1920
 # 3) correção de luz leve e ruído de fundo tirado
-# Só no Mac (usa o recorte de pessoa do macOS). No Windows use o modo "seguir" (retrato_seguir.py), que vai pelo rosto.
+# Windows e Mac: o recorte da pessoa vem do mascara.py (HyperFrames remove-background; no Mac pode usar o Vision).
+# Quando a pessoa se mexe muito, prefira o modo "seguir" (retrato_seguir.py), que vai pelo rosto.
 import json, os, subprocess, sys
 import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import marca
 MASC = marca.cmd_mascara()
 if not MASC and not os.path.exists("caixa-forcada.json"):
-    raise SystemExit("retrato.py precisa do mascara-pessoa (Mac). Neste computador use: base.sh <nome> seguir <transcricao> (retrato_seguir.py)")
+    raise SystemExit("retrato.py precisa do recorte da pessoa (mascara.py: Node + HyperFrames fixo, ver INSTALAR.md). Sem ele use: base.sh <nome> seguir <transcricao> (retrato_seguir.py)")
 nome = sys.argv[1]
 src = json.load(open("fontes.json"))[nome]; tl = json.load(open("plano-cortes.json"))[nome]
 os.makedirs(nome, exist_ok=True); tmp = f"{nome}/_tmp"; os.makedirs(tmp, exist_ok=True)
@@ -19,9 +20,9 @@ def run(*a): subprocess.run(a, check=True)
 # 1) caixa do close a partir de ~20 s do bruto
 a0 = tl[0][0]
 _forcar0 = json.load(open("caixa-forcada.json")).get(nome) if os.path.exists("caixa-forcada.json") else None
-if not MASC and not _forcar0: raise SystemExit(f"{nome}: sem mascara-pessoa neste computador; coloque a caixa em caixa-forcada.json ou use o modo seguir")
+if not MASC and not _forcar0: raise SystemExit(f"{nome}: sem recorte da pessoa neste computador; coloque a caixa em caixa-forcada.json ou use o modo seguir")
 if MASC: run("ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", str(a0), "-t", "20", "-i", src, "-c", "copy", f"{tmp}/amostra.mov")
-if MASC: run(MASC, f"{tmp}/amostra.mov", f"{tmp}/amostra-m.mp4", "270")
+if MASC: run(*MASC, f"{tmp}/amostra.mov", f"{tmp}/amostra-m.mp4", "270", "--fps", "5")  # só mede: 5 quadros/s bastam
 W0, H0 = 270, 480
 raw = b"" if not MASC else subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-i", f"{tmp}/amostra-m.mp4", "-vf", f"scale={W0}:{H0},fps=5", "-f", "rawvideo", "-pix_fmt", "gray", "-"], capture_output=True).stdout
 fr = np.frombuffer(raw, np.uint8).reshape(-1, H0, W0) > 128

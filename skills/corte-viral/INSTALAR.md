@@ -72,18 +72,23 @@ Os 8: `context-mapper`, `clip-hunter`, `clip-builder`, `feed-psychologist`, `bli
 Baixe o `deep-filter` certo pro seu computador seguindo `bin/COMO-BAIXAR.md` (GitHub oficial, release v0.5.6).
 Sem ele tudo funciona, só pula a limpeza de ruído por IA.
 
-## 5. Ferramentas de rosto (Mac)
+## 5. Rosto e recorte da pessoa (Windows e Mac)
 
-- `modelo-edicao/olhar/olhar` (mede rosto e olhar) e `modelo-edicao/mascara-pessoa/mascara-pessoa` (recorta a pessoa do
-  fundo) já vêm prontos pra Mac com chip Apple (M1 em diante). Usam o Vision do próprio macOS.
-- Mac com Intel: recompile (precisa das ferramentas do Xcode: `xcode-select --install`):
+- **Recorte da pessoa** (texto ATRÁS da pessoa e o close do `retrato.py`): `modelo-edicao/mascara.py`, igual no Windows e
+  no Mac. Usa o recorte do próprio HyperFrames (`remove-background`, modelo u2net_human_seg, licença Apache 2.0). Não
+  precisa instalar nada além do que já está aqui: Node 22 (passo 1), ffmpeg (passo 1), a venv com numpy (passo 2) e o
+  HyperFrames fixo (passo 8). Na primeira vez ele baixa sozinho o modelo (~168 MB, fica em `~/.cache/hyperframes`) e o
+  `onnxruntime-node`. Precisa de internet só nessa primeira vez. Não precisa de placa de vídeo.
+  Pra já deixar baixado e testar: `verificar.py --testar-recorte` (passo 9).
+- **Mac (opcional, mais rápido):** `modelo-edicao/mascara-pessoa/mascara-pessoa` usa o Vision do macOS. Só entra se
+  pedir: `MASCARA_MOTOR=vision` (ou `mascara.py ... --motor vision`).
+- `modelo-edicao/olhar/olhar` (mede rosto e olhar, Vision) vem pronto pra Mac com chip Apple (M1 em diante). No Windows ele
+  é trocado sozinho pelo `olhar/olhar.py` (OpenCV, usa o modelo da pasta `models/`).
+- Mac com Intel: recompile os dois binários do Mac (precisa das ferramentas do Xcode: `xcode-select --install`):
   ```bash
   cd ~/.claude/skills/corte-viral/modelo-edicao/olhar && swiftc -O main.swift -o olhar
   cd ../mascara-pessoa && swiftc -O main.swift -o mascara-pessoa
   ```
-- Windows: o `olhar` é trocado sozinho pelo `olhar/olhar.py` (OpenCV, usa o modelo da pasta `models/`). O recorte da
-  pessoa não existe no Windows: o close de depoimento usa o modo "seguir" (`retrato_seguir.py`) e a técnica de texto
-  ATRÁS da pessoa fica de fora (ou use a skill `embedded-captions` do HyperFrames).
 
 ## 6. HyperFrames (render da edição)
 
@@ -119,6 +124,8 @@ HyperFrames fixo. Sons extras grátis (máquina de escrever, giz, página): `mod
 Verde em tudo que é obrigatório = pronto. Os avisos (deep-filter, manual da marca) não travam, mas resolva antes de
 entregar vídeo.
 
+Pra testar de verdade o recorte da pessoa (e já baixar o modelo dele): `verificar.py --testar-recorte`.
+
 ## Testes (opcional)
 
 ```bash
@@ -142,3 +149,11 @@ cd ~/.claude/skills/corte-viral && .venv/bin/python -m unittest discover -s test
   caminho sozinho.
 - **Efeito sonoro dentro do HyperFrames sai ~17 dB abaixo da voz:** os sons entram depois, no `mixar_clip.py`/`mixar_meg.py`.
 - **Render solto com nohup numa chamada comum é cancelado:** renderizar com run_in_background.
+- **Recorte da pessoa:** `mascara.py` acha o HyperFrames em `<trabalho>/hf/` (ou `HYPERFRAMES_CLI=<caminho do
+  hyperframes.mjs>`); sem a cópia fixa cai no `npx -y hyperframes@0.8.107`. O modelo vê a imagem em 320x320, então o
+  vídeo vai reduzido pra 360 de largura antes (mais rápido, mesma qualidade) e a máscara volta na largura pedida.
+  Conta de tempo: o HyperFrames é bem mais lento que o Vision do Mac (teste de 13/10/2026 num M1 com o computador muito
+  ocupado: 5 s de vídeo em 11 s no Vision, ~7 min no HyperFrames com CoreML, ~13 min só no processador; com o computador
+  livre é bem menos). A máscara é igual pelo CoreML e pelo processador. No Windows roda no processador: rodar em
+  segundo plano e só nos trechos que vão ter texto atrás (o `source.mp4` do corte, nunca o bruto inteiro).
+  `MASCARA_DEVICE=cpu` força o processador se o CoreML der problema no Mac.
