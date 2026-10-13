@@ -1,0 +1,18 @@
+{
+ "_explicacao": "limpar.py: frases a tirar de cada corte (nome = pasta do corte; texto exato como está no transcript.json dele). plano_close.py: o mesmo formato, mas com o nome do plano SEM -v2 e as frases como no transcript bruto. Objeto com ocorrencia=ultima corta a última vez; so_primeiras=N corta só as N primeiras palavras.",
+ "DEP-cliente-1-v2": [
+  "Perfeito.",
+  "E o que mudou pra você?",
+  {
+   "frase": "Perfeito. Com certeza.",
+   "so_primeiras": 1
+  }
+ ],
+ "lista-3-erros-v3": [
+  "Deixa eu ver o que eu tenho que falar aqui.",
+  {
+   "frase": "Tchau.",
+   "ocorrencia": "ultima"
+  }
+ ]
+}

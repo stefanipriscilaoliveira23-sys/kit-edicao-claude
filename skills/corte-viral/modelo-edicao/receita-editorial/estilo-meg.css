@@ -1,0 +1,63 @@
+/* fontes da marca: o etapa_b troca FONTE_* pelos arquivos do manual da marca; VINHO = cor de destaque, TINTA = cor de texto */
+@font-face { font-family:"SFM"; src:url("FONTE_LEGENDA_MEDIA"); }
+@font-face { font-family:"SFB"; src:url("FONTE_LEGENDA"); }
+@font-face { font-family:"ISI"; src:url("FONTE_ITALICO"); }
+@font-face { font-family:"MYN"; src:url("FONTE_MANUSCRITA"); }
+body { margin:0; background:#000; }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; }
+#cam { position:absolute; inset:0; }
+#aroll { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.i { font-family:"ISI"; color:VINHO; font-weight:400; letter-spacing:0; }
+/* T9 legenda: uma palavra por vez */
+.cap { position:absolute; left:0; right:0; top:1270px; text-align:center; opacity:0; }
+.cap span { font-family:"SFM"; font-size:72px; color:#fff; text-shadow:0 2px 4px rgba(0,0,0,.45), 0 6px 22px rgba(0,0,0,.45); padding:0 8px; }
+.cap.key span { font-family:"ISI"; font-size:104px; background-image:linear-gradient(VINHO,VINHO); background-repeat:no-repeat; background-position:50% 90%; background-size:0% 0.14em; }
+/* T10 frase em tela cheia */
+.takeover { position:absolute; left:30px; right:30px; top:50px; text-align:center; }
+.tk { font-family:"SFB"; font-size:112px; line-height:1.02; letter-spacing:-2px; color:TINTA; }
+.tk .i { font-size:150px; line-height:.95; }
+.tk.tks { font-family:"SFM"; font-size:64px; letter-spacing:0; margin-bottom:-6px; }
+.tk.tks + .tk .i { font-size:136px; }
+/* C4 parede de capas */
+.parede { position:absolute; left:-6px; top:-40px; width:1092px; display:grid; grid-template-columns:repeat(4,1fr); gap:8px;
+  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 1380px,transparent 1640px); mask-image:linear-gradient(180deg,#000 0,#000 1380px,transparent 1640px); }
+.capa { width:100%; aspect-ratio:9/16; object-fit:cover; border-radius:14px; display:block; }
+/* T16 marcador de passo + T17 checklist */
+.marc { position:absolute; left:0; right:0; top:22px; text-align:center; }
+.mrow { display:flex; justify-content:center; align-items:baseline; gap:18px; }
+.msm { font-family:"SFM"; font-size:54px; color:TINTA; }
+.mbig { font-family:"ISI"; font-size:180px; line-height:.86; color:VINHO; }
+.msub { font-family:"SFB"; font-size:50px; color:TINTA; margin-top:0; }
+.msub .i { font-size:66px; }
+.checks { position:absolute; left:30px; right:30px; top:290px; display:grid; grid-template-columns:1fr 1fr; column-gap:360px; row-gap:18px; }
+.chk { font-family:"SFM"; font-size:42px; color:TINTA; text-align:left; white-space:nowrap; }
+.chk:nth-child(even) { text-align:right; }
+.chk .v { color:VINHO; font-family:"SFB"; }
+/* fluxo */
+.fluxo { position:absolute; left:0; right:0; top:60px; text-align:center; display:flex; flex-direction:column; gap:6px; }
+.fl { font-family:"SFB"; font-size:70px; color:TINTA; }
+.fl .i { font-size:94px; }
+/* T19 chamada */
+.cta { position:absolute; left:0; right:0; top:40px; text-align:center; }
+.csm { font-family:"SFB"; font-size:66px; color:TINTA; }
+.cbig { font-family:"ISI"; font-size:190px; line-height:.9; color:VINHO; }
+.csub { font-family:"SFM"; font-size:50px; color:TINTA; margin-top:6px; }
+/* cartões de número (T2/T3/T15) */
+.ncard, .pnum { position:absolute; left:170px; right:170px; background:#fff; border-radius:36px; padding:26px 30px 30px; text-align:center; box-shadow:0 18px 50px rgba(0,0,0,.28); }
+.pnum { left:auto; right:56px; width:470px; top:1150px; }
+.nlab { font-family:"SFB"; font-size:30px; letter-spacing:5px; text-transform:uppercase; color:VINHO; }
+.nval { font-family:"SFB"; font-size:150px; line-height:1.0; color:VINHO; letter-spacing:-3px; margin-top:6px; font-variant-numeric:tabular-nums; }
+.pnum .nval { font-size:112px; }
+.nsub { font-family:"SFM"; font-size:36px; color:#6c5f63; margin-top:6px; }
+/* cartão do carrossel */
+.post { position:absolute; left:60px; top:900px; width:430px; }
+.pimg { width:100%; border-radius:22px; display:block; box-shadow:0 20px 50px rgba(0,0,0,.35); }
+.ptag { display:inline-block; margin-top:14px; font-family:"SFB"; font-size:30px; color:#fff; background:VINHO; border-radius:999px; padding:8px 22px 10px; }
+/* T14 anotação à mão */
+.anotw { position:absolute; white-space:nowrap; }
+.anot { font-family:"MYN"; font-size:66px; color:#fff; text-shadow:0 3px 14px rgba(0,0,0,.6); }
+.anot.ink { color:TINTA; text-shadow:none; font-size:62px; }
+/* C13 citação */
+.quote { position:absolute; left:80px; right:80px; top:1440px; background:#fff; border-radius:36px 36px 36px 8px; padding:26px 38px 32px; box-shadow:0 18px 50px rgba(0,0,0,.28); }
+.qh { font-family:"SFB"; font-size:28px; letter-spacing:4px; text-transform:uppercase; color:VINHO; }
+.qt { font-family:"ISI"; font-size:70px; line-height:1.05; color:TINTA; margin-top:6px; }

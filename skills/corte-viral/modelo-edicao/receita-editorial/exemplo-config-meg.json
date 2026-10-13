@@ -1,0 +1,117 @@
+{
+ "ep1": {
+  "_explicacao": "Config do etapa_b_meg.py (1ª versão da receita Editorial, com cartões). Âncoras = frases da transcrição final. Textos abaixo são só exemplo.",
+  "fix": [
+   [
+    "1.",
+    "Um,"
+   ]
+  ],
+  "keys": [
+   "agenda",
+   "preço",
+   "resultado"
+  ],
+  "els": [
+   {
+    "t": "takeover",
+    "start": "Eu dobrei",
+    "end": "sem baixar o preço",
+    "lines": [
+     [
+      "~eu dobrei",
+      "Eu dobrei"
+     ],
+     [
+      "*a agenda*",
+      "a agenda"
+     ]
+    ]
+   },
+   {
+    "t": "parede",
+    "start": "Três coisas",
+    "end": "mudaram tudo"
+   },
+   {
+    "t": "marcador",
+    "start": "Passo um",
+    "end": "do zero",
+    "small": "passo",
+    "big": "um",
+    "sub": "*confirmar* o horário",
+    "sub_at": "confirmar",
+    "check": [
+     [
+      "confirmação",
+      "confirmação"
+     ],
+     [
+      "lembrete",
+      "lembrete"
+     ]
+    ]
+   },
+   {
+    "t": "fluxo",
+    "start": "O um e o dois",
+    "end": "por mim",
+    "items": [
+     [
+      "1 e 2 → *agenda*",
+      "O um e o dois"
+     ]
+    ]
+   },
+   {
+    "t": "numcard",
+    "start": "foram 32",
+    "end": "no mês",
+    "label": "clientes novas",
+    "value": 32,
+    "sub": "em 30 dias",
+    "y": 1430
+   },
+   {
+    "t": "post",
+    "start": "esse post aqui",
+    "end": "me rendeu",
+    "img": "assets/post.jpg",
+    "label": "carrossel",
+    "pre": "R$ ",
+    "value": 1200,
+    "count_at": "me rendeu",
+    "sub": "em 7 dias"
+   },
+   {
+    "t": "anot",
+    "start": "eu postava",
+    "end": "nada vinha",
+    "text": "postava → ?",
+    "x": 540,
+    "y": 330,
+    "rot": -4,
+    "ink": true
+   },
+   {
+    "t": "quote",
+    "start": "uma cliente me disse",
+    "end": "nunca mais",
+    "who": "cliente",
+    "text": "nunca mais perdi horário"
+   },
+   {
+    "t": "cta",
+    "start": "comenta",
+    "end": "agenda",
+    "small": "comenta",
+    "small_at": "comenta",
+    "big": "AGENDA",
+    "big_at": "agenda",
+    "sub": "que eu te mando *o modelo*",
+    "sub_at": "te mando"
+   }
+  ],
+  "emojis": []
+ }
+}

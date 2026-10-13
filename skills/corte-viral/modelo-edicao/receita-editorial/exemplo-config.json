@@ -1,0 +1,235 @@
+{
+ "ep1": {
+  "_explicacao": "Config do etapa_b2.py (receita Editorial aprovada). Âncoras ('start', 'end', '*_at') são frases da transcrição FINAL (números viram algarismo: '1.', 'O 1 e o 2'). *palavra* = itálico com sublinhado na cor de destaque. Imagens ficam em assets/ da pasta da receita. Textos abaixo são só exemplo.",
+  "fix": [
+   [
+    "Bem -vinda",
+    "Bem-vinda"
+   ],
+   [
+    "1.",
+    "Um,"
+   ],
+   [
+    "O 1 e o 2",
+    "O um e o dois"
+   ]
+  ],
+  "keys": [
+   "agenda",
+   "cliente",
+   "preço",
+   "resultado",
+   "anos"
+  ],
+  "els": [
+   {
+    "t": "titulo",
+    "start": "Eu dobrei minha agenda",
+    "end": "sem baixar o preço",
+    "l1": "eu dobrei *a agenda*",
+    "esc": "sem baixar o preço",
+    "esc_at": "sem baixar"
+   },
+   {
+    "t": "carrossel",
+    "start": "com esse post aqui",
+    "end": "esse post aqui",
+    "at": "com esse post",
+    "hold": 4.6,
+    "likes": "120",
+    "coms": "45",
+    "palavra": "AGENDA",
+    "_imagens": "assets/slide1.jpg ... slide6.jpg (os slides do seu carrossel)"
+   },
+   {
+    "t": "marcador",
+    "start": "Bem-vinda ao episódio",
+    "end": "do zero",
+    "small": "episódio",
+    "big": "um",
+    "num_at": "episódio 1",
+    "esc": "agenda cheia sem baixar preço",
+    "esc_at": "como eu"
+   },
+   {
+    "t": "parede",
+    "start": "Três coisas",
+    "end": "mudaram tudo",
+    "_imagens": "assets/capa02.jpg ... capa16.jpg (capas dos seus reels; só no Mac fica ATRÁS da pessoa)"
+   },
+   {
+    "t": "fluxo",
+    "start": "O um e o dois",
+    "end": "trabalhando por mim",
+    "items": [
+     [
+      "1 e 2 → *agenda*",
+      "O um e o dois"
+     ],
+     [
+      "3 → *o que funciona*",
+      "E o três"
+     ]
+    ]
+   },
+   {
+    "t": "anot",
+    "start": "eu postava",
+    "end": "e nada vinha",
+    "text": "postava → esperava → ?"
+   },
+   {
+    "t": "lista",
+    "start": "segunda eu atendia",
+    "end": "no fim de semana",
+    "mark": "•",
+    "items": [
+     [
+      "segunda: atendendo o dia todo",
+      "segunda eu atendia"
+     ],
+     [
+      "sábado: organizando a semana",
+      "no sábado"
+     ]
+    ]
+   },
+   {
+    "t": "print",
+    "start": "olha o meu relatório",
+    "end": "esse mês",
+    "hold": 2.6,
+    "zoom_at": "esse mês",
+    "img": "print-relatorio.png"
+   },
+   {
+    "t": "valor",
+    "start": "foi aí que eu fiz",
+    "end": "por mês",
+    "hold": 3.0,
+    "l0": "foi aí que eu fiz",
+    "pre": "+ R$ ",
+    "value": 5000,
+    "count_at": "5 mil",
+    "esc": "por mês"
+   },
+   {
+    "t": "foto",
+    "start": "quando eu comecei",
+    "dur": 2.2,
+    "modo": "pop",
+    "imgs": [
+     "foto1.jpg"
+    ],
+    "w": 600,
+    "x": 50,
+    "y": 1090,
+    "rot": -3
+   },
+   {
+    "t": "foto",
+    "start": "meu primeiro espaço",
+    "dur": 4.0,
+    "modo": "pilha",
+    "imgs": [
+     "foto2.jpg",
+     "foto3.jpg"
+    ],
+    "w": 420,
+    "x": 60,
+    "y": 1000,
+    "dy": 20,
+    "gap": 1.4,
+    "queda": 0.55
+   },
+   {
+    "t": "foto",
+    "start": "foi aqui que eu",
+    "dur": 2.3,
+    "modo": "tela",
+    "imgs": [
+     "foto4.jpg"
+    ]
+   },
+   {
+    "t": "foto",
+    "start": "olha quantas",
+    "dur": 2.0,
+    "modo": "passa",
+    "imgs": [
+     "foto5.jpg"
+    ],
+    "w": 520,
+    "y": 1000
+   },
+   {
+    "t": "foto",
+    "start": "e as mensagens",
+    "dur": 1.85,
+    "modo": "mosaico",
+    "imgs": [
+     "m1.jpg",
+     "m2.jpg",
+     "m3.jpg",
+     "m4.jpg",
+     "m5.jpg",
+     "m6.jpg"
+    ],
+    "gap": 0.28,
+    "som": "ping.wav"
+   },
+   {
+    "t": "cta",
+    "start": "Se você quer saber",
+    "end": "episódio 2",
+    "small": "comenta",
+    "small_at": "comenta",
+    "big": "AGENDA",
+    "big_at": "agenda",
+    "esc": "que eu te mando o passo a passo",
+    "esc_at": "te mando"
+   }
+  ],
+  "insercoes": [
+   {
+    "bruto": 74.5,
+    "antes": 0.15,
+    "depois": 0.45,
+    "txt": "agenda + *cursos*",
+    "bg": "foto:foto6.jpg"
+   },
+   {
+    "bruto": 101.2,
+    "antes": 0.15,
+    "depois": 0.6,
+    "txt": "*3 coisas* todo dia",
+    "bg": "mosaico:m1.jpg,m2.jpg,m3.jpg,m4.jpg"
+   },
+   [
+    67.1,
+    68.0,
+    "era muito *chato* 🥱",
+    "notifs:n1.jpg,n2.jpg,n3.jpg,n4.jpg"
+   ]
+  ],
+  "_insercoes": "Tela cheia que cobre olhar pra baixo dos dois lados de uma emenda. {bruto: segundo do BRUTO no fim do pedaço} ou [ini, fim, texto, fundo] no tempo final. Fundo: foto:arq | mosaico:a,b,c | notifs:a,b | carrossel | capas",
+  "emojis": [
+   [
+    "agenda",
+    "📅",
+    "L"
+   ],
+   [
+    "5 mil",
+    "💰",
+    "R"
+   ],
+   [
+    "anotações",
+    "📒",
+    "R"
+   ]
+  ]
+ }
+}

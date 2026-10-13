@@ -1,0 +1,84 @@
+/* fontes da marca: o etapa_b troca FONTE_* pelos arquivos do manual da marca; VINHO = cor de destaque, TINTA = cor de texto */
+@font-face { font-family:"SFM"; src:url("FONTE_LEGENDA_MEDIA"); }
+@font-face { font-family:"SFB"; src:url("FONTE_LEGENDA"); }
+@font-face { font-family:"ISI"; src:url("FONTE_ITALICO"); }
+@font-face { font-family:"MYN"; src:url("FONTE_MANUSCRITA"); }
+body { margin:0; background:#000; }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; }
+#cam { position:absolute; inset:0; transform-origin:50% 35%; }
+#aroll { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+/* tudo branco; cor de destaque só no sublinhado */
+.i { font-family:"ISI"; color:#fff; font-weight:400; letter-spacing:0; padding:0 4px;
+     background-image:linear-gradient(VINHO,VINHO); background-repeat:no-repeat; background-position:50% 92%; background-size:0% 0.09em; }
+.topo { position:absolute; left:60px; right:60px; top:175px; text-align:center; color:#fff;
+        text-shadow:0 2px 6px rgba(0,0,0,.35), 0 6px 26px rgba(0,0,0,.35); }
+.t1 { font-family:"SFB"; font-size:84px; line-height:1.0; letter-spacing:-1px; }
+.t1 .i { font-size:112px; line-height:.9; }
+.t1.t1s { font-size:62px; }
+.t1.t1s .i { font-size:84px; }
+.tpre { font-family:"SFM"; font-size:50px; margin-bottom:2px; }
+.mrow { display:flex; justify-content:center; align-items:baseline; gap:16px; }
+.msm { font-family:"SFM"; font-size:48px; }
+.mbig .i { font-size:150px; line-height:.86; }
+.esc, .anot { position:relative; display:inline-block; margin-top:10px; font-family:"MYN"; font-size:56px; line-height:1.15; }
+.anot { font-size:62px; }
+.ch { opacity:0; }
+.risco { position:absolute; left:0; right:0; bottom:-4px; height:6px; border-radius:3px; background:VINHO; transform-origin:0 50%; transform:scaleX(0); }
+.fl { font-family:"SFB"; font-size:66px; line-height:1.15; }
+.fl .i { font-size:88px; }
+.cbig .i { font-size:150px; }
+.vbig { font-family:"SFB"; font-size:130px; line-height:1; letter-spacing:-2px; font-variant-numeric:tabular-nums; }
+.vbig .i { font-family:"SFB"; font-size:130px; }
+/* parede de capas */
+.parede { position:absolute; left:-6px; top:-40px; width:1092px; display:grid; grid-template-columns:repeat(4,1fr); gap:8px;
+  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 1380px,transparent 1640px); mask-image:linear-gradient(180deg,#000 0,#000 1380px,transparent 1640px); }
+.capa { width:100%; aspect-ratio:9/16; object-fit:cover; border-radius:14px; display:block; }
+/* legenda: lado direito, altura do ombro */
+.cap { position:absolute; left:560px; right:20px; top:845px; text-align:center; opacity:0; }
+.cap span { font-family:"SFM"; font-size:62px; color:#fff; text-shadow:0 2px 4px rgba(0,0,0,.5), 0 6px 22px rgba(0,0,0,.45); padding:0 6px; }
+.cap.key span { font-family:"ISI"; font-size:92px; background-image:linear-gradient(VINHO,VINHO); background-repeat:no-repeat; background-position:50% 92%; background-size:0% 0.08em; }
+/* emoji */
+.emo { position:absolute; font-size:118px; line-height:1; transform:translate(-50%,-50%); filter:drop-shadow(0 8px 16px rgba(0,0,0,.35)); }
+/* print real (app/sistema/relatório) */
+.print { position:absolute; left:28px; top:1210px; width:560px; transform-origin:0% 35%; }
+.print img { width:100%; display:block; border-radius:18px; box-shadow:0 18px 44px rgba(0,0,0,.4); }
+.marca { position:absolute; left:4%; top:22%; width:34%; height:12%; border:5px solid VINHO; border-radius:16px; }
+
+.insert { position:absolute; inset:0; overflow:hidden; background:#000; }
+.igrid { position:absolute; left:-20px; top:-40px; width:1120px; display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+.igrid .capa { border-radius:12px; }
+.ishade { position:absolute; inset:0; background:rgba(0,0,0,.45); }
+.itxt { position:absolute; left:0; right:0; top:820px; text-align:center; font-family:"SFB"; font-size:96px; color:#fff; text-shadow:0 4px 24px rgba(0,0,0,.6); }
+.itxt .i { font-size:140px; }
+
+.carro { position:absolute; left:40px; top:1120px; width:400px; height:500px; transform-origin:20% 80%; }
+.cslide { position:absolute; left:0; top:0; width:400px; border-radius:16px; box-shadow:0 14px 36px rgba(0,0,0,.4); transform-origin:10% 90%; }
+.cmeta { position:absolute; left:0; top:520px; white-space:nowrap; font-family:"SFB"; font-size:34px; color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.6); }
+.cmeta b { font-family:"ISI"; font-weight:400; font-size:46px; }
+.slide { object-fit:cover; }
+
+section.clip:has(.insert) { z-index:50 !important; }
+#caps { z-index:5; }
+.igrid .slide { aspect-ratio:4/5; }
+
+.mesa { position:absolute; left:0; right:0; top:1030px; height:540px; }
+.crow { position:absolute; left:0; top:0; width:3000px; height:540px; }
+.crow .cslide { position:absolute; top:0; width:420px; border-radius:18px; box-shadow:0 16px 40px rgba(0,0,0,.45); }
+.cmeta { position:absolute; left:40px; top:1585px; white-space:nowrap; font-family:"SFB"; font-size:36px; color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.6); }
+.lista { position:absolute; left:26px; top:560px; width:400px; display:flex; flex-direction:column; gap:14px; text-align:left; }
+.li { display:flex; align-items:flex-start; gap:10px; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.6), 0 6px 22px rgba(0,0,0,.4); }
+.mk { font-family:"SFB"; font-size:44px; color:VINHO; text-shadow:none; line-height:1.2; }
+.esc.lesc { margin-top:0; font-size:48px; line-height:1.15; }
+.foto { position:absolute; border-radius:18px; box-shadow:0 18px 44px rgba(0,0,0,.45); }
+.ibox { position:absolute; inset:0; }
+.ibg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.ngrid { position:absolute; left:-10px; top:-20px; width:1100px; columns:2; column-gap:10px; }
+.ngrid img { width:100%; display:block; margin-bottom:10px; border-radius:14px; }
+
+.ftela { position:absolute; inset:0; overflow:hidden; background:#000; }
+.ftela img { width:100%; height:100%; object-fit:cover; }
+section.clip:has(.ftela) { z-index:2; }
+section.clip:has(.topo) { z-index:10; }
+.mosaico { position:absolute; inset:0; }
+.mtile { position:absolute; width:540px; height:640px; overflow:hidden; box-shadow:0 0 0 3px #111; }
+.mtile img { width:100%; height:100%; object-fit:cover; object-position:center top; }

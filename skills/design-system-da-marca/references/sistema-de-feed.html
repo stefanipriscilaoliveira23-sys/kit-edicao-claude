@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sistema de Feed</title>
+<style>
+  /* =====================================================================
+     MODELO. O Claude troca o bloco :root e os @font-face pelos valores do
+     ~/minha-marca/marca.json (python3 scripts/marca_css.py gera os dois).
+     Os papéis das cores são sempre os mesmos; só o código muda por marca.
+     ===================================================================== */
+  @font-face { font-family: "Titulo"; src: url("../assets/fonts/InstrumentSerif-Regular.ttf") format("truetype"); font-style: normal; }
+  @font-face { font-family: "Titulo"; src: url("../assets/fonts/InstrumentSerif-Italic.ttf") format("truetype"); font-style: italic; }
+  @font-face { font-family: "Corpo"; src: url("../assets/fonts/Inter-Regular.woff2") format("woff2"); font-weight: 400; }
+  @font-face { font-family: "Corpo"; src: url("../assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+  @font-face { font-family: "Corpo"; src: url("../assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
+  @font-face { font-family: "Corpo"; src: url("../assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+  @font-face { font-family: "Manuscrita"; src: url("../assets/fonts/Mynerve-Regular.ttf") format("truetype"); }
+  :root {
+    /* PALETA DA MARCA (exemplo neutro: troque pelos códigos do marca.json) */
+    --cor-principal: #1F3A5F;   /* cor mais forte: capa de confronto, peso */
+    --cor-destaque: #E07A5F;    /* cor-assinatura: CTA, pílula, palavra circulada */
+    --cor-fundo: #FAF7F2;       /* fundo claro: slide-conteúdo */
+    --cor-fundo-2: #F6E3DC;     /* fundo secundário: bloco de citação */
+    --cor-texto: #1E1E1E;       /* texto principal sobre claro */
+    --cor-claro: #FFF8F0;       /* texto sobre escuro, manuscrita sobre escuro */
+    --cor-escuro: #10141A;      /* profundidade: capa de autoridade, slide-quebra */
+    --cor-raro: #C9A227;        /* raridade: selo, detalhe premium (1 a cada 10 peças) */
+    --cor-principal-escura: color-mix(in srgb, var(--cor-principal) 60%, black);
+    /* TIPOGRAFIA DA MARCA */
+    --fonte-titulo: "Titulo", "Instrument Serif", Georgia, serif;
+    --fonte-corpo: "Corpo", "Inter", system-ui, sans-serif;
+    --fonte-manuscrita: "Manuscrita", "Mynerve", "Caveat", cursive;
+  }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--fonte-corpo);
+    background: var(--cor-fundo);
+    color: var(--cor-escuro);
+    line-height: 1.55;
+  }
+
+  .wrapper { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--cor-escuro);
+    color: var(--cor-fundo);
+    padding: 40px 28px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .sidebar-brand {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.05;
+    margin-bottom: 4px;
+    color: var(--cor-claro);
+  }
+  .sidebar-tagline {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--cor-raro);
+    margin-bottom: 36px;
+  }
+  .sidebar-nav h4 {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--cor-claro);
+    margin: 24px 0 10px;
+    opacity: .55;
+  }
+  .sidebar-nav a {
+    display: block;
+    color: var(--cor-fundo);
+    text-decoration: none;
+    font-size: 13.5px;
+    padding: 7px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--cor-fundo) 6%, transparent);
+    transition: color .2s, padding .2s;
+  }
+  .sidebar-nav a:hover { color: var(--cor-claro); padding-left: 6px; }
+
+  .content { padding: 0; }
+  section { padding: 70px 70px; border-bottom: 1px solid color-mix(in srgb, var(--cor-texto) 8%, transparent); }
+
+  .eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--cor-destaque);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: clamp(46px, 5.5vw, 80px);
+    line-height: 1.02;
+    color: var(--cor-escuro);
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+  }
+  h2 {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 42px;
+    line-height: 1.05;
+    margin-bottom: 18px;
+    color: var(--cor-escuro);
+  }
+  p { font-size: 15.5px; max-width: 720px; margin-bottom: 14px; }
+  p.lead { font-size: 17px; color: color-mix(in srgb, var(--cor-texto) 78%, transparent); max-width: 760px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--cor-fundo) 0%, var(--cor-fundo-2) 60%, var(--cor-claro) 100%);
+    padding: 90px 70px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -120px;
+    top: -80px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--cor-destaque) 18%, transparent), transparent 70%);
+    border-radius: 50%;
+  }
+
+  /* 6 TIPOS DE CAPA — preview cards */
+  .tipos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 30px;
+  }
+  .tipo-card {
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent);
+  }
+  .tipo-mock {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px 24px;
+  }
+  .tipo-info {
+    padding: 16px 20px 18px;
+    border-top: 1px solid color-mix(in srgb, var(--cor-texto) 8%, transparent);
+  }
+  .tipo-info h4 {
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--cor-escuro);
+    margin-bottom: 4px;
+  }
+  .tipo-info p {
+    font-size: 12.5px;
+    color: color-mix(in srgb, var(--cor-texto) 65%, transparent);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .tipo-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: color-mix(in srgb, var(--cor-fundo) 95%, transparent);
+    color: var(--cor-destaque);
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    z-index: 5;
+  }
+
+  /* TIPO 1 · FOTO SUA */
+  .tipo-foto-sua {
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.7) 100%),
+      linear-gradient(135deg, color-mix(in srgb, var(--cor-principal) 45%, #8a8a8a), color-mix(in srgb, var(--cor-fundo-2) 60%, #6d6d6d));
+    background-size: cover;
+    background-position: center;
+    color: var(--cor-fundo);
+  }
+  .tipo-foto-sua .h1 {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 32px;
+    line-height: 0.92;
+    text-shadow: 0 2px 12px rgba(0,0,0,.5);
+  }
+  .tipo-foto-sua .h2 {
+    font-family: var(--fonte-corpo);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 12px rgba(0,0,0,.5);
+  }
+
+  /* TIPO 2 · FOTO RESPIRO */
+  .tipo-foto-respiro {
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.6) 100%),
+      linear-gradient(135deg, color-mix(in srgb, var(--cor-fundo-2) 60%, #9a9a9a), color-mix(in srgb, var(--cor-texto) 35%, #b0b0b0));
+    background-size: cover;
+    background-position: center;
+    color: var(--cor-fundo);
+  }
+  .tipo-foto-respiro .h1 {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 30px;
+    line-height: 0.92;
+    text-shadow: 0 2px 12px rgba(0,0,0,.5);
+  }
+  .tipo-foto-respiro .h2 {
+    font-family: var(--fonte-corpo);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 12px rgba(0,0,0,.5);
+  }
+
+  /* TIPO 3 · TIPOGRÁFICA · FUNDO ESCURO */
+  .tipo-tipo-escuro {
+    background: var(--cor-escuro);
+    color: var(--cor-claro);
+    justify-content: center;
+  }
+  .tipo-tipo-escuro .h1 {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 32px;
+    line-height: 0.95;
+    color: var(--cor-fundo);
+  }
+  .tipo-tipo-escuro .h1 em { color: var(--cor-claro); font-style: italic; }
+  .tipo-tipo-escuro .h2 {
+    font-family: var(--fonte-corpo);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* TIPO 4 · TIPOGRÁFICA · FUNDO CLARO */
+  .tipo-tipo-claro {
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    justify-content: center;
+  }
+  .tipo-tipo-claro::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--cor-texto) 10%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--cor-texto) 10%, transparent) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+  }
+  .tipo-tipo-claro .h1 {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 32px;
+    line-height: 0.95;
+    color: var(--cor-texto);
+    position: relative;
+  }
+  .tipo-tipo-claro .h1 em { color: var(--cor-destaque); font-style: italic; }
+  .tipo-tipo-claro .h2 {
+    font-family: var(--fonte-corpo);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cor-destaque);
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  /* TIPO 5 · CAPA + CAIXA OVERLAY */
+  .tipo-caixa-overlay {
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.4) 100%),
+      linear-gradient(135deg, color-mix(in srgb, var(--cor-fundo-2) 60%, #9a9a9a), color-mix(in srgb, var(--cor-texto) 35%, #b0b0b0));
+    background-size: cover;
+    background-position: center;
+    color: var(--cor-fundo);
+  }
+  .tipo-caixa-overlay .caixa {
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    padding: 8px 14px;
+    display: inline-block;
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .tipo-caixa-overlay .h2 {
+    font-family: var(--fonte-corpo);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cor-fundo);
+    margin-bottom: 10px;
+    text-shadow: 0 2px 8px rgba(0,0,0,.5);
+  }
+
+  /* TIPO 6 · QUOTE / FRASE */
+  .tipo-quote {
+    background: var(--cor-principal);
+    color: var(--cor-fundo);
+    justify-content: center;
+    text-align: left;
+  }
+  .tipo-quote .h1 {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 30px;
+    line-height: 0.95;
+    color: var(--cor-fundo);
+  }
+  .tipo-quote .h1 em { color: var(--cor-claro); font-style: italic; }
+  .tipo-quote::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--cor-destaque) 25%, transparent), transparent 65%);
+  }
+
+  /* MOCKUP DE FEED 3x3 */
+  .feed-mock {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    max-width: 580px;
+    margin: 30px auto;
+    border: 8px solid white;
+    box-shadow: 0 30px 80px color-mix(in srgb, var(--cor-texto) 20%, transparent);
+    background: white;
+  }
+  .feed-cell {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 12px;
+    color: white;
+  }
+  .feed-cell .ftext {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 0.95;
+    text-shadow: 0 2px 8px rgba(0,0,0,.5);
+  }
+  .feed-cell .ftext-dark {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 0.95;
+    color: var(--cor-texto);
+  }
+  .feed-cell .feyebrow {
+    font-family: var(--fonte-corpo);
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 8px rgba(0,0,0,.4);
+  }
+  .feed-cell .feyebrow-dark {
+    color: var(--cor-destaque);
+    text-shadow: none;
+  }
+
+  .feed-explainer {
+    max-width: 720px;
+    margin: 30px auto 0;
+    text-align: center;
+    font-size: 14px;
+    color: color-mix(in srgb, var(--cor-texto) 70%, transparent);
+  }
+
+  /* TABELA DE REGRAS */
+  .rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    font-size: 14px;
+  }
+  .rules-table th, .rules-table td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent);
+  }
+  .rules-table th {
+    background: var(--cor-fundo);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--cor-principal-escura);
+    font-weight: 700;
+  }
+  .rules-table tr:hover td { background: color-mix(in srgb, var(--cor-claro) 18%, transparent); }
+
+  /* TAGLINE */
+  .tagline-card {
+    background: var(--cor-escuro);
+    color: var(--cor-claro);
+    padding: 36px 40px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+  .tagline-display {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 32px;
+    color: var(--cor-fundo);
+    margin: 12px 0;
+  }
+  .tagline-display em { color: var(--cor-claro); font-style: italic; }
+  .tagline-uppercase {
+    font-family: var(--fonte-corpo);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cor-raro);
+    margin-top: 18px;
+  }
+
+  /* CHECKLIST */
+  .checklist {
+    background: var(--cor-fundo);
+    border-left: 4px solid var(--cor-destaque);
+    padding: 24px 28px;
+    margin-top: 22px;
+  }
+  .checklist h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--cor-destaque);
+    margin-bottom: 14px;
+  }
+  .checklist ul { list-style: none; }
+  .checklist li {
+    padding: 7px 0;
+    font-size: 14px;
+    border-bottom: 1px dashed color-mix(in srgb, var(--cor-texto) 10%, transparent);
+  }
+  .checklist li:before { content: "☐ "; color: var(--cor-destaque); font-weight: 700; }
+
+  footer {
+    padding: 40px 70px;
+    background: var(--cor-escuro);
+    color: var(--cor-claro);
+    text-align: center;
+  }
+  footer .sig { font-family: var(--fonte-titulo); font-style: italic; font-size: 32px; color: var(--cor-claro); margin-bottom: 8px; }
+  footer .meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--cor-raro); }
+
+  @media (max-width: 1100px) {
+    .wrapper { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; }
+    section { padding: 50px 28px; }
+    .tipos-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">Sistema<br>de Feed</div>
+    <div class="sidebar-tagline">modelo · versão 1</div>
+    <nav class="sidebar-nav">
+      <h4>Sistema</h4>
+      <a href="#hero">01 · Filosofia do feed</a>
+      <a href="#tipos">02 · 6 tipos de capa</a>
+      <a href="#feed-mock">03 · Mockup 3x3</a>
+      <a href="#regras">04 · Regras de distribuição</a>
+      <a href="#tagline">05 · Assinatura da marca</a>
+      <a href="#cores">06 · Distribuição de cores</a>
+      <a href="#checklist">07 · Checklist mensal</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+
+    <section id="hero" class="hero">
+      <div class="eyebrow">Sistema de Feed</div>
+      <h1>Feed harmônico não é <em>1 carrossel bonito.</em></h1>
+      <p class="lead">É <strong>regra de distribuição</strong> aplicada em blocos de 9 posts. Mistura intencional de tipos de capa, cores e ritmo visual. Sem isso, mesmo carrosséis lindos viram um feed bagunçado. As cores e fontes desta página vêm do manual da marca (<strong>~/minha-marca/</strong>).</p>
+    </section>
+
+    <section id="tipos">
+      <div class="eyebrow">02 · Biblioteca de capas</div>
+      <h2>6 tipos de capa. <em>Cada um cumpre uma função.</em></h2>
+      <p class="lead">No próximo bloco de 9 posts, você precisa ter pelo menos 4 dos 6 tipos. Não pode ter 9 posts seguidos do mesmo tipo. Aqui mora o ritmo do feed.</p>
+      <div class="tipos-grid">
+        <div class="tipo-card">
+          <div class="tipo-mock tipo-foto-sua"><div class="tipo-tag">01 · Foto sua</div><div class="h2">EU TINHA</div><div class="h1"><em style="font-style:italic;">um plano.</em></div></div>
+          <div class="tipo-info"><h4>Foto sua + tipografia</h4><p>Você atendendo, ensinando, no seu espaço. Foto crua sem filtro. Hierarquia variada com sombra no texto.</p></div>
+        </div>
+        <div class="tipo-card">
+          <div class="tipo-mock tipo-foto-respiro"><div class="tipo-tag">02 · Respiro</div><div class="h2">ENQUANTO EU ATENDIA</div><div class="h1"><em style="font-style:italic;">as mensagens</em></div></div>
+          <div class="tipo-info"><h4>Foto respiro + tipografia</h4><p>Objeto ou cena do seu dia (materiais, mesa, café, agenda). Sem você na foto. Quebra a repetição do retrato.</p></div>
+        </div>
+        <div class="tipo-card">
+          <div class="tipo-mock tipo-tipo-escuro"><div class="tipo-tag" style="background:var(--cor-destaque); color:var(--cor-claro);">03 · Tipográfica escura</div><div class="h2">FOI AÍ QUE EU ENTENDI</div><div class="h1">Agenda cheia <em>não é lucro.</em></div></div>
+          <div class="tipo-info"><h4>Tipográfica · fundo escuro</h4><p>Sem foto. Fundo escuro ou cor principal. Título gigante em itálico. Para frases-âncora e provocações.</p></div>
+        </div>
+        <div class="tipo-card">
+          <div class="tipo-mock tipo-tipo-claro"><div class="tipo-tag">04 · Tipográfica clara</div><div class="h2">5 PASSOS PARA</div><div class="h1">uma agenda <em>que respira.</em></div></div>
+          <div class="tipo-info"><h4>Tipográfica · fundo claro + grade</h4><p>Fundo claro com grade sutil. Para conteúdo educativo em lista (passos, métodos, erros).</p></div>
+        </div>
+        <div class="tipo-card">
+          <div class="tipo-mock tipo-caixa-overlay"><div class="tipo-tag">05 · Foto + caixa</div><div class="h2">A PERGUNTA QUE</div><div><span class="caixa">ninguém faz?</span></div></div>
+          <div class="tipo-info"><h4>Foto + caixa por cima</h4><p>Foto inteira + caixa de cor sólida (fundo, principal, destaque) flutuando como rótulo. Mais editorial.</p></div>
+        </div>
+        <div class="tipo-card">
+          <div class="tipo-mock tipo-quote"><div class="tipo-tag" style="background:var(--cor-fundo); color:var(--cor-principal);">06 · Frase</div><div class="h1">Constância <em>vence talento.</em></div></div>
+          <div class="tipo-info"><h4>Frase · fundo da marca</h4><p>Fundo na cor principal ou de destaque. 1 frase só, título gigante. Para máximas e frases de impacto isoladas.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="feed-mock">
+      <div class="eyebrow">03 · Mockup de feed</div>
+      <h2>9 posts que conversam entre si.</h2>
+      <p class="lead">Exemplo de bloco de 9 posts seguindo a regra de distribuição. <strong>Cores e tipos intercalados</strong>, nenhum vizinho idêntico. Os quadros cinza são onde entram as suas fotos.</p>
+      <div class="feed-mock">
+        <div class="feed-cell" style="background:linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.7) 100%), linear-gradient(135deg, color-mix(in srgb, var(--cor-principal) 45%, #8a8a8a), color-mix(in srgb, var(--cor-fundo-2) 60%, #6d6d6d));"><div class="feyebrow">EU TINHA</div><div class="ftext"><em style="font-style:italic;">um plano.</em></div></div>
+        <div class="feed-cell" style="background:var(--cor-escuro);"><div class="feyebrow" style="color:var(--cor-claro);">FRASE-ÂNCORA</div><div class="ftext" style="text-shadow:none;"><em style="color:var(--cor-claro); font-style:italic;">não é lucro</em></div></div>
+        <div class="feed-cell" style="background:var(--cor-fundo);"><div class="feyebrow feyebrow-dark">5 PASSOS</div><div class="ftext-dark"><em style="font-style:italic;">agenda que respira.</em></div></div>
+        <div class="feed-cell" style="background:var(--cor-principal);"><div class="ftext" style="text-shadow:none;"><em>constância vence talento.</em></div></div>
+        <div class="feed-cell" style="background:linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.6) 100%), linear-gradient(135deg, color-mix(in srgb, var(--cor-fundo-2) 60%, #9a9a9a), color-mix(in srgb, var(--cor-texto) 35%, #b0b0b0));"><div class="feyebrow">ENQUANTO EU ATENDIA</div><div class="ftext"><em style="font-style:italic;">mensagens</em></div></div>
+        <div class="feed-cell" style="background:var(--cor-fundo); position:relative;"><div style="position:absolute; inset:0; background-image: linear-gradient(color-mix(in srgb, var(--cor-texto) 10%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--cor-texto) 10%, transparent) 1px, transparent 1px); background-size: 24px 24px;"></div><div class="feyebrow feyebrow-dark" style="position:relative;">SEU HORÁRIO</div><div class="ftext-dark" style="position:relative;"><em>está sobrando?</em></div></div>
+        <div class="feed-cell" style="background:linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.6) 100%), linear-gradient(135deg, color-mix(in srgb, var(--cor-fundo-2) 60%, #9a9a9a), color-mix(in srgb, var(--cor-texto) 35%, #b0b0b0)); align-items:flex-start; flex-direction:column-reverse;"><div style="background:var(--cor-fundo); color:var(--cor-texto); padding:6px 10px; font-family:var(--fonte-titulo); font-style:italic; font-size:14px;">ninguém faz?</div></div>
+        <div class="feed-cell" style="background:var(--cor-destaque);"><div class="feyebrow" style="text-shadow:none;">CTA</div><div class="ftext" style="text-shadow:none;"><em style="font-style:italic;">comenta AGENDA</em></div></div>
+        <div class="feed-cell" style="background:linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.7) 100%), linear-gradient(135deg, color-mix(in srgb, var(--cor-principal) 45%, #8a8a8a), color-mix(in srgb, var(--cor-fundo-2) 60%, #6d6d6d));"><div class="feyebrow">A PARTIR DALI</div><div class="ftext"><em style="font-style:italic;">tudo mudou.</em></div></div>
+      </div>
+      <div class="feed-explainer"><p style="margin:0;">9 posts · 5 cores · 6 tipos de capa · zero vizinhos idênticos. <em>Esse é o ritmo.</em></p></div>
+    </section>
+
+    <section id="regras">
+      <div class="eyebrow">04 · Regras de distribuição</div>
+      <h2>Como distribuir 9 posts.</h2>
+      <p class="lead">Todo planejamento de pauta respeita estas regras. Quebrá-las gera feed repetitivo, de uma cor só ou cansativo.</p>
+      <table class="rules-table">
+        <thead><tr><th>Regra</th><th>O que fazer</th><th>Por quê</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tipos de capa</strong></td><td>Pelo menos 4 dos 6 tipos em cada bloco de 9 posts</td><td>Variedade de formato evita feed monótono</td></tr>
+          <tr><td><strong>Distribuição de cores</strong></td><td>3 escuros (escuro/principal), 3 claros (fundo/fundo 2), 3 sinal (destaque ou foto)</td><td>Equilíbrio de luz e peso visual</td></tr>
+          <tr><td><strong>Vizinhança</strong></td><td>Nunca 2 posts seguidos do mesmo tipo OU da mesma cor predominante</td><td>Quebra de ritmo entre posts vizinhos</td></tr>
+          <tr><td><strong>Foto sua</strong></td><td>No máximo 3 posts com foto sua a cada 9</td><td>Sua marca não é só você. É o que você entrega.</td></tr>
+          <tr><td><strong>Foto respiro</strong></td><td>No mínimo 2 posts com foto respiro a cada 9</td><td>Quebra a repetição do retrato</td></tr>
+          <tr><td><strong>Tipográficos puros</strong></td><td>No mínimo 3 posts sem foto a cada 9</td><td>Editorial. Não vira "perfil de influencer".</td></tr>
+          <tr><td><strong>CTA</strong></td><td>No máximo 1 post de CTA puro a cada 9</td><td>CTA demais cansa. CTA bem posicionado converte.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="tagline">
+      <div class="eyebrow">05 · Assinatura da marca</div>
+      <h2>A assinatura em todo post.</h2>
+      <p class="lead">Aplicada em <strong>todas as peças</strong>, no canto superior direito (carimbo discreto) ou no rodapé. Repete e fixa o posicionamento a cada post. Vem de <strong>carrossel.assinatura</strong> e <strong>carrossel.tagline</strong> no marca.json.</p>
+      <div class="tagline-card">
+        <div class="tagline-uppercase" style="margin-top:0;">Assinatura</div>
+        <div class="tagline-display">@seuarroba</div>
+        <div class="tagline-uppercase">A FRASE DA SUA MARCA</div>
+        <div style="border-top:1px solid color-mix(in srgb, var(--cor-claro) 20%, transparent); margin:36px 0 24px;"></div>
+        <div class="tagline-uppercase" style="margin-top:0;">Como aparece nas peças</div>
+        <p style="font-size:14px; color:var(--cor-claro); max-width:680px; opacity:.85; margin-top:12px;">
+          <strong style="color:var(--cor-fundo);">Carimbo superior direito</strong> (carrossel com vários slides): pequeno, sutil, opacidade 70%. Aparece em todos os slides.<br><br>
+          <strong style="color:var(--cor-fundo);">Rodapé centralizado</strong> (capa, peça única, story): nome · @, caixa alta com espaçamento 4px, opacidade 70%.<br><br>
+          <strong style="color:var(--cor-fundo);">Bio do perfil</strong>: a frase da marca entra na bio do Instagram.
+        </p>
+      </div>
+    </section>
+
+    <section id="cores">
+      <div class="eyebrow">06 · Distribuição de cores no feed</div>
+      <h2>3 grupos. <em>3 ritmos.</em></h2>
+      <p class="lead">Cada bloco de 9 posts tem 3 posts de cada grupo. Assim o feed não fica todo escuro, nem todo claro, nem todo da cor de destaque.</p>
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top:24px;">
+        <div style="background:var(--cor-escuro); color:var(--cor-claro); padding:30px 26px; border-radius:6px; min-height:200px;"><div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--cor-raro); font-weight:700; margin-bottom:14px;">Grupo 1 · ESCURO</div><div style="font-family:var(--fonte-titulo); font-style:italic; font-size:30px; line-height:1; color:var(--cor-fundo); margin-bottom:14px;">3 posts a cada 9</div><div style="font-size:13px; opacity:.85;">Escuro, principal e principal escura. Para frases-âncora, manifestos, peso emocional.</div></div>
+        <div style="background:var(--cor-fundo); color:var(--cor-texto); padding:30px 26px; border-radius:6px; min-height:200px; border:1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent);"><div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--cor-destaque); font-weight:700; margin-bottom:14px;">Grupo 2 · CLARO</div><div style="font-family:var(--fonte-titulo); font-style:italic; font-size:30px; line-height:1; color:var(--cor-texto); margin-bottom:14px;">3 posts a cada 9</div><div style="font-size:13px; color:color-mix(in srgb, var(--cor-texto) 70%, transparent);">Fundo, fundo 2 e claro. Para conteúdo educativo, listas, processos.</div></div>
+        <div style="background:var(--cor-destaque); color:var(--cor-claro); padding:30px 26px; border-radius:6px; min-height:200px;"><div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--cor-claro); font-weight:700; margin-bottom:14px; opacity:.85;">Grupo 3 · SINAL / FOTO</div><div style="font-family:var(--fonte-titulo); font-style:italic; font-size:30px; line-height:1; color:var(--cor-claro); margin-bottom:14px;">3 posts a cada 9</div><div style="font-size:13px; opacity:.92;">Cor de destaque ou foto crua (sua ou de respiro). Para CTA, autoridade, contexto humano.</div></div>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <div class="eyebrow">07 · Checklist mensal de feed</div>
+      <h2>Antes de publicar o próximo bloco de 9.</h2>
+      <p class="lead">Rodar antes de marcar os 9 próximos posts no calendário. Se algum item falhar, replanejar.</p>
+      <div class="checklist">
+        <h4>Validação do bloco de 9 posts</h4>
+        <ul>
+          <li>Pelo menos 4 dos 6 tipos de capa diferentes</li>
+          <li>Distribuição: 3 escuros, 3 claros, 3 sinal/foto</li>
+          <li>Nenhum par de posts vizinhos do mesmo tipo</li>
+          <li>No máximo 3 posts com foto sua</li>
+          <li>No mínimo 2 posts com foto respiro</li>
+          <li>No mínimo 3 posts tipográficos puros (sem foto)</li>
+          <li>No máximo 1 post CTA puro</li>
+          <li>Assinatura aparece em todos os posts (carimbo ou rodapé)</li>
+          <li>Hierarquia tipográfica variada (fino + negrito + título gigante + itálico)</li>
+          <li>Sombra em todo texto sobre foto</li>
+          <li>No mínimo 1 post com palavra circulada ou sublinhada</li>
+          <li>No mínimo 1 post com caixinha de destaque (cheia ou vazada)</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="sig">@seuarroba</div>
+  <div class="meta">SISTEMA DE FEED · MODELO · as cores e fontes vêm de ~/minha-marca/marca.json</div>
+</footer>
+
+</body>
+</html>

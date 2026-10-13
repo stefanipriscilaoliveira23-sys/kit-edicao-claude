@@ -1,0 +1,76 @@
+{
+  "_comentario": "Valores que os programas de edição e de carrossel usam. Os campos que começam com _ são só explicação e podem ficar. Troque os exemplos pelos seus. Cor sempre com # e 6 letras/números. Depois de mudar, nada mais precisa ser feito: os programas leem este arquivo toda vez.",
+  "nome": "Ana Souza",
+  "arroba": "@anasouza.beauty",
+  "_cores": "principal = cor mais forte | destaque = palavra-chave, pílulas, sublinhados | fundo = fundo claro | texto = letra em fundo claro | claro = letra em cima do vídeo | escuro = sombras e slide escuro | fundo_2 e raro são opcionais",
+  "cores": {
+    "principal": "#1F3A5F",
+    "destaque": "#E07A5F",
+    "fundo": "#FAF7F2",
+    "texto": "#1E1E1E",
+    "claro": "#FFF8F0",
+    "escuro": "#10141A",
+    "fundo_2": "#F6E3DC",
+    "raro": "#C9A227"
+  },
+  "_fontes": "Nome do ARQUIVO da fonte. O programa procura primeiro na pasta fontes/ ao lado deste arquivo e depois nas fontes livres que vêm com a skill (Instrument Serif, Inter, Mynerve, Caveat, Permanent Marker).",
+  "fontes": {
+    "titulo": "InstrumentSerif-Regular.ttf",
+    "titulo_italico": "InstrumentSerif-Italic.ttf",
+    "legenda": "Inter-Bold.woff2",
+    "legenda_media": "Inter-Medium.woff2",
+    "manuscrita": "Mynerve-Regular.ttf",
+    "giz": "PermanentMarker-Regular.woff2"
+  },
+  "_legenda": "posicao: baixo | meio | alto (ou topo_px com a altura exata em pixels num vídeo 1080x1920). destaque: caixa | sublinhado | italico | cor. palavras_por_vez: quantas palavras aparecem juntas. tamanho_px: 60 pequena, 74 normal, 86 grande.",
+  "legenda": {
+    "posicao": "baixo",
+    "topo_px": null,
+    "cor": "#FFFFFF",
+    "destaque": "caixa",
+    "palavras_por_vez": 3,
+    "tamanho_px": 74
+  },
+  "_emojis": "true = pode usar emojis nos vídeos | false = sem emojis",
+  "emojis": true,
+  "_efeitos": "volume_db soma em todos os efeitos sonoros: 0 normal, -3 mais baixo, 3 mais alto",
+  "efeitos": {
+    "volume_db": 0
+  },
+  "_trilha": "música de fundo baixinha: usar true/false, arquivo (em sons/ desta pasta) e volume (-13 é bem baixinho)",
+  "trilha": {
+    "usar": false,
+    "arquivo": "",
+    "volume_db": -13
+  },
+  "_pastas": "onde o Claude trabalha (rascunhos) e onde entrega os vídeos prontos",
+  "pastas": {
+    "trabalho": "~/Videos-Claude/_trabalho",
+    "entrega": "~/Videos-Claude/PRONTOS"
+  },
+  "_transcricao": "vocabulario = frase com o seu nome, sua marca e os termos que você fala (ajuda a IA a escrever certo). trocas = palavra que a IA erra (minúscula, sem pontuação) -> grafia certa",
+  "transcricao": {
+    "vocabulario": "Ana Souza, design de sobrancelha, micropigmentação, henna, curso de sobrancelha, alunas, agenda.",
+    "trocas": {
+      "sombrancelha": "sobrancelha",
+      "sousa": "Souza"
+    }
+  },
+  "_nomes_proprios": "palavras que sempre começam com maiúscula na legenda (nome da marca, do curso, de pessoas)",
+  "nomes_proprios": [
+    "Ana",
+    "Souza"
+  ],
+  "_carrossel": "assinatura = texto pequeno em todo slide | tagline = frase da marca | provas = números oficiais verdadeiros (aparecem em slide de autoridade) | max_cores = máximo de cores por peça",
+  "carrossel": {
+    "assinatura": "@anasouza.beauty · SOBRANCELHA NATURAL",
+    "tagline": "Sobrancelha natural que dura",
+    "provas": [
+      "+800 clientes atendidas",
+      "+120 alunas formadas",
+      "8 anos de profissão"
+    ],
+    "max_cores": 4,
+    "hashtags": false
+  }
+}

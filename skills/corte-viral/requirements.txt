@@ -1,0 +1,18 @@
+# Obrigatorias
+pyyaml>=6.0
+jsonschema>=4.0
+
+# Transcricao local com tempo por palavra (Whisper large-v3-turbo, baixa ~1,6 GB na primeira vez)
+faster-whisper>=1.0
+av==17.0.1  # 19.x quebra o faster-whisper 1.2.1 (metadata_errors)
+
+# Enquadramento por rosto/locutor ativo (autoframe, olhar.py).
+# O pin nao e capricho - 5.0.0 removeu cv2.dnn.readNetFromCaffe e quebra o detector.
+opencv-contrib-python==4.10.0.84
+numpy>=1.24
+
+# Utilidades de imagem
+Pillow>=10.0
+
+# Modelo de edicao (receita-editorial/depof.py e pofs.py: filtros de audio dos pofs)
+scipy>=1.10

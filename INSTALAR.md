@@ -45,7 +45,8 @@ Depois:
    claude plugin marketplace add heygen-com/hyperframes
    claude plugin install hyperframes@hyperframes
    ```
-   Se o comando `claude` não existir no terminal, copie as pastas de `~/kit-edicao-claude/skills-extra/hyperframes/` para `~/.claude/skills/` (se existirem no kit) ou instale pelo npm seguindo o README oficial em github.com/heygen-com/hyperframes.
+   Se o comando `claude` não existir no terminal, copie cada pasta de `~/kit-edicao-claude/skills-extra/hyperframes/skills/` para `~/.claude/skills/` (veja `skills-extra/hyperframes/COMO-INSTALAR.md`).
+5. **Sons extras (opcional)**: `~/.claude/skills/corte-viral/modelo-edicao/` tem um `SONS-PARA-BAIXAR.md` com sons gratuitos que não podem vir no pacote. Sem eles, a edição usa os sons parecidos que já vêm no kit. Pergunte à aluna se ela quer baixar.
 
 ## 4. Pastas da aluna
 

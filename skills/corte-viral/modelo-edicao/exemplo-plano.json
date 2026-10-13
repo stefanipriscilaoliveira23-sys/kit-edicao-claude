@@ -1,0 +1,46 @@
+{
+ "_explicacao": "Entrada do plano.py / plano_close.py / plano_lista.py: um item por vídeo do lote. trechos = [ini, fim] do bruto escolhidos lendo a transcrição; perguntas = [segundo do bruto, texto da pílula] (só depoimento).",
+ "DEP-cliente-1": {
+  "bruto": "~/Videos-Claude/brutos/depoimento-1.MOV",
+  "transcricao": "depoimento-1",
+  "trechos": [
+   [
+    18,
+    45
+   ],
+   [
+    74,
+    117
+   ]
+  ],
+  "perguntas": [
+   [
+    18,
+    "o que mais gerou resultado?"
+   ],
+   [
+    74,
+    "o que mudou no seu negócio?"
+   ]
+  ]
+ },
+ "lista-3-erros": {
+  "bruto": "~/Videos-Claude/brutos/lista.MOV",
+  "transcricao": "lista",
+  "trechos": [
+   [
+    1,
+    5
+   ],
+   [
+    7,
+    31
+   ],
+   [
+    62,
+    80
+   ]
+  ],
+  "perguntas": []
+ }
+}

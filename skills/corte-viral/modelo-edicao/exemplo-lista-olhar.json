@@ -1,0 +1,9 @@
+{
+ "_explicacao": "plano_lista.py: por vídeo, o csv do olhar do bruto e as frases a tirar. O corte acontece ANTES de a pessoa desviar o olhar.",
+ "lista-3-erros": [
+  "../trans/olhar-lista.csv",
+  [
+   "Então, vamos lá."
+  ]
+ ]
+}

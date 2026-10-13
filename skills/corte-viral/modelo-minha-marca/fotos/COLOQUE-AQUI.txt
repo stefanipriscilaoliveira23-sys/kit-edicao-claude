@@ -1,0 +1,3 @@
+minhas/  -> fotos suas (atendendo, ensinando, no seu espaço). Crua, sem filtro, boa luz.
+respiro/ -> fotos sem você: objetos e cenas do seu dia (mesa de atendimento, materiais, café, agenda).
+O Claude usa essas fotos nas capas de carrossel e por cima dos vídeos.

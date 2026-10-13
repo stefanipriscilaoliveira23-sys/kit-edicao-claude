@@ -1,0 +1,2 @@
+Sons extras que você baixou (ver SONS-PARA-BAIXAR.md da skill corte-viral) e a música de fundo, se usar.
+O nome do arquivo tem que ser igual ao da lista (ex.: maquina.wav, giz.wav, pagina.wav).

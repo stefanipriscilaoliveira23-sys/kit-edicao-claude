@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Design System da Marca</title>
+<style>
+  /* =====================================================================
+     MODELO. O Claude troca o bloco :root e os @font-face pelos valores do
+     ~/minha-marca/marca.json (python3 scripts/marca_css.py gera os dois).
+     Os papéis das cores são sempre os mesmos; só o código muda por marca.
+     ===================================================================== */
+  @font-face { font-family: "Titulo"; src: url("../assets/fonts/InstrumentSerif-Regular.ttf") format("truetype"); font-style: normal; }
+  @font-face { font-family: "Titulo"; src: url("../assets/fonts/InstrumentSerif-Italic.ttf") format("truetype"); font-style: italic; }
+  @font-face { font-family: "Corpo"; src: url("../assets/fonts/Inter-Regular.woff2") format("woff2"); font-weight: 400; }
+  @font-face { font-family: "Corpo"; src: url("../assets/fonts/Inter-Medium.woff2") format("woff2"); font-weight: 500; }
+  @font-face { font-family: "Corpo"; src: url("../assets/fonts/Inter-SemiBold.woff2") format("woff2"); font-weight: 600; }
+  @font-face { font-family: "Corpo"; src: url("../assets/fonts/Inter-Bold.woff2") format("woff2"); font-weight: 700; }
+  @font-face { font-family: "Manuscrita"; src: url("../assets/fonts/Mynerve-Regular.ttf") format("truetype"); }
+  :root {
+    /* PALETA DA MARCA (exemplo neutro: troque pelos códigos do marca.json) */
+    --cor-principal: #1F3A5F;   /* cor mais forte: capa de confronto, peso */
+    --cor-destaque: #E07A5F;    /* cor-assinatura: CTA, pílula, palavra circulada */
+    --cor-fundo: #FAF7F2;       /* fundo claro: slide-conteúdo */
+    --cor-fundo-2: #F6E3DC;     /* fundo secundário: bloco de citação */
+    --cor-texto: #1E1E1E;       /* texto principal sobre claro */
+    --cor-claro: #FFF8F0;       /* texto sobre escuro, manuscrita sobre escuro */
+    --cor-escuro: #10141A;      /* profundidade: capa de autoridade, slide-quebra */
+    --cor-raro: #C9A227;        /* raridade: selo, detalhe premium (1 a cada 10 peças) */
+    --cor-principal-escura: color-mix(in srgb, var(--cor-principal) 60%, black);
+    /* TIPOGRAFIA DA MARCA */
+    --fonte-titulo: "Titulo", "Instrument Serif", Georgia, serif;
+    --fonte-corpo: "Corpo", "Inter", system-ui, sans-serif;
+    --fonte-manuscrita: "Manuscrita", "Mynerve", "Caveat", cursive;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--fonte-corpo);
+    background: var(--cor-fundo);
+    color: var(--cor-escuro);
+    line-height: 1.55;
+    font-weight: 400;
+  }
+
+  /* LAYOUT GERAL */
+  .wrapper { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--cor-escuro);
+    color: var(--cor-fundo);
+    padding: 40px 28px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .sidebar-brand {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.05;
+    margin-bottom: 4px;
+    color: var(--cor-claro);
+  }
+  .sidebar-tagline {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--cor-raro);
+    margin-bottom: 36px;
+  }
+  .sidebar-nav h4 {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--cor-claro);
+    margin: 24px 0 10px;
+    opacity: .55;
+  }
+  .sidebar-nav a {
+    display: block;
+    color: var(--cor-fundo);
+    text-decoration: none;
+    font-size: 13.5px;
+    padding: 7px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--cor-fundo) 6%, transparent);
+    transition: color .2s, padding .2s;
+  }
+  .sidebar-nav a:hover { color: var(--cor-claro); padding-left: 6px; }
+
+  /* CONTEÚDO */
+  .content { padding: 0; }
+  section { padding: 80px 80px; border-bottom: 1px solid color-mix(in srgb, var(--cor-texto) 8%, transparent); }
+
+  .eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--cor-destaque);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: clamp(46px, 5.5vw, 88px);
+    line-height: 1.02;
+    color: var(--cor-escuro);
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+  }
+  h2 {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 44px;
+    line-height: 1.05;
+    margin-bottom: 8px;
+    color: var(--cor-escuro);
+  }
+  h3 {
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--cor-principal-escura);
+    margin-bottom: 12px;
+  }
+  p { font-size: 15.5px; max-width: 720px; margin-bottom: 14px; }
+  p.lead { font-size: 18px; color: color-mix(in srgb, var(--cor-texto) 78%, transparent); max-width: 760px; }
+  .hand { font-family: var(--fonte-manuscrita); font-size: 1.6em; color: var(--cor-destaque); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--cor-fundo) 0%, var(--cor-fundo-2) 60%, var(--cor-claro) 100%);
+    padding: 110px 80px 90px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -120px;
+    top: -80px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--cor-destaque) 18%, transparent), transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 28px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cor-principal);
+    font-weight: 600;
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 8px; }
+  .hero-meta .dot { width: 6px; height: 6px; background: var(--cor-destaque); border-radius: 50%; }
+
+  /* FILOSOFIA — atributos */
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; }
+  .pillar {
+    border: 1px solid color-mix(in srgb, var(--cor-texto) 12%, transparent);
+    padding: 28px 26px;
+    border-radius: 4px;
+    background: white;
+    position: relative;
+  }
+  .pillar-num {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 36px;
+    color: var(--cor-destaque);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .pillar h4 {
+    font-family: var(--fonte-corpo);
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: 8px;
+    color: var(--cor-escuro);
+  }
+  .pillar p { font-size: 13.5px; color: color-mix(in srgb, var(--cor-texto) 70%, transparent); margin: 0; }
+
+  /* PALETA */
+  .palette-group { margin-bottom: 38px; }
+  .palette-group-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--cor-principal);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .swatch {
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--cor-texto) 8%, transparent);
+    background: white;
+  }
+  .swatch-color { height: 110px; position: relative; }
+  .swatch-info { padding: 12px 14px; }
+  .swatch-name { font-weight: 700; font-size: 13px; color: var(--cor-escuro); }
+  .swatch-hex { font-size: 11px; color: color-mix(in srgb, var(--cor-texto) 55%, transparent); font-family: ui-monospace, monospace; letter-spacing: .5px; margin-top: 2px; }
+  .swatch-use { font-size: 11px; color: var(--cor-destaque); margin-top: 8px; line-height: 1.4; }
+
+  /* TIPOGRAFIA */
+  .type-card {
+    border: 1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent);
+    background: white;
+    padding: 38px 34px;
+    margin-bottom: 22px;
+    border-radius: 4px;
+  }
+  .type-name {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cor-destaque);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .type-role { font-size: 14px; color: color-mix(in srgb, var(--cor-texto) 60%, transparent); margin-bottom: 18px; }
+  .type-sample-display {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 88px;
+    line-height: .95;
+    color: var(--cor-escuro);
+    letter-spacing: -1px;
+    margin: 12px 0 18px;
+  }
+  .type-sample-body {
+    font-family: var(--fonte-corpo);
+    font-size: 36px;
+    line-height: 1.1;
+    color: var(--cor-escuro);
+    margin: 8px 0 18px;
+  }
+  .type-sample-hand {
+    font-family: var(--fonte-manuscrita);
+    font-size: 64px;
+    color: var(--cor-destaque);
+    line-height: 1;
+    margin: 10px 0 18px;
+  }
+  .type-rules { font-size: 13px; color: color-mix(in srgb, var(--cor-texto) 70%, transparent); border-top: 1px solid color-mix(in srgb, var(--cor-texto) 8%, transparent); padding-top: 14px; margin-top: 12px; }
+  .type-rules strong { color: var(--cor-destaque); }
+
+  /* MOCKUPS DE SLIDE — 1080x1350 escala */
+  .slides-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 30px; }
+  .slide {
+    aspect-ratio: 4/5;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 12px 32px color-mix(in srgb, var(--cor-texto) 18%, transparent);
+    background: var(--cor-fundo);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 26px 24px;
+    color: var(--cor-fundo);
+  }
+  .slide-img {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .slide-overlay { position: absolute; inset: 0; z-index: 1; }
+  .slide-content { position: relative; z-index: 2; }
+  .slide-watermark {
+    position: absolute;
+    bottom: 12px;
+    left: 0; right: 0;
+    text-align: center;
+    z-index: 2;
+    font-size: 8px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    opacity: .75;
+    color: var(--cor-fundo);
+  }
+  .slide-headline {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 44px;
+    line-height: .95;
+    margin-bottom: 6px;
+    letter-spacing: -.5px;
+  }
+  .slide-headline-light { font-family: var(--fonte-titulo); font-weight: 400; font-style: normal; }
+  .slide-hand {
+    font-family: var(--fonte-manuscrita);
+    font-size: 32px;
+    color: var(--cor-claro);
+    transform: rotate(-3deg);
+    display: inline-block;
+    margin-top: 4px;
+  }
+  .slide-microcopy {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-top: 12px;
+    max-width: 75%;
+  }
+  .slide-pill {
+    display: inline-block;
+    background: var(--cor-destaque);
+    color: var(--cor-fundo);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 4px 0;
+  }
+  .slide-tag {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 3;
+    background: var(--cor-claro);
+    color: var(--cor-principal-escura);
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+
+  /* SLIDE A — confronto */
+  .slide-confronto .slide-img { background-color: var(--cor-principal); background-image: linear-gradient(160deg, color-mix(in srgb, var(--cor-texto) 55%, transparent), color-mix(in srgb, var(--cor-principal) 65%, transparent)); }
+  /* SLIDE B — autoridade (Mood Carmim) */
+  .slide-autoridade .slide-img { background-color: var(--cor-escuro); background-image: radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--cor-destaque) 18%, transparent), transparent 50%), linear-gradient(180deg, color-mix(in srgb, var(--cor-texto) 55%, transparent), color-mix(in srgb, var(--cor-escuro) 95%, transparent)); }
+  /* SLIDE C — transformação */
+  .slide-transformacao .slide-img { background-color: var(--cor-claro); background-image: linear-gradient(160deg, color-mix(in srgb, var(--cor-claro) 50%, transparent), rgba(255,223,224,.85)); }
+  .slide-transformacao .slide-content { color: var(--cor-principal-escura); }
+  .slide-transformacao .slide-watermark { color: var(--cor-principal-escura); }
+  .slide-transformacao .slide-microcopy { color: var(--cor-principal-escura); }
+  .slide-transformacao .slide-hand { color: var(--cor-destaque); }
+
+  /* SLIDE-CONTEÚDO + SLIDE-QUEBRA + SLIDE-CTA */
+  .anatomy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 26px; }
+  .anatomy-slide {
+    aspect-ratio: 4/5;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 22px color-mix(in srgb, var(--cor-texto) 14%, transparent);
+  }
+  .anatomy-slide .slide-num {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 18px;
+  }
+  .anatomy-slide .slide-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    opacity: .8;
+    font-weight: 600;
+  }
+  .anatomy-slide h4 {
+    font-family: var(--fonte-titulo);
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1;
+    margin: 6px 0 10px;
+  }
+  .anatomy-slide p { font-size: 11px; line-height: 1.4; max-width: 100%; }
+
+  .anatomy-capa { background: var(--cor-principal); color: var(--cor-fundo); }
+  .anatomy-capa .slide-num { color: var(--cor-claro); }
+  .anatomy-conteudo { background: var(--cor-fundo); color: var(--cor-escuro); border: 1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent); }
+  .anatomy-conteudo .slide-num { color: var(--cor-destaque); }
+  .anatomy-quebra { background: var(--cor-escuro); color: var(--cor-claro); }
+  .anatomy-quebra .slide-num { color: var(--cor-raro); }
+  .anatomy-cta { background: var(--cor-destaque); color: var(--cor-fundo); }
+  .anatomy-cta .slide-num { color: var(--cor-raro); }
+
+  /* DO / DONT */
+  .dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 24px; }
+  .dodont-card { padding: 28px; border-radius: 4px; }
+  .dodont-do { background: var(--cor-fundo); border-left: 4px solid var(--cor-destaque); }
+  .dodont-dont { background: var(--cor-fundo-2); border-left: 4px solid var(--cor-texto); opacity: .9; }
+  .dodont-card h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    color: var(--cor-escuro);
+  }
+  .dodont-card ul { list-style: none; }
+  .dodont-card li { padding: 7px 0; font-size: 14px; border-bottom: 1px dashed color-mix(in srgb, var(--cor-texto) 12%, transparent); }
+  .dodont-card li:before { content: "→ "; color: var(--cor-destaque); font-weight: 700; }
+  .dodont-dont li:before { content: "✕ "; color: var(--cor-texto); }
+
+  /* ELEMENTOS GRÁFICOS */
+  .graphic-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 22px; }
+  .graphic-card {
+    background: white;
+    border: 1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent);
+    border-radius: 4px;
+    padding: 28px 22px;
+    text-align: center;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .graphic-card .demo {
+    font-family: var(--fonte-manuscrita);
+    font-size: 38px;
+    color: var(--cor-destaque);
+    margin: 12px 0;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .graphic-card .demo .pill { background: var(--cor-destaque); color: var(--cor-fundo); font-family: var(--fonte-corpo); font-size: 13px; padding: 6px 14px; border-radius: 999px; font-weight: 600; }
+  .graphic-card .demo .circle { display: inline-block; padding: 12px 18px; border: 2px solid var(--cor-destaque); border-radius: 60% 50% 55% 60%; font-family: var(--fonte-corpo); font-size: 14px; color: var(--cor-escuro); font-weight: 600; }
+  .graphic-card .label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--cor-principal-escura); font-weight: 600; }
+  .graphic-card .desc { font-size: 12px; color: color-mix(in srgb, var(--cor-texto) 65%, transparent); margin-top: 6px; line-height: 1.4; }
+
+  /* TRATAMENTO FOTO */
+  .mood-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
+  .mood-card { border-radius: 6px; overflow: hidden; }
+  .mood-swatch { aspect-ratio: 4/5; position: relative; }
+  .mood-swatch::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    backdrop-filter: contrast(1.05);
+  }
+  .mood-vinho { background: linear-gradient(170deg, color-mix(in srgb, var(--cor-principal) 45%, white) 0%, var(--cor-principal) 60%, var(--cor-principal-escura) 100%); }
+  .mood-rosa { background: linear-gradient(170deg, var(--cor-fundo) 0%, var(--cor-fundo-2) 50%, color-mix(in srgb, var(--cor-destaque) 40%, var(--cor-fundo-2)) 100%); }
+  .mood-carmim { background: radial-gradient(circle at 35% 25%, color-mix(in srgb, var(--cor-destaque) 35%, transparent) 0%, transparent 45%), linear-gradient(180deg, color-mix(in srgb, var(--cor-escuro) 80%, var(--cor-principal)) 0%, var(--cor-escuro) 100%); }
+  .mood-info { padding: 16px 18px; background: white; border: 1px solid color-mix(in srgb, var(--cor-texto) 8%, transparent); border-top: none; }
+  .mood-info h5 { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--cor-escuro); }
+  .mood-info p { font-size: 12.5px; color: color-mix(in srgb, var(--cor-texto) 70%, transparent); }
+
+  /* BRIEFING CLAUDE — código */
+  .briefing-card {
+    background: var(--cor-escuro);
+    color: var(--cor-claro);
+    padding: 36px 38px;
+    border-radius: 4px;
+    margin-top: 18px;
+    font-family: ui-monospace, monospace;
+    font-size: 12.5px;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+  .briefing-card .key { color: var(--cor-raro); font-weight: 700; }
+  .briefing-card .val { color: var(--cor-fundo); }
+  .briefing-card .com { color: var(--cor-raro); font-style: italic; }
+
+  /* RODAPÉ */
+  footer {
+    padding: 60px 80px;
+    background: var(--cor-escuro);
+    color: var(--cor-claro);
+    text-align: center;
+  }
+  footer .sig { font-family: var(--fonte-titulo); font-style: italic; font-size: 38px; color: var(--cor-claro); margin-bottom: 8px; }
+  footer .meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--cor-raro); }
+
+  /* RESPONSIVE — viewports menores */
+  @media (max-width: 1100px) {
+    .wrapper { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; }
+    section { padding: 60px 32px; }
+    .hero { padding: 80px 32px 60px; }
+    .swatches { grid-template-columns: repeat(2, 1fr); }
+    .pillars { grid-template-columns: 1fr; }
+    .slides-grid { grid-template-columns: 1fr; }
+    .anatomy-grid { grid-template-columns: repeat(2, 1fr); }
+    .dodont { grid-template-columns: 1fr; }
+    .graphic-grid { grid-template-columns: repeat(2, 1fr); }
+    .mood-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">Nome da<br>Marca</div>
+    <div class="sidebar-tagline">Design System · modelo</div>
+    <nav class="sidebar-nav">
+      <h4>Marca</h4>
+      <a href="#identidade">01 · Identidade</a>
+      <a href="#filosofia">02 · Filosofia visual</a>
+      <a href="#paleta">03 · Paleta</a>
+      <a href="#tipografia">04 · Tipografia</a>
+      <h4>Carrossel</h4>
+      <a href="#anatomia">05 · Anatomia</a>
+      <a href="#capas">06 · Capas</a>
+      <a href="#fotografia">07 · Fotografia</a>
+      <a href="#elementos">08 · Elementos gráficos</a>
+      <h4>Operação</h4>
+      <a href="#dodont">09 · Faça e não faça</a>
+      <a href="#briefing">10 · Briefing do Claude</a>
+      <a href="#elementos-v14">11 · Os 8 elementos</a>
+      <a href="#sistema-feed-link">12 · Sistema de feed</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+
+    <!-- 01 IDENTIDADE -->
+    <section id="identidade" class="hero">
+      <div class="hero-meta">
+        <span><span class="dot"></span> Marca pessoal</span>
+        <span>·</span>
+        <span>O que você faz</span>
+        <span>·</span>
+        <span>versão 1</span>
+      </div>
+      <div class="eyebrow">Design System</div>
+      <h1>Nome da <em style="font-style:italic;">Marca</em></h1>
+      <p class="lead">Documento de marca para construir carrosséis, posts e peças visuais. Aqui mora a régua: cor, tipografia, hierarquia, tom visual e o briefing que o Claude usa pra produzir tudo daqui pra frente. Tudo que está em <strong>~/minha-marca/</strong> preenche este modelo.</p>
+      <p class="lead" style="margin-top:18px;"><span class="hand">Não é</span> livro de marca. É ferramenta de execução.</p>
+    </section>
+
+    <!-- 02 FILOSOFIA -->
+    <section id="filosofia">
+      <div class="eyebrow">02 · Filosofia visual</div>
+      <h2>Três atributos. <em style="font-style:italic;">Escolha os seus.</em></h2>
+      <p class="lead" style="margin-top:14px;">Escreva aqui os 3 atributos do seu "Tom visual" (MINHA-MARCA.md, item 11). Exemplo: título serifado grande pra carregar emoção, texto limpo pra entregar clareza, manuscrita pra humanizar. Cor com intenção: uma pra sinal, uma pra peso, uma pra acolhimento, uma pra raridade.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <h4>Editorial</h4>
+          <p>Cada peça parece capa de revista, não panfleto. Hierarquia clara, espaço pra respirar, nada de modelo genérico.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <h4>Verdadeira</h4>
+          <p>O visual sustenta a frase. Título em itálico carrega convicção. Manuscrita corta o ar com humanidade. Texto pequeno entrega a chamada sem gritar.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <h4>Acolhedora</h4>
+          <p>Sofisticada o bastante pra sustentar o seu preço. Quente o bastante pra não afastar quem está começando.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 PALETA -->
+    <section id="paleta">
+      <div class="eyebrow">03 · Paleta</div>
+      <h2>8 papéis de cor. <em>Cada um com função clara.</em></h2>
+      <p class="lead" style="margin-top:14px;">Nenhuma cor é decorativa. Cada uma resolve um papel: fundo, sinal, peso, profundidade, raridade ou luz. Os códigos vêm do <strong>marca.json</strong>.</p>
+
+      <div class="palette-group" style="margin-top:36px;">
+        <div class="palette-group-title">Tons claros · acolhimento e respiro</div>
+        <div class="swatches">
+          <div class="swatch"><div class="swatch-color" style="background:var(--cor-fundo)"></div><div class="swatch-info"><div class="swatch-name">Fundo</div><div class="swatch-hex">--cor-fundo</div><div class="swatch-use">Fundo base. Slide-conteúdo. Espaço de leitura.</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cor-fundo-2)"></div><div class="swatch-info"><div class="swatch-name">Fundo 2</div><div class="swatch-hex">--cor-fundo-2</div><div class="swatch-use">Fundo secundário. Bloco de citação. Pílula clara.</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cor-claro)"></div><div class="swatch-info"><div class="swatch-name">Claro</div><div class="swatch-hex">--cor-claro</div><div class="swatch-use">Texto sobre fundo escuro. Manuscrita sobre escuro.</div></div></div>
+        </div>
+      </div>
+
+      <div class="palette-group">
+        <div class="palette-group-title">Cores fortes · sinal, peso e autoridade</div>
+        <div class="swatches">
+          <div class="swatch"><div class="swatch-color" style="background:var(--cor-destaque)"></div><div class="swatch-info"><div class="swatch-name" style="color:var(--cor-destaque)">Destaque</div><div class="swatch-hex">--cor-destaque</div><div class="swatch-use">Cor-assinatura. CTA. Pílulas. Palavra circulada. Nunca compete: ou CTA, ou pílula, ou título.</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cor-principal)"></div><div class="swatch-info"><div class="swatch-name">Principal</div><div class="swatch-hex">--cor-principal</div><div class="swatch-use">Capa de confronto. Peso emocional. Fundo dramático.</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cor-principal-escura)"></div><div class="swatch-info"><div class="swatch-name">Principal escura</div><div class="swatch-hex">calculada da principal</div><div class="swatch-use">Texto sobre fundo 2. Borda. Acento de seriedade.</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cor-texto)"></div><div class="swatch-info"><div class="swatch-name">Texto</div><div class="swatch-hex">--cor-texto</div><div class="swatch-use">Texto principal sobre claro.</div></div></div>
+        </div>
+      </div>
+
+      <div class="palette-group">
+        <div class="palette-group-title">Profundidade e raridade</div>
+        <div class="swatches">
+          <div class="swatch"><div class="swatch-color" style="background:var(--cor-escuro)"></div><div class="swatch-info"><div class="swatch-name">Escuro</div><div class="swatch-hex">--cor-escuro</div><div class="swatch-use">Capa de autoridade. Slide-quebra. Fundo de gravidade total.</div></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:var(--cor-raro)"></div><div class="swatch-info"><div class="swatch-name">Raro</div><div class="swatch-hex">--cor-raro</div><div class="swatch-use">Selo. Detalhe especial. No máximo 1 a cada 10 peças.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 TIPOGRAFIA -->
+    <section id="tipografia">
+      <div class="eyebrow">04 · Tipografia</div>
+      <h2>3 fontes. <em>3 funções.</em></h2>
+      <p class="lead" style="margin-top:14px;">Título pra carregar emoção. Corpo pra sustentar clareza. Manuscrita pra humanizar. Os arquivos ficam em ~/minha-marca/fontes/.</p>
+
+      <div class="type-card" style="margin-top:30px;">
+        <div class="type-name">01 · Título (display)</div>
+        <div class="type-role">Título emocional. Itálico em chamadas de impacto. Romana em negrito pra palavra-chave alternada.</div>
+        <div class="type-sample-display">Sua agenda pode ser mais leve</div>
+        <div class="type-rules"><strong>Quando usar:</strong> título de capa, frase-âncora, palavra de virada. <strong>Tamanho mínimo na capa:</strong> 80pt em 1080×1350. <strong>Nunca:</strong> em parágrafo corrido, em CTA pequeno, em texto miúdo.</div>
+      </div>
+
+      <div class="type-card">
+        <div class="type-name">02 · Corpo</div>
+        <div class="type-role">Texto explicativo, texto miúdo, dados, pílulas, assinatura. Pesos: 400, 500, 600, 700.</div>
+        <div class="type-sample-body">Você atende o dia todo, se dedica a cada cliente e ainda sente que falta tempo pra você.</div>
+        <div class="type-rules"><strong>Quando usar:</strong> tudo que não é título. <strong>Tamanho mínimo legível:</strong> 12pt em 1080×1350. <strong>Pílulas e selos:</strong> 600 ou 700, caixa alta, espaçamento 2px.</div>
+      </div>
+
+      <div class="type-card">
+        <div class="type-name">03 · Manuscrita</div>
+        <div class="type-role">Carrega humanidade. Sempre na cor clara sobre escuro ou na cor de destaque sobre claro.</div>
+        <div class="type-sample-hand">e ainda assim…</div>
+        <div class="type-rules"><strong>Quando usar:</strong> complemento ao título (1 a 5 palavras), assinatura, virada emocional. <strong>Nunca:</strong> em parágrafo, em CTA, em sequência longa. <strong>Inclinação:</strong> -3° a -5°.</div>
+      </div>
+
+      <div class="type-card">
+        <div class="type-name">Hierarquia da capa · 4 a 5 níveis</div>
+        <div class="type-rules" style="border-top:none; padding-top:0;">
+          1. <strong>Corpo 400</strong> caixa alta pequena: chamada de contexto<br>
+          2. <strong>Corpo 700</strong> caixa alta pequena: chamada de apoio<br>
+          3. <strong>Título gigante romano em negrito:</strong> palavra-chave<br>
+          4. <strong>Título gigante itálico:</strong> palavra-chave alternada<br>
+          5. <strong>Corpo 700</strong> caixa alta pequena: etiqueta de baixo<br>
+          Nunca uniformizar: pelo menos 3 níveis de variação por capa.
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 ANATOMIA -->
+    <section id="anatomia">
+      <div class="eyebrow">05 · Anatomia do carrossel</div>
+      <h2>4 tipos de slide. <em>Estrutura flexível.</em></h2>
+      <p class="lead" style="margin-top:14px;">Carrossel não é apresentação de slides. Capa puxa, conteúdo entrega, quebra renova a atenção, CTA fecha. Cada slide tem cor, tipografia e função própria.</p>
+      <div style="margin-top:22px; padding:22px 26px; background:var(--cor-fundo-2); border-left:4px solid var(--cor-destaque); border-radius:4px; max-width:760px;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:3px; color:var(--cor-destaque); font-weight:700; margin-bottom:10px;">Estrutura flexível</div>
+        <p style="margin:0 0 8px; font-size:14.5px; color:var(--cor-escuro);"><strong>1 capa</strong> + <strong>N slides intercalando conteúdo e quebra</strong> + <strong>1 CTA</strong>. Os slides do meio variam de 4 a 10+ conforme o tema.</p>
+        <p style="margin:0; font-size:13px; color:color-mix(in srgb, var(--cor-texto) 70%, transparent);"><strong>Quebra é estratégica, não obrigatória entre cada par.</strong> Use quando o conteúdo anterior foi denso ou emocional. Carrossel típico: 6 a 9 slides. Pode ir a 10-12 em temas complexos.</p>
+      </div>
+      <div class="anatomy-grid">
+        <div class="anatomy-slide anatomy-capa"><div class="slide-num">01</div><div class="slide-label">Slide-Capa</div><h4>Cansou de correr <em>contra o relógio?</em></h4><p>Confronto + virada manuscrita. Função: parar a rolagem em menos de 1 segundo.</p></div>
+        <div class="anatomy-slide anatomy-conteudo"><div class="slide-num">02</div><div class="slide-label">Slide-Conteúdo</div><h4>O motivo real é outro.</h4><p>Fundo claro. Texto escuro. Título curto + corpo. Função: entregar o argumento.</p></div>
+        <div class="anatomy-slide anatomy-quebra"><div class="slide-num">03</div><div class="slide-label">Slide-Quebra · estratégica</div><h4>Mas tem um detalhe…</h4><p>Fundo escuro. Texto claro. Só 1 frase. Depois de bloco denso ou emocional.</p></div>
+        <div class="anatomy-slide anatomy-cta" style="background:var(--cor-fundo); color:var(--cor-escuro); border:1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent);"><div class="slide-num" style="color:var(--cor-destaque);">04</div><div class="slide-label">Slide-CTA</div><h4>Comenta <span style="display:inline-block; background:var(--cor-destaque); color:var(--cor-claro); border-radius:999px; padding:2px 12px; font-family:var(--fonte-corpo); font-style:normal; font-size:16px; font-weight:700;">AGENDA</span></h4><p>Fundo claro com pílula na cor de destaque. Função: um comando único, fácil de seguir.</p></div>
+      </div>
+    </section>
+
+    <!-- 06 CAPAS -->
+    <section id="capas">
+      <div class="eyebrow">06 · Capas · 3 funções</div>
+      <h2>Toda capa cumpre <em>uma de 3 funções.</em></h2>
+      <p class="lead" style="margin-top:14px;">Confronto (toca uma dor reconhecida), Autoridade (mostra evidência), Transformação (oferece direção). A cor de fundo muda por função. Os 6 tipos de capa do feed estão em <strong>sistema-de-feed.html</strong>.</p>
+      <div class="slides-grid">
+        <div class="slide slide-confronto">
+          <div class="slide-img"></div>
+          <div class="slide-tag">Confronto</div>
+          <div class="slide-content">
+            <div class="slide-headline" style="color:var(--cor-claro);">Você ama o que faz,</div>
+            <div class="slide-headline-light" style="color:var(--cor-claro); font-size:36px; font-style:italic;">mas tá cansada.</div>
+            <div class="slide-microcopy">Atende o dia todo, se dedica a cada cliente e ainda sente que nunca é suficiente.</div>
+          </div>
+          <div class="slide-watermark">@seuarroba · o que você faz</div>
+        </div>
+        <div class="slide slide-autoridade">
+          <div class="slide-img"></div>
+          <div class="slide-tag" style="background:var(--cor-destaque); color:var(--cor-claro);">Autoridade</div>
+          <div class="slide-content">
+            <div style="margin-bottom:8px;"><span class="slide-pill">+ prova 1 do manual</span></div>
+            <div style="margin-bottom:8px;"><span class="slide-pill">+ prova 2 do manual</span></div>
+            <div style="margin-bottom:14px;"><span class="slide-pill" style="background:var(--cor-claro); color:var(--cor-principal-escura);">prova 3 do manual</span></div>
+            <div class="slide-hand" style="color:var(--cor-claro);">e ainda assim…</div>
+            <div class="slide-microcopy" style="margin-top:6px;">só números verdadeiros, tirados de carrossel.provas no marca.json.</div>
+          </div>
+          <div class="slide-watermark">@seuarroba · o que você faz</div>
+        </div>
+        <div class="slide slide-transformacao">
+          <div class="slide-img"></div>
+          <div class="slide-tag" style="background:var(--cor-destaque); color:var(--cor-claro);">Transformação</div>
+          <div class="slide-content" style="color:var(--cor-principal-escura);">
+            <div class="slide-headline" style="color:var(--cor-principal-escura);">De correr o dia inteiro</div>
+            <div class="slide-hand" style="color:var(--cor-destaque);">para ter</div>
+            <div class="slide-headline-light" style="color:var(--cor-principal-escura); font-size:36px; font-style:italic;">uma rotina leve.</div>
+            <div class="slide-microcopy" style="color:var(--cor-principal-escura);">A virada não está em fazer mais. Está em organizar o que já funciona.</div>
+          </div>
+          <div class="slide-watermark" style="color:var(--cor-principal-escura);">@seuarroba · o que você faz</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 FOTOGRAFIA -->
+    <section id="fotografia">
+      <div class="eyebrow">07 · Fotografia</div>
+      <h2>Foto crua. <em>A cor do slide conta a história.</em></h2>
+      <p class="lead" style="margin-top:14px;">Foto SEMPRE crua, sem filtro de cor por cima. Degradê escuro sutil só na parte de baixo, pra leitura. Texto sobre foto sempre com sombra: <strong>0 4px 24px rgba(0,0,0,0.55)</strong>. Fotos suas em ~/minha-marca/fotos/minhas, fotos de respiro (objetos e cenas sem você) em fotos/respiro.</p>
+      <div class="mood-grid">
+        <div class="mood-card"><div class="mood-swatch mood-vinho"></div><div class="mood-info"><h5>Clima principal · Confronto</h5><p>Cena íntima, sombras, contraste. Slide que toca dor real ou cansaço. A foto vai crua; o clima vem do fundo na cor principal.</p></div></div>
+        <div class="mood-card"><div class="mood-swatch mood-rosa"></div><div class="mood-info"><h5>Clima claro · Acolhimento</h5><p>Cena delicada, luz suave. Slide de transformação ou abertura emocional. Fundo claro e fundo 2.</p></div></div>
+        <div class="mood-card"><div class="mood-swatch mood-carmim"></div><div class="mood-info"><h5>Clima escuro · Autoridade</h5><p>Fundo escuro profundo, luz de um ponto só. Pílulas na cor de destaque com dados. Prova social, números, credenciais.</p></div></div>
+      </div>
+    </section>
+
+    <!-- 08 ELEMENTOS GRÁFICOS -->
+    <section id="elementos">
+      <div class="eyebrow">08 · Elementos gráficos</div>
+      <h2>Pequenos. <em>Não decorativos.</em></h2>
+      <p class="lead" style="margin-top:14px;">Cada elemento gráfico tem função: guiar o olho, marcar dado, humanizar a voz, separar bloco.</p>
+      <div class="graphic-grid">
+        <div class="graphic-card"><div><div class="label">Pílula</div></div><div class="demo"><span class="pill">+ prova do manual</span></div><div class="desc">Dado de autoridade ou prova. Cor de destaque sobre escuro, fundo 2 sobre claro.</div></div>
+        <div class="graphic-card"><div><div class="label">Círculo manuscrito</div></div><div class="demo"><span class="circle">palavra-chave</span></div><div class="desc">Marca a palavra-âncora. Borda irregular. Cor de destaque.</div></div>
+        <div class="graphic-card"><div><div class="label">Seta manuscrita</div></div><div class="demo">↳ leia isso</div><div class="desc">Liga o título ao texto miúdo ou à chamada. Sempre na manuscrita.</div></div>
+        <div class="graphic-card"><div><div class="label">Assinatura</div></div><div class="demo" style="font-family:var(--fonte-corpo); font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--cor-principal-escura);">@seuarroba · o que você faz</div><div class="desc">Sempre no rodapé ou no canto. Espaçamento alto. Opacidade 65-80%.</div></div>
+      </div>
+    </section>
+
+    <!-- 09 FAÇA E NÃO FAÇA -->
+    <section id="dodont">
+      <div class="eyebrow">09 · Faça e não faça</div>
+      <h2>O que <em>passa</em>. O que <em>não passa.</em></h2>
+      <div class="dodont">
+        <div class="dodont-card dodont-do">
+          <h4>Faça · sempre que possível</h4>
+          <ul>
+            <li>Título serifado itálico ou negrito de 1 a 6 palavras</li>
+            <li>Manuscrita complementando o título (1 a 5 palavras)</li>
+            <li>Foto crua, sem filtro, com sombra no texto</li>
+            <li>Hierarquia variada (peso + tamanho + estilo)</li>
+            <li>Caixinha (cheia ou vazada) pra destacar palavra</li>
+            <li>Sublinhado e negrito só nas palavras-chave</li>
+            <li>Assinatura no rodapé ou no canto em todo slide</li>
+            <li>Slide-quebra entre blocos densos e CTA único e direto</li>
+          </ul>
+        </div>
+        <div class="dodont-card dodont-dont">
+          <h4>Não faça · nunca</h4>
+          <ul>
+            <li>Foto com filtro de cor por cima</li>
+            <li>Mais de 3 fontes ou mais cores que o máximo do manual</li>
+            <li>Título com todas as palavras em caixa alta</li>
+            <li>Manuscrita em parágrafo ou em CTA</li>
+            <li>Emoji decorativo (só raro e com função)</li>
+            <li>Parágrafo justificado ou centralizado</li>
+            <li>Capa sem função clara</li>
+            <li>Número que não está nas provas do manual</li>
+          </ul>
+        </div>
+      </div>
+      <p class="lead" style="margin-top:22px;">E tudo da lista "Nunca faça" do MINHA-MARCA.md, que vence esta página.</p>
+    </section>
+
+    <!-- 10 BRIEFING -->
+    <section id="briefing">
+      <div class="eyebrow">10 · Briefing do Claude</div>
+      <h2>Como o Claude executa <em>todo carrossel daqui pra frente.</em></h2>
+      <p class="lead" style="margin-top:14px;">Este é o pedido-mãe. Toda vez que você pedir "cria um carrossel sobre X", ele começa daqui: não precisa te perguntar nada de visual, só o tema e a intenção.</p>
+      <div class="briefing-card">
+<span class="com"># BRIEFING DE EXECUÇÃO · lido de ~/minha-marca/</span>
+
+<span class="key">marca:</span>           <span class="val">nome e @ do marca.json</span>
+<span class="key">público:</span>         <span class="val">"pra quem eu falo" do MINHA-MARCA.md</span>
+<span class="key">tom:</span>             <span class="val">"tom visual" do MINHA-MARCA.md</span>
+
+<span class="com"># PIPELINE</span>
+<span class="key">0. manual:</span>       <span class="val">python3 scripts/marca_css.py --conferir · faltou? entrevista da marca</span>
+<span class="key">1. perguntar:</span>    <span class="val">"Quer em HTML (padrão) ou no Canva?" · sem resposta = HTML</span>
+<span class="key">2. roteiro:</span>      <span class="val">skill roteirista-de-carrossel</span>
+<span class="key">3. visual:</span>       <span class="val">aplicar este design system com as cores e fontes do manual</span>
+<span class="key">4. produção:</span>     <span class="val">1 HTML por slide 1080x1350 · scripts/exportar_png.py</span>
+<span class="key">5. entrega:</span>      <span class="val">slide-01.png, slide-02.png ... + checklist</span>
+
+<span class="com"># REGRAS DE COR</span>
+<span class="key">capa-confronto:</span>  <span class="val">fundo --cor-principal</span>
+<span class="key">capa-autoridade:</span> <span class="val">fundo --cor-escuro + pílulas com as provas do manual</span>
+<span class="key">capa-transform:</span>  <span class="val">fundo --cor-fundo-2</span>
+<span class="key">slide-conteúdo:</span>  <span class="val">--cor-fundo com texto --cor-texto</span>
+<span class="key">slide-quebra:</span>    <span class="val">--cor-escuro com texto --cor-claro</span>
+<span class="key">slide-cta:</span>       <span class="val">--cor-fundo com pílula --cor-destaque</span>
+
+<span class="com"># OUTPUT</span>
+<span class="key">formato:</span>        <span class="val">1080 x 1350 (4:5)</span>
+<span class="key">assinatura:</span>     <span class="val">carrossel.assinatura do marca.json, rodapé ou canto superior direito</span>
+<span class="key">toda correção:</span>  <span class="val">vira regra em "Regras aprovadas" do MINHA-MARCA.md</span>
+      </div>
+    </section>
+
+    <!-- 11 OS 8 ELEMENTOS -->
+    <section id="elementos-v14">
+      <div class="eyebrow">11 · Os 8 elementos</div>
+      <h2>Os 8 elementos que <em>fecham o sistema.</em></h2>
+      <p class="lead" style="margin-top:14px;">Todo carrossel e peça gráfica usa estes elementos como vocabulário visual. É o que separa "carrossel bonito" de "feed editorial coerente".</p>
+      <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top:36px;">
+        <div style="border:1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent); border-radius:6px; padding:32px 28px; background:white;">
+          <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--cor-destaque); font-weight:700; margin-bottom:14px;">01 · Caixa cheia</div>
+          <div style="font-family:var(--fonte-titulo); font-style:italic; font-size:42px; color:var(--cor-escuro); line-height:1; margin-bottom:14px;"><span style="background:var(--cor-destaque); color:var(--cor-claro); padding:4px 14px;">de verdade?</span></div>
+          <p style="font-size:13.5px; color:color-mix(in srgb, var(--cor-texto) 70%, transparent); margin:0;">Palavra ou expressão em fundo de cor sólida (principal, fundo, destaque). Destaque pesado, palavra-chave da capa.</p>
+        </div>
+        <div style="border:1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent); border-radius:6px; padding:32px 28px; background:white;">
+          <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--cor-destaque); font-weight:700; margin-bottom:14px;">02 · Caixa vazada</div>
+          <div style="font-family:var(--fonte-titulo); font-style:italic; font-size:42px; color:var(--cor-escuro); line-height:1; margin-bottom:14px;"><span style="border:2px solid var(--cor-destaque); padding:4px 14px;">só porque</span></div>
+          <p style="font-size:13.5px; color:color-mix(in srgb, var(--cor-texto) 70%, transparent); margin:0;">Borda fina (1-2px) sem fundo. Mais leve, mais editorial. Destaque médio, chamada ou selo sobre foto.</p>
+        </div>
+        <div style="border:1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent); border-radius:6px; padding:32px 28px; background:white;">
+          <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--cor-destaque); font-weight:700; margin-bottom:14px;">03 · Sublinhado editorial</div>
+          <div style="font-family:var(--fonte-titulo); font-style:italic; font-size:36px; color:var(--cor-escuro); line-height:1.05; margin-bottom:14px;">Os <span style="text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:6px;">detalhes</span> que <span style="text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:6px;">fidelizam</span>.</div>
+          <p style="font-size:13.5px; color:color-mix(in srgb, var(--cor-texto) 70%, transparent); margin:0;">Linha fina debaixo de palavras-chave. Substitui ou complementa o negrito. Cor do texto sobre claro, cor clara sobre escuro.</p>
+        </div>
+        <div style="border:1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent); border-radius:6px; padding:32px 28px; background:white;">
+          <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--cor-destaque); font-weight:700; margin-bottom:14px;">04 · Negrito seletivo</div>
+          <div style="font-family:var(--fonte-corpo); font-size:22px; color:var(--cor-escuro); line-height:1.45; margin-bottom:14px;">Parecia que eu estava fazendo a <strong style="color:var(--cor-destaque); font-weight:700;">coisa certa</strong>.</div>
+          <p style="font-size:13.5px; color:color-mix(in srgb, var(--cor-texto) 70%, transparent); margin:0;">Em parágrafos, só as palavras-chave em negrito (700). Cor do texto ou de destaque. Nunca a frase inteira.</p>
+        </div>
+        <div style="border:1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent); border-radius:6px; padding:32px 28px; background:white;">
+          <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--cor-destaque); font-weight:700; margin-bottom:14px;">05 · Palavra circulada</div>
+          <div style="font-family:var(--fonte-titulo); font-style:italic; font-size:36px; color:var(--cor-escuro); line-height:1.05; margin-bottom:14px;">mais
+            <span style="position:relative; display:inline-block; color:var(--cor-destaque); padding:0 12px;">simples
+              <svg viewBox="0 0 200 80" preserveAspectRatio="none" style="position:absolute; top:-10%; left:-8%; width:116%; height:120%; z-index:-1;"><ellipse cx="100" cy="40" rx="92" ry="32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" transform="rotate(-3 100 40)" opacity="0.85"/></svg>
+            </span>.</div>
+          <p style="font-size:13.5px; color:color-mix(in srgb, var(--cor-texto) 70%, transparent); margin:0;">SVG manuscrito ao redor de UMA palavra. Cor de destaque, inclinação -3°. Raro: no máximo 1 por slide.</p>
+        </div>
+        <div style="border:1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent); border-radius:6px; padding:32px 28px; background:white;">
+          <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--cor-destaque); font-weight:700; margin-bottom:14px;">06 · Pílula</div>
+          <div style="margin-bottom:14px;"><span style="display:inline-block; background:var(--cor-destaque); color:var(--cor-claro); font-family:var(--fonte-corpo); font-weight:700; font-size:14px; letter-spacing:2px; padding:8px 18px; border-radius:999px; text-transform:uppercase;">+ prova do manual</span></div>
+          <div style="margin-bottom:14px;"><span style="display:inline-block; background:var(--cor-fundo-2); color:var(--cor-principal-escura); font-family:var(--fonte-corpo); font-weight:700; font-size:14px; letter-spacing:2px; padding:8px 18px; border-radius:999px; text-transform:uppercase;">+ outra prova</span></div>
+          <p style="font-size:13.5px; color:color-mix(in srgb, var(--cor-texto) 70%, transparent); margin:0;">Dado de prova social ou número. Destaque sobre escuro, fundo 2 sobre claro. Corpo 700, caixa alta, cantos 999px.</p>
+        </div>
+        <div style="border:1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent); border-radius:6px; padding:0; background:white; overflow:hidden;">
+          <div style="aspect-ratio:1; position:relative; background:linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.45) 100%), linear-gradient(135deg, color-mix(in srgb, var(--cor-fundo-2) 70%, #999), color-mix(in srgb, var(--cor-principal) 50%, #777)); display:flex; align-items:flex-end; padding:24px;">
+            <div>
+              <div style="font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--cor-claro); font-weight:700; margin-bottom:6px; text-shadow:0 2px 8px rgba(0,0,0,.5);">SUA FOTO AQUI</div>
+              <div style="font-family:var(--fonte-titulo); font-style:italic; font-size:34px; color:var(--cor-claro); line-height:1; text-shadow:0 2px 12px rgba(0,0,0,.5);"><span style="background:var(--cor-fundo); color:var(--cor-texto); padding:4px 12px; text-shadow:none;">a mudar.</span></div>
+            </div>
+          </div>
+          <div style="padding:18px 22px;">
+            <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--cor-destaque); font-weight:700; margin-bottom:8px;">07 · Foto + caixa por cima</div>
+            <p style="font-size:13.5px; color:color-mix(in srgb, var(--cor-texto) 70%, transparent); margin:0;">Foto inteira de fundo + caixa de cor sólida flutuando como rótulo. NÃO é polaroid. NÃO é moldura.</p>
+          </div>
+        </div>
+        <div style="border:1px solid color-mix(in srgb, var(--cor-texto) 10%, transparent); border-radius:6px; padding:32px 28px; background:var(--cor-escuro); color:var(--cor-claro); position:relative;">
+          <div style="position:absolute; top:18px; right:22px; font-family:var(--fonte-corpo); font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--cor-claro); opacity:.65; font-weight:600; text-align:right; line-height:1.3;">NOME DA MARCA<br>@SEUARROBA</div>
+          <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--cor-raro); font-weight:700; margin-bottom:14px;">08 · Assinatura no canto</div>
+          <div style="font-family:var(--fonte-titulo); font-style:italic; font-size:32px; color:var(--cor-claro); line-height:1; margin:60px 0 14px; max-width:80%;">Carimbo da marca em <em>todos os slides.</em></div>
+          <p style="font-size:13.5px; color:var(--cor-claro); margin:0; opacity:.85;">Canto superior direito ou rodapé centralizado. Corpo, espaçamento 2.5px, opacidade 65-70%. Repete e fixa o posicionamento.</p>
+        </div>
+      </div>
+      <div style="margin-top:50px; padding:30px 36px; background:var(--cor-principal); border-left:4px solid var(--cor-destaque); border-radius:4px; color:var(--cor-claro);">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:3px; color:var(--cor-claro); font-weight:700; margin-bottom:10px; opacity:.8;">Tagline</div>
+        <div style="font-family:var(--fonte-titulo); font-style:italic; font-size:48px; color:var(--cor-claro); margin-bottom:14px; line-height:1;">@seuarroba</div>
+        <div style="font-size:13px; letter-spacing:4px; text-transform:uppercase; color:var(--cor-claro); font-weight:700;">A FRASE DA SUA MARCA (carrossel.tagline)</div>
+      </div>
+    </section>
+
+    <!-- 12 SISTEMA DE FEED -->
+    <section id="sistema-feed-link">
+      <div class="eyebrow">12 · Sistema de feed</div>
+      <h2>O nível acima do design system.</h2>
+      <p class="lead" style="margin-top:14px;">Carrossel bonito não basta. Feed harmônico vem de regra de distribuição em blocos de 9 posts: pelo menos 4 dos 6 tipos de capa, 3 escuros + 3 claros + 3 sinal/foto, nenhum vizinho idêntico.</p>
+      <div style="margin-top:30px; padding:30px 36px; background:var(--cor-fundo); border-left:4px solid var(--cor-destaque); border-radius:4px;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:3px; color:var(--cor-destaque); font-weight:700; margin-bottom:10px;">Documento separado</div>
+        <p style="margin:0; font-size:15px; color:var(--cor-escuro);"><strong>sistema-de-feed.html</strong><br>6 tipos de capa explicados, mockup 3x3 do feed, regras de distribuição, distribuição de cores por bloco de 9 e checklist mensal.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="sig">Nome da Marca</div>
+  <div class="meta">DESIGN SYSTEM · MODELO · as cores e fontes vêm de ~/minha-marca/marca.json</div>
+</footer>
+
+</body>
+</html>

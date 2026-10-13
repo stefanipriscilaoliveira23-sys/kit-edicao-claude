@@ -1,0 +1,3 @@
+videos/     -> prints ou vídeos de Reels que você ama (ou só os links no MINHA-MARCA.md, item 12).
+carrosseis/ -> prints de carrosséis que você ama.
+Escreva no MINHA-MARCA.md o que você gosta em cada um. É isso que o Claude copia: o jeito, nunca o conteúdo.

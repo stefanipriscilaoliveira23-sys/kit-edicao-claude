@@ -1,0 +1,110 @@
+{
+ "_explicacao": "Receita de um vídeo de LISTA com slide na TV (lista_tv.py e lista_cfg.py). Troque tudo pelos dados do seu vídeo. Campos começando com _ são só explicação.",
+ "nome": "lista-3-erros-agenda",
+ "bruto": "~/Videos-Claude/brutos/MEU-VIDEO.MOV",
+ "transcricao": "../trans/MEU-VIDEO.json",
+ "rosto": "../trans/rosto-MEU-VIDEO.csv",
+ "t1": "3 erros que travam a sua agenda",
+ "t2": "o segundo é o pior",
+ "_blocos": "Cada bloco = [primeira frase, última frase(, só procurar depois deste segundo do bruto)] da tomada BOA de cada parte. Fica sempre a última tomada boa.",
+ "blocos": [
+  [
+   "Eu vou te falar três erros que",
+   "pelo menos um deles.",
+   12.0
+  ],
+  [
+   "Número um, não confirmar",
+   "perde o horário."
+  ],
+  [
+   "Número dois, deixar o preço",
+   "na hora de pagar."
+  ],
+  [
+   "E o terceiro, atender",
+   "é isso, me conta aqui."
+  ]
+ ],
+ "_tirar": "Frases que saem mesmo estando dentro de um bloco (texto como o Whisper escreveu; [frase, depois_de_segundo] se repetir).",
+ "tirar": [
+  "deixa eu ver aqui",
+  [
+   "não, pera",
+   40.0
+  ]
+ ],
+ "_itens": "[texto escrito a giz no alto, frase onde o item começa na fala]",
+ "itens": [
+  [
+   "Não confirmar o horário",
+   "Número um"
+  ],
+  [
+   "Deixar o preço pra depois",
+   "Número dois"
+  ],
+  [
+   "Atender sem intervalo",
+   "E o terceiro"
+  ]
+ ],
+ "fim_lista": "é isso, me conta",
+ "_trocas": "Grafia certa na legenda: {\"como o Whisper escreveu\": \"como deve ficar\"}",
+ "trocas": {
+  "store,": "Story,",
+  "Feed,": "feed,"
+ },
+ "key": [
+  "erros",
+  "agenda",
+  "horário",
+  "preço",
+  "intervalo"
+ ],
+ "_emo": "[emoji, frase onde ele pula na tela]",
+ "emo": [
+  [
+   "📅",
+   "horário"
+  ],
+  [
+   "💸",
+   "o preço"
+  ],
+  [
+   "⏳",
+   "intervalo"
+  ],
+  [
+   "💬",
+   "me conta"
+  ]
+ ],
+ "_sfx": "[som, frase onde toca, volume em dB]",
+ "sfx": [
+  [
+   "click-alto",
+   "horário",
+   -4
+  ],
+  [
+   "error-alto",
+   "o preço",
+   -16
+  ],
+  [
+   "pop-alto",
+   "intervalo",
+   -8
+  ],
+  [
+   "ping-alto",
+   "me conta",
+   -3
+  ]
+ ],
+ "cap_top": 1420,
+ "emo_y": 1580,
+ "close_altura": 0.42
+}

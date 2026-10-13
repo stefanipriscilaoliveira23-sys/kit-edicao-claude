@@ -1,0 +1,3 @@
+Coloque aqui os arquivos das suas fontes (.ttf, .otf ou .woff2) e escreva o nome do arquivo no marca.json, em "fontes".
+Use só fontes que você tem direito de usar. As do Google Fonts (fonts.google.com) são grátis, inclusive pra uso comercial.
+Se esta pasta ficar vazia, os programas usam as fontes livres que vêm com a skill.
