@@ -38,7 +38,7 @@ Instale só o que faltar (confira a versão antes):
 
 Depois:
 1. **corte-viral**: siga `~/.claude/skills/corte-viral/INSTALAR.md` (cria o ambiente Python próprio da skill, baixa o limpador de voz DeepFilterNet certo para o sistema dela e confere com `verificar.py`).
-2. **motion-vox**: siga `~/.claude/skills/motion-vox/INSTALAR.md` e rode `verificar.py`.
+2. **Formatos e motion-vox**: para cada skill instalada que tenha um `INSTALAR.md` próprio (sanfoninha, conteudo-amarelinho, motion-vox quando existir), siga esse arquivo e rode o `verificar.py` dela, se houver.
 3. **Transcrição**: é sempre no próprio computador, com faster-whisper (modelo `large-v3-turbo`, baixa ~1,5 GB na primeira vez). Avise a aluna que a primeira vez demora. Nunca use serviço pago de transcrição.
 4. **hyperframes e media-use** (oficiais, gratuitos):
    ```bash
