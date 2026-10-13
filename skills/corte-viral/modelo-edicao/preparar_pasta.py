@@ -50,7 +50,7 @@ if "--sem-hyperframes" not in sys.argv and not (os.path.exists(hf_bin) or os.pat
     npm = shutil.which("npm") or shutil.which("npm.cmd")
     if npm:
         print("instalando hyperframes@0.8.107 em", os.path.join(TRAB, "hf"), "...")
-        subprocess.run([npm, "i", "hyperframes@0.8.107"], cwd=os.path.join(TRAB, "hf"), check=False)
+        subprocess.run([npm, "i", "--save-exact", "hyperframes@0.8.107"], cwd=os.path.join(TRAB, "hf"), check=False)
     else:
         print("AVISO: npm não encontrado. Instale o Node 22 (ver INSTALAR.md) e rode de novo.")
 
