@@ -46,11 +46,16 @@ Depois:
    claude plugin install hyperframes@hyperframes
    ```
    Se o comando `claude` não existir no terminal, copie cada pasta de `~/kit-edicao-claude/skills-extra/hyperframes/skills/` para `~/.claude/skills/` (veja `skills-extra/hyperframes/COMO-INSTALAR.md`).
-5. **Efeitos prontos da Vibha** (códigos V1 a V24 do catálogo; skill gratuita da @vibha.in.progress, licença MIT):
+5. **Efeitos prontos da Vibha + comandos de efeito** (skill gratuita da @vibha.in.progress, licença MIT):
    ```bash
    git clone https://github.com/Vibha-Ramprakash/claude-video-effects ~/.claude/skills/effects
    ```
-   No Windows (PowerShell) o destino é `$HOME\.claude\skills\effects`. Se a pasta já existir, rode `git pull` dentro dela. A skill prepara o próprio ambiente Python na primeira vez que for usada (≈2 min); se der para adiantar, siga o README dela agora. Conte para a aluna que esses 24 efeitos são da Vibha.
+   No Windows (PowerShell) o destino é `$HOME\.claude\skills\effects`. Se a pasta já existir, rode `git pull` dentro dela. A skill prepara o próprio ambiente Python na primeira vez que for usada (≈2 min); se der para adiantar, rode `bash ~/.claude/skills/effects/scripts/setup.sh` agora.
+   Depois, **os comandos de efeito** (cada efeito vira um comando: `/tier-list`, `/vidro`, `/figurinha`...):
+   ```bash
+   python3 ~/kit-edicao-claude/skills-extra/comandos-de-efeito/instalar_comandos.py
+   ```
+   (Windows: `python` no lugar de `python3`.) Ele gera a versão em português dos efeitos, põe o nome, o @ e a cor do manual da aluna e cria os 51 comandos em `~/.claude/skills/`. Se a aluna ainda não tiver `~/minha-marca/`, rode de novo depois da etapa 4. Conte para a aluna que a maioria desses efeitos é da Vibha (gratuita) e que agora é só anexar o vídeo e digitar o comando.
 6. **Sons extras (opcional)**: `~/.claude/skills/corte-viral/modelo-edicao/` tem um `SONS-PARA-BAIXAR.md` com sons gratuitos que não podem vir no pacote. Sem eles, a edição usa os sons parecidos que já vêm no kit. Pergunte à aluna se ela quer baixar.
 
 ## 4. Pastas da aluna
@@ -63,10 +68,11 @@ Crie, sem apagar nada que já exista:
 ## 5. Conferir e avisar
 
 - Rode os `verificar.py` da corte-viral e da motion-vox. Conserte o que der erro.
+- Se o `~/minha-marca/` foi criado agora na etapa 4, rode o `instalar_comandos.py` mais uma vez (pra pegar o nome e o @ dela).
 - Diga para a aluna, em poucas linhas e sem termos técnicos: o que foi instalado, onde ficam os vídeos prontos e qual é o próximo passo:
 
 > Tudo instalado! Agora vamos montar o seu Manual da Marca. Me manda: "Monta meu manual da marca".
 
 ## Atualizar ("atualiza meu kit de edição")
 
-`git pull` em `~/kit-edicao-claude` e em `~/.claude/skills/effects` (se não existir, instale pela etapa 3.5), repita as etapas 2, 3 (só o que mudou) e 5. NUNCA mexa em `~/minha-marca/`, `~/Videos-Claude/` e `~/Carrosseis-Claude/`.
+`git pull` em `~/kit-edicao-claude` e em `~/.claude/skills/effects` (se não existir, instale pela etapa 3.5), rode de novo o `instalar_comandos.py` da etapa 3.5, repita as etapas 2, 3 (só o que mudou) e 5. NUNCA mexa em `~/minha-marca/`, `~/Videos-Claude/` e `~/Carrosseis-Claude/`.

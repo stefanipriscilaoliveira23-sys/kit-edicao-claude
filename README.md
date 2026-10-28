@@ -24,6 +24,7 @@ Pra atualizar depois, é só mandar: **"Atualiza meu kit de edição."**
 | **conteudo-amarelinho** | Formato de carrossel "Amarelinho": foto do dia a dia escurecida e letra grande creme, com cara de story. Peça: "faz um amarelinho". |
 | **motion-vox** | Animações de "mesa de papel" por cima do vídeo (objetos recortados, fita, setas desenhadas à mão). Quando falta um objeto, o Claude gera. Alguns objetos ainda serão gerados na primeira vez que forem usados (9 já vêm prontos; os outros 7 o Claude cria na primeira cena que pedir cada um). |
 | **effects** (da [@vibha.in.progress](https://instagram.com/vibha.in.progress)) | 24 efeitos prontos que seguem o seu rosto e põem coisas atrás da sua cabeça: carimbo, letreiro de LED, ranking, antes e depois. Instalada direto do repositório dela (gratuita, licença MIT). |
+| **comandos de efeito** | Cada efeito vira um comando, igual nos reels de "Claude edita meu vídeo": anexe o vídeo e digite `/tier-list`, `/vidro`, `/letreiro`, `/figurinha`, `/particulas`, `/colagem`... São 51, em português, com o seu nome, o seu @ e a sua cor. |
 | **hyperframes** e **media-use** | O motor que monta o vídeo final e o banco de efeitos sonoros. Instalados direto da fonte oficial (gratuitos). |
 | **design-system-da-marca** | Regras visuais dos seus carrosséis e peças, puxadas do seu Manual da Marca. |
 | **roteirista-de-carrossel** | Organiza a sua copy lâmina por lâmina. |
@@ -32,7 +33,7 @@ Pra atualizar depois, é só mandar: **"Atualiza meu kit de edição."**
 
 ## Catálogo de efeitos
 
-São 118 efeitos, cada um com um código (T1, F14, V9...). Peça pelo código: **"quero o T9 e o V9 quando eu falar não"**. A lista completa, com o que cada um faz, está em `skills/corte-viral/modelo-edicao/CATALOGO-TECNICAS.md`.
+As técnicas de edição têm código (T1, F14...): peça pelo código, **"quero o T9 e o F14 nesse vídeo"**. Os efeitos prontos têm comando: anexe o vídeo e digite **`/carimbo`**, **`/vidro`** ou **`/tier-list`** (lista em `skills-extra/comandos-de-efeito/COMO-USAR-COMANDOS.md`). A lista completa, com o que cada um faz, está em `skills/corte-viral/modelo-edicao/CATALOGO-TECNICAS.md`.
 
 ## O segredo: o Manual da Marca
 

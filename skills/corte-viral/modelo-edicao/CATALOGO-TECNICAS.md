@@ -1,6 +1,6 @@
-# Catálogo de técnicas de edição (códigos T, C, M, S, E, F, P, L, Q, V)
+# Catálogo de técnicas de edição (códigos T, C, M, S, E, F, P, L, Q e efeitos com comando /nome)
 
-118 técnicas, cada uma com um código, em 10 famílias: texto (T), cartões (C), câmera (M), som (S), estrutura (E), efeitos especiais (F), métodos de animação (P), luz e cor (L), conferência (Q) e efeitos prontos da Vibha (V). Mais as receitas e os formatos com nome no fim.
+Técnicas com código em 9 famílias: texto (T), cartões (C), câmera (M), som (S), estrutura (E), efeitos especiais (F), métodos de animação (P), luz e cor (L) e conferência (Q), mais 51 efeitos com comando próprio (/tier-list, /vidro, /figurinha...). Mais as receitas e os formatos com nome no fim.
 A aluna pede pelo código: "quero o T2 e o C6 nesse vídeo", "faz na receita Recibo".
 Quando ela citar um código, a definição é a deste arquivo. Este catálogo SOMA ao
 `JEITO-DA-MARCA.md` e ao Manual da Marca (`~/minha-marca/`): as regras de corte, voz, grafia e entrega continuam valendo,
@@ -293,7 +293,18 @@ Folha de quadros com a área proibida em vermelho: topo 220 px, tudo abaixo de y
 **Q4 Conferência de cada corte** · `conferir_cortes.py final.mp4 [--cortes 3.2,7.9 | --cortes plano.json] [--celular]`
 Último quadro antes | primeiro quadro depois de cada corte, tirados do vídeo final, numa folha (`cortes-conferir.jpg`). O "depois" tem que estar limpo: sem legenda velha, sem a pessoa recortada do plano anterior, sem cartão sobrando, sem quadro preto. Sem `--cortes` acha os cortes sozinho. `--celular` gera a cópia 720p crf 27 pra mandar pro celular.
 
-## V · Efeitos prontos da Vibha (24)
+## V · Efeitos com comando (/nome)
+
+**Estes efeitos se chamam pelo comando, igual nos reels de "Claude edita meu vídeo": a aluna anexa o vídeo e digita `/tier-list`, `/vidro`, `/figurinha`.**
+São 51 comandos, cada um uma skill em `~/.claude/skills/<comando>/` (instalados por `skills-extra/comandos-de-efeito/instalar_comandos.py`):
+os 27 abaixo e os efeitos da Vibha que já existiam neste catálogo com outro código (`/orbita` F1/C15, `/palavra-atras` T11, `/zoom-rapido` e `/aproximar` M1/F5,
+`/holofote` L1, `/lista-de-tarefas` e `/checklist` T17/F7, `/comentario` C20, `/vira-reel` F4, `/capa-de-revista` e `/capa-editorial` F16, `/rabiscos` F14,
+`/manchete-caixa` T1/T10, `/parede-de-reels` e `/parede-de-manchetes` C3/C4/F8, `/leque-de-celulares` C2, `/vidro` e `/vidro-bento` C5/F10, `/mensagens` F8,
+`/linha-do-tempo` C7, `/pilha-de-reels`, `/carrossel-3d`, `/cor-de-cinema`, `/widgets-de-vidro`).
+Lista completa e passo a passo: `~/.claude/skills/effects/COMO-USAR-COMANDOS.md`. Um efeito só: `scripts/aplicar.py <comando> <video>`.
+Os textos saem em português (`fx_pt.py`, gerado do `fx.py` da Vibha sem mexer nele) e o nome, o @ e a cor vêm do `~/minha-marca/marca.json`.
+
+### Origem
 
 Origem e crédito: skill /effects da **@vibha.in.progress** (Vibha Ramprakash), https://github.com/Vibha-Ramprakash/claude-video-effects, licença MIT. Instalada em `~/.claude/skills/effects` (ver INSTALAR.md do kit). Ela segue o rosto e põe a coisa atrás da cabeça sozinha. Dos 45 efeitos dela, os outros 21 já existem neste catálogo com outro código (órbita F1/C15, palavra atrás T11, aproximação M1/F5, holofote e cor L1, checklist T17/F7, comentário C20, vídeo encolhendo F4, capa F16, rabisco F14, manchete T1/T10, paredes C3/C4/F8, leque C2, gráfico C5/F10, linha do tempo C7). Ficaram aqui só os que não existiam.
 
@@ -301,40 +312,42 @@ Como rodar (sempre no vídeo base, ANTES de legenda, sons e camadas do HyperFram
 ```
 PY=~/.claude/skills/effects/.venv/bin/python; FX=~/.claude/skills/effects/scripts   # Windows: .venv\Scripts\python.exe
 $PY $FX/words.py base.mp4                                    # tempo de cada palavra (ou usar a transcrição do modelo)
-$PY $FX/fx.py --plan plano.json base.mp4 conf.png --still 4.5,15.2   # quadros de conferência (rápido)
-$PY $FX/fx.py --plan plano.json base.mp4 base-fx.mp4         # render 1080p, áudio original intacto
+$PY $FX/fx_pt.py --plan plano.json base.mp4 conf.png --still 4.5,15.2   # quadros de conferência (rápido)
+$PY $FX/fx_pt.py --plan plano.json base.mp4 base-fx.mp4         # render 1080p, áudio original intacto
 ```
 `plano.json`: `{"effects":[{"fx":"reject-stamp","start":3.2,"end":4.7,"text":"NÃO","color":"#8B1E3F"}, ...]}` (opções no mesmo nível). Exemplo com os 24: `exemplo-plano-vibha.json`. Janela boa: 1,5 a 4 s por efeito. Efeitos de câmera (V2, V22) primeiro na lista.
 
-**Sempre passar** `handle` e `name` com o @ e o nome da aluna (lidos do `~/minha-marca/MINHA-MARCA.md`; o padrão é o @ da Vibha) e `color` com a cor de destaque do manual onde houver cor.
-**Textos fixos em inglês no código** (traduzir no `fx.py` da aluna antes de usar): "Following"/"Follow" (V5, V14), "before/after" (V4), "in seconds" (V13), as páginas de jornal do V19 e o "Edited by Claude". Conferir o quadro antes do render.
+**Nome e @** entram sozinhos pelo `aplicar.py` (lidos do `~/minha-marca/marca.json`); num plano com vários efeitos, passar `handle`, `name` e `color` (cor de destaque).
 
-| Código | `fx` | O que faz | Opções principais | Onde usar |
+| Comando | `fx` | O que faz | Opções principais | Onde usar |
 | --- | --- | --- | --- | --- |
-| **V1** | `lineup` | Peças numeradas abrem em leque acima da cabeça | `text` (nomes com \|) | etapas de um processo |
-| **V2** | `locked-on` | Colchetes travam no rosto e a câmera segue | `zoom` 1.35, `text` (etiqueta) | gancho, "você que é ..." |
-| **V3** | `the-bill` | Instruções saindo impressas como recibo na parede | `text` (linhas com \|) | passo a passo; casa com a receita Recibo |
-| **V4** | `swipe` | Antes e depois deslizando por cima da pessoa | `grade` (moody, bw, warm, cool, pop) | antes/depois de procedimento ou de cliente |
-| **V5** | `tap` | Botão Seguir vira Seguindo | `at` (s), `x`, `y`, `color` | chamada pra seguir |
-| **V6** | `pause-point` | Congela a imagem e uma seta à mão aponta pra pessoa | `text` (rótulo), `color`, `label_x` | "essa sou eu há 3 anos", "repara nisso" |
-| **V7** | `uninstall` | Barra de desinstalar com falha quebrando o quadro | `text` | virada de crença ("desinstalando o medo de vender") |
-| **V8** | `shortcut-rain` | Teclas de teclado chovendo atrás | `text` (teclas com \|), `count` | vídeo de ferramenta/Claude |
-| **V9** | `reject-stamp` | Carimbo grande batendo na tela | `text`, `color`, `angle`, `y` | mito, erro comum, "não faça isso" |
-| **V10** | `countdown-flip` | Relógio de virar 3, 2, 1 acima da cabeça | `from` | contagem pra revelar, abertura de vagas |
-| **V11** | `rabbit-hole` | O quadro vira túnel girando pra dentro | `ratio`, `speed`, `spin` | "e aí a coisa piorou", entrada de história |
-| **V12** | `red-collage` | Pessoa em preto e branco, palavra gigante colorida atrás, 3 frases batendo | `text`, `lines` (\|), `tag`, `color` | frase-tese |
-| **V13** | `split-headline` | Manchete desce e empurra a pessoa pra metade de baixo | `text` (\|), `hl` (palavra destacada), `pill` | gancho de vídeo-tese |
-| **V14** | `pastel-word` | Sala lilás, palavra gigante atrás, cartão de perfil sendo seguido | `text`, `name`, `handle` | apresentação, chamada final |
-| **V15** | `check-pills` | Sala de papel quadriculado, reels pregados atrás, cursor clicando pílulas | `text` (\|), `images`, `handle`, `board` | checklist de conteúdo |
-| **V16** | `tier-list` | Ranking S a F cai na tela e o item voa pro S | `title`, `item`, `others` (\|) | "o que mais vende", comparação |
-| **V17** | `broll-split` | Imagem de apoio em cima com etiqueta de preço, pessoa embaixo | `images`, `text` (etiqueta), `pick` | preço de procedimento/curso, resultado |
-| **V18** | `dot-reveal` | A imagem se monta com pontinhos de luz e entra nítida | `color`, `cell` | abertura do vídeo |
-| **V19** | `match-cut` | Páginas de jornal trocam numa palavra, presa numa caixa atrás da cabeça | `text` (a palavra), `color` | "todo mundo fala de X" |
-| **V20** | `apple-toggles` | Cartão de ajustes do iPhone ligando os botões, um por frase | `text` (\|), `ticks` (s com \|), `color`, `pos` | lista de conquistas/hábitos |
-| **V21** | `led-sign` | Luz cai e um letreiro de LED se digita atrás | `text` (\|), `color`, `push` | nome de evento/produto |
-| **V22** | `over-the-shoulder-zoom` | Câmera entra num canto, gráfico de vidro ao lado da cabeça; depois o outro canto | `text` (2 rótulos), `to` (2 números), `zoom` | dois números reais lado a lado |
-| **V23** | `place-in-grid` | Pessoa encolhe pro centro da grade 3x3 do perfil, reels em volta com visualizações | `images` (pasta de capas), `views` (9 com \|) | prova de alcance (só views reais) |
-| **V24** | `glitter-spotlight` | Sala escurece, raios dourados atrás da cabeça, palavra dourada com brilho | `text`, `color`, `push` | resultado, revelação (1 por vídeo) |
+| **/leque-numerado** (era V1) | `lineup` | Peças numeradas abrem em leque acima da cabeça | `text` (nomes com \|) | etapas de um processo |
+| **/mira** (era V2) | `locked-on` | Colchetes travam no rosto e a câmera segue | `zoom` 1.35, `text` (etiqueta) | gancho, "você que é ..." |
+| **/recibo-impresso** (era V3) | `the-bill` | Instruções saindo impressas como recibo na parede | `text` (linhas com \|) | passo a passo; casa com a receita Recibo |
+| **/antes-depois** (era V4) | `swipe` | Antes e depois deslizando por cima da pessoa | `grade` (moody, bw, warm, cool, pop) | antes/depois de procedimento ou de cliente |
+| **/seguir** (era V5) | `tap` | Botão Seguir vira Seguindo | `at` (s), `x`, `y`, `color` | chamada pra seguir |
+| **/pausa-seta** (era V6) | `pause-point` | Congela a imagem e uma seta à mão aponta pra pessoa | `text` (rótulo), `color`, `label_x` | "essa sou eu há 3 anos", "repara nisso" |
+| **/desinstalar** (era V7) | `uninstall` | Barra de desinstalar com falha quebrando o quadro | `text` | virada de crença ("desinstalando o medo de vender") |
+| **/chuva-de-teclas** (era V8) | `shortcut-rain` | Teclas de teclado chovendo atrás | `text` (teclas com \|), `count` | vídeo de ferramenta/Claude |
+| **/carimbo** (era V9) | `reject-stamp` | Carimbo grande batendo na tela | `text`, `color`, `angle`, `y` | mito, erro comum, "não faça isso" |
+| **/contagem** (era V10) | `countdown-flip` | Relógio de virar 3, 2, 1 acima da cabeça | `from` | contagem pra revelar, abertura de vagas |
+| **/tunel** (era V11) | `rabbit-hole` | O quadro vira túnel girando pra dentro | `ratio`, `speed`, `spin` | "e aí a coisa piorou", entrada de história |
+| **/colagem-vermelha** (era V12) | `red-collage` | Pessoa em preto e branco, palavra gigante colorida atrás, 3 frases batendo | `text`, `lines` (\|), `tag`, `color` | frase-tese |
+| **/manchete-dividida** (era V13) | `split-headline` | Manchete desce e empurra a pessoa pra metade de baixo | `text` (\|), `hl` (palavra destacada), `pill` | gancho de vídeo-tese |
+| **/sala-lilas** (era V14) | `pastel-word` | Sala lilás, palavra gigante atrás, cartão de perfil sendo seguido | `text`, `name`, `handle` | apresentação, chamada final |
+| **/pilulas** (era V15) | `check-pills` | Sala de papel quadriculado, reels pregados atrás, cursor clicando pílulas | `text` (\|), `images`, `handle`, `board` | checklist de conteúdo |
+| **/tier-list** (era V16) | `tier-list` | Ranking S a F cai na tela e o item voa pro S | `title`, `item`, `others` (\|) | "o que mais vende", comparação |
+| **/imagem-de-apoio** (era V17) | `broll-split` | Imagem de apoio em cima com etiqueta de preço, pessoa embaixo | `images`, `text` (etiqueta), `pick` | preço de procedimento/curso, resultado |
+| **/pontinhos** (era V18) | `dot-reveal` | A imagem se monta com pontinhos de luz e entra nítida | `color`, `cell` | abertura do vídeo |
+| **/trava** (era V19) | `match-cut` | Páginas de jornal trocam numa palavra, presa numa caixa atrás da cabeça | `text` (a palavra), `color` | "todo mundo fala de X" |
+| **/ajustes-iphone** (era V20) | `apple-toggles` | Cartão de ajustes do iPhone ligando os botões, um por frase | `text` (\|), `ticks` (s com \|), `color`, `pos` | lista de conquistas/hábitos |
+| **/letreiro** (era V21) | `led-sign` | Luz cai e um letreiro de LED se digita atrás | `text` (\|), `color`, `push` | nome de evento/produto |
+| **/por-cima-do-ombro** (era V22) | `over-the-shoulder-zoom` | Câmera entra num canto, gráfico de vidro ao lado da cabeça; depois o outro canto | `text` (2 rótulos), `to` (2 números), `zoom` | dois números reais lado a lado |
+| **/grade-do-perfil** (era V23) | `place-in-grid` | Pessoa encolhe pro centro da grade 3x3 do perfil, reels em volta com visualizações | `images` (pasta de capas), `views` (9 com \|) | prova de alcance (só views reais) |
+| **/brilho-dourado** (era V24) | `glitter-spotlight` | Sala escurece, raios dourados atrás da cabeça, palavra dourada com brilho | `text`, `color`, `push` | resultado, revelação (1 por vídeo) |
+| **/figurinha** (do kit) | `figurinha` | Congela e a pessoa vira figurinha recortada com borda branca e etiqueta de nome e cargo | `text` (nome), `sub` (cargo), `fundo` (escuro ou cor), `angle` | apresentação, "eu sou a..." |
+| **/particulas** (do kit) | `particulas-celular` | Metade de cima: celular enchendo de grãos na cor de destaque com "editando… %" que vira o reel pronto | `text`, `done` (Reel\|pronto), `color` | "o Claude edita sozinho" |
+| **/colagem** (do kit) | `colagem-mesa` | Metade de cima: os reels da aluna caindo como fotos numa mesa, etiqueta em cada um | `images`, `text` (etiquetas com \|), `count` | "são vários estilos", portfólio |
 
 ---
 
@@ -370,5 +383,5 @@ Formatos inteiros (gravação + edição) com nome próprio. A pessoa pede pelo 
 3. Se der, assistir o trecho do reel de referência das técnicas escolhidas antes de montar.
 4. Sincronizar tudo pela transcrição com tempo por palavra (pílula na palavra do item, número na palavra-número).
 5. Conferir na folha de quadros (`conferir.sh`) que cada código aparece no segundo certo e nada cobre o rosto.
-6. Efeitos V (Vibha): aplicar no vídeo base antes das camadas; conferir com `--still`, passar o @ e o nome da aluna e trocar os textos em inglês.
+6. Efeitos com comando (/tier-list, /vidro...): aplicar no vídeo base antes das camadas, pelo `aplicar.py` ou por um plano com vários no `fx_pt.py`; conferir com `--still`.
 7. Antes do render final: `zona_segura.py` (Q3) nos instantes de cada título/cartão. Depois: `conferir_cortes.py` (Q4) no final.mp4.
