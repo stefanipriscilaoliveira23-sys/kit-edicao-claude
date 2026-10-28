@@ -46,7 +46,12 @@ Depois:
    claude plugin install hyperframes@hyperframes
    ```
    Se o comando `claude` não existir no terminal, copie cada pasta de `~/kit-edicao-claude/skills-extra/hyperframes/skills/` para `~/.claude/skills/` (veja `skills-extra/hyperframes/COMO-INSTALAR.md`).
-5. **Sons extras (opcional)**: `~/.claude/skills/corte-viral/modelo-edicao/` tem um `SONS-PARA-BAIXAR.md` com sons gratuitos que não podem vir no pacote. Sem eles, a edição usa os sons parecidos que já vêm no kit. Pergunte à aluna se ela quer baixar.
+5. **Efeitos prontos da Vibha** (códigos V1 a V24 do catálogo; skill gratuita da @vibha.in.progress, licença MIT):
+   ```bash
+   git clone https://github.com/Vibha-Ramprakash/claude-video-effects ~/.claude/skills/effects
+   ```
+   No Windows (PowerShell) o destino é `$HOME\.claude\skills\effects`. Se a pasta já existir, rode `git pull` dentro dela. A skill prepara o próprio ambiente Python na primeira vez que for usada (≈2 min); se der para adiantar, siga o README dela agora. Conte para a aluna que esses 24 efeitos são da Vibha.
+6. **Sons extras (opcional)**: `~/.claude/skills/corte-viral/modelo-edicao/` tem um `SONS-PARA-BAIXAR.md` com sons gratuitos que não podem vir no pacote. Sem eles, a edição usa os sons parecidos que já vêm no kit. Pergunte à aluna se ela quer baixar.
 
 ## 4. Pastas da aluna
 
@@ -64,4 +69,4 @@ Crie, sem apagar nada que já exista:
 
 ## Atualizar ("atualiza meu kit de edição")
 
-`git pull` em `~/kit-edicao-claude`, repita as etapas 2, 3 (só o que mudou) e 5. NUNCA mexa em `~/minha-marca/`, `~/Videos-Claude/` e `~/Carrosseis-Claude/`.
+`git pull` em `~/kit-edicao-claude` e em `~/.claude/skills/effects` (se não existir, instale pela etapa 3.5), repita as etapas 2, 3 (só o que mudou) e 5. NUNCA mexa em `~/minha-marca/`, `~/Videos-Claude/` e `~/Carrosseis-Claude/`.

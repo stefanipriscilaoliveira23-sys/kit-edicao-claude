@@ -1,0 +1,26 @@
+/* Luz e cor (catálogo L1–L3) na versão HyperFrames, pra quando o vídeo e a pessoa recortada
+   entram como camadas na composição. Na receita Editorial o normal é usar luz_e_cor.py no vídeo base.
+
+   L1 sala escura, pessoa acesa:
+     <video class="full sala-escura" ...>   fundo (vídeo inteiro)
+     <video class="full pessoa-acesa" ...>  pessoa recortada (webm com alfa), por cima
+     <div class="vinheta"></div>            por cima dos dois, abaixo dos textos
+*/
+.sala-escura { filter: contrast(1.1) saturate(.84) brightness(.82); }
+.pessoa-acesa { filter: contrast(1.04) saturate(.97) brightness(1.01); }
+.vinheta {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 75% 62% at 50% 42%, transparent 55%, rgba(0, 0, 0, .5) 100%);
+}
+
+/* L3 varredura de luz: uma faixa só, ao abrir a seção.
+   GSAP:  tl.fromTo('#varredura', {xPercent: -120}, {xPercent: 120, duration: .8, ease: 'power2.inOut', immediateRender: false}, T);
+          (deixar #varredura com autoAlpha 0 fora do trecho; animar um wrapper, nunca o próprio <video>) */
+#varredura {
+  position: absolute; inset: -10% -40%; pointer-events: none; mix-blend-mode: screen;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, .22) 50%, transparent 62%);
+}
+
+/* L2 abertura em foco: no wrapper do palco inteiro (#palco), nunca num elemento com data-start.
+   GSAP:  tl.fromTo('#palco', {filter: 'blur(18px) brightness(1.35)'},
+                    {filter: 'blur(0px) brightness(1)', duration: .45, ease: 'power3.out', immediateRender: false}, T); */

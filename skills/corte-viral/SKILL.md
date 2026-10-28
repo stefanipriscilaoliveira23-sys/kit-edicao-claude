@@ -146,7 +146,7 @@ Pra editar o vídeo da pessoa (legenda, títulos, efeitos, sons), nesta ordem:
    `~/minha-marca/MINHA-MARCA.md` inteiro: o que está lá vence qualquer padrão desta skill.
 2. Leia `modelo-edicao/JEITO-DA-MARCA.md` (regras técnicas e processo: cortes, respiros, olhar pra baixo, área segura do
    Reels, voz e pofs, limpeza da entrevistadora, conferência por quadros, pipeline) e, se ela citar um código, o catálogo
-   `modelo-edicao/CATALOGO-TECNICAS.md` (T, C, M, S, E e as receitas Recibo, Editorial e Bastidor). A definição do código é a de lá.
+   `modelo-edicao/CATALOGO-TECNICAS.md` (118 técnicas: T, C, M, S, E, F, P, L, Q, V, as receitas Recibo, Editorial e Bastidor e os formatos com nome). A definição do código é a de lá.
 3. Os scripts de `modelo-edicao/` leem cores, fontes, legenda, emojis, volume e pastas do `~/minha-marca/marca.json`
    (via `marca.py`). Na primeira vez, `python3 modelo-edicao/preparar_pasta.py` monta a pasta de trabalho.
    Texto ATRÁS da pessoa (T11/C4) e o close do `retrato.py` funcionam no Windows e no Mac: o recorte da pessoa sai do

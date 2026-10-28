@@ -1,6 +1,6 @@
-# Catálogo de técnicas de edição (códigos T, C, M, S, E)
+# Catálogo de técnicas de edição (códigos T, C, M, S, E, F, P, L, Q, V)
 
-62 técnicas tiradas de reels de criadoras de referência, cada uma com um código.
+118 técnicas, cada uma com um código, em 10 famílias: texto (T), cartões (C), câmera (M), som (S), estrutura (E), efeitos especiais (F), métodos de animação (P), luz e cor (L), conferência (Q) e efeitos prontos da Vibha (V). Mais as receitas e os formatos com nome no fim.
 A aluna pede pelo código: "quero o T2 e o C6 nesse vídeo", "faz na receita Recibo".
 Quando ela citar um código, a definição é a deste arquivo. Este catálogo SOMA ao
 `JEITO-DA-MARCA.md` e ao Manual da Marca (`~/minha-marca/`): as regras de corte, voz, grafia e entrega continuam valendo,
@@ -155,6 +155,186 @@ podem ser feitas no HyperFrames (a Zoe mostra que usa as skills dele).
 **E4 Mesma frase abre e fecha** (Steph): a manchete T1 volta como última pílula.
 **E5 CTA com o presente visível** (Meg C19, Marc C20): T19 fixo + material aberto.
 **E6 Bordão de quebra**: frase curta depois da afirmação grande ("não, sério.").
+**E7 Catálogo na mão** (Marc, reel Def9pj5TWtA): a pessoa segura um cartão branco arredondado (formato celular) na frente do peito e dentro dele roda a demonstração de cada item, com contador "01/17" numa pílula escura no canto. No topo, título fixo de 2 linhas (número em destaque). Dos dois lados, a lista numerada inteira em bloco escuro translúcido, com o item da vez aceso. A fala é só o nome de cada item, ≈1 s por item, e a legenda fecha com pergunta ("o 14 é o meu favorito. qual é o seu?") pra puxar comentário. Serve pra lista de ferramentas, materiais, apps, antes/depois.
+
+## F · Efeitos especiais (17)
+
+Origem: reel do @tenfoldmarc "17 video effects claude can create" (https://www.instagram.com/reel/Def9pj5TWtA/), cada um no segundo indicado. A aluna pode pedir pelo código (F14) ou pelo nome em inglês ("doodle boil").
+Quase todos dependem do recorte da pessoa (`mascara.py entrada.mp4 mascara.mp4 1080`) e da montagem em camadas: fundo, coisa atrás, pessoa, coisa na frente (a mesma do T11, texto atrás da pessoa). Montar no HyperFrames. Destaque limão `#EAF600` como no original ou a cor de destaque do manual: perguntar.
+
+**F1 Órbita (Orbit)** · 0:00
+Prints/miniaturas de reels em cartões verticais girando em volta da pessoa num carrossel 3D: passam na frente e por trás do corpo (recorte), com profundidade (menor e mais escuro quando está atrás). Junto, frase em serifada itálica com brilhinhos. Difere do C15: lá são pílulas de ferramenta numa elipse plana; aqui são cartões grandes com perspectiva.
+
+**F2 Parede no sofá (Couch Wall)** · 0:01
+Atrás da pessoa sentada, um mosaico de prints de reels com contagem de visualizações se monta peça a peça até cobrir a parede. Na frente, legenda com a palavra-chave gigante pesada que entra borrada e assenta. Variação do C4 com montagem rápida e legenda gigante.
+
+**F3 Mundo da interface (UI World)** · 0:02
+Metade de cima vira a tela do Claude (fundo creme, logo, caixa de arquivos); miniaturas dos vídeos caem lá dentro, aparece uma etiqueta e o comando se digita na caixa. Metade de baixo é a pessoa falando, legenda caixa alta branca na emenda das duas metades. Som: whoosh por clipe + teclado (S2).
+
+**F4 Quebra de moldura (Frame Break)** · 0:03
+O vídeo encolhe pra dentro de uma tela de reel (coração, comentário, enviar, @perfil + "Seguir") sobre fundo escuro desfocado, e as mãos/cabeça da pessoa saem por fora da borda da moldura (camada da pessoa por cima da moldura). Bom pra "isso aqui viralizou" ou pra mostrar o próprio post.
+
+**F5 Zoom digital (Digital Zoom)** · 0:04
+Na palavra-chave, empurrão de zoom rápido (≈1,0 → 1,25 em 0,2 s) com borrão de zoom; a palavra entra gigante e borrada, assenta nítida, e a segunda palavra aparece embaixo na cor de destaque. É o M1 com borrão e palavra gigante: usar 1 a 3 vezes por vídeo nas frases-tese.
+
+**F6 Celular flutuando (Phone Mockup)** · 0:05
+iPhone escuro levemente girado, flutuando ao lado do rosto, com a tela de um app que se mexe: mensagem chega, cartão aparece, um toque (bolinha cinza) aperta um botão. Legenda normal embaixo. Serve pra mostrar o app, a agenda ou uma conversa de venda da aluna.
+
+**F7 Checklist de vidro (Checklist)** · 0:06
+Painel escuro translúcido com cantos arredondados acima da cabeça: rótulo pequeno "TUDO QUE VOCÊ PRECISA FAZER", contador "0 de 3" e barra de progresso. Cada item aparece quando é dito, ganha ✓ na cor de destaque e o contador sobe ("1 de 3"). Versão mais rica do T17. Pop no ✓.
+
+**F8 Parede de manchetes (Headline Wall)** · 0:07
+Papéis se colando na parede atrás da pessoa, um a cada ≈0,15 s, até cobrir: manchetes em serifada, bilhetes, prints de post, comentários, pílula preta "POV:", uma busca digitada. Uma manchete principal fica maior e com palavra em destaque. Prova social em massa (C14 + C4, atrás da pessoa).
+
+**F9 Zoom atravessando (Zoom Through Cut)** · 0:08
+Transição: a câmera mergulha num ponto da cena com borrão radial forte, o quadro vira só rastro, e sai já no plano seguinte desacelerando. A legenda do plano novo vem em caixa alta pequena bem espaçada. Usar na virada de bloco/cenário (M2), no máximo 2 por vídeo. Som: whoosh.
+
+**F10 Gráfico que cresce (Chart Grow)** · 0:09
+Os dias da semana em cima e uma linha brilhante que se desenha na própria parede atrás da pessoa, subindo forte no fim com ponto luminoso na ponta, e uma pílula com a palavra do resultado no pico. Diferente do C5 (cartão branco): aqui o gráfico mora no cenário, atrás da cabeça. Só com número verdadeiro.
+
+**F11 Afastar e revelar (Pullback Reveal)** · 0:10
+O vídeo inteiro encolhe e revela que estava dentro de uma janela de editor; do lado, cartão "Trabalhando na edição" com etapas ganhando ✓ (Transcreveu, Escolheu a tomada, Cortou, Legenda, Renderizou), embaixo a barra de render com a onda de áudio enchendo e um contador grande. Ótimo pra vídeo sobre editar com o Claude (receita Bastidor).
+
+**F12 Fundo trocado (Green Screen)** · 0:11
+A pessoa (recortada) vai pra frente de uma tela de app em tela cheia, como se estivesse dentro do aplicativo. Legenda com palavra em caixa na cor de destaque. Qualquer print grande serve de fundo (página de vendas, agenda, plataforma do curso).
+
+**F13 Recorte de papel (Paper Cut)** · 0:12
+Colagem de caderno: a pessoa recortada com borda branca grossa de papel rasgado, em cima de papel quadriculado com rabiscos de giz de cera, fita, X e espirais desenhados. Número em letras recortadas de revista estilo bilhete (cada letra num papel diferente), entrando uma a uma, e no fim circulado à mão em vermelho. Precisa gerar textura de papel e rabiscos (SVG com ruído ou imagem gerada).
+
+**F14 Rabisco vivo (Doodle Boil)** · 0:13 · o favorito do Marc
+Contorno branco de giz em volta da pessoa inteira (borda da máscara dilatada com traço irregular) que "ferve": o traço é redesenhado a cada 2 a 3 quadros com outro tremido (≈10 desenhos por segundo, como animação à mão). Ao lado, doodles a giz que se desenham traço a traço (coração, moldura, claquete) e depois são pintados com rabisco colorido, também fervendo. Som de giz acompanhando o traço (S2).
+
+**F15 Vertigem (Vertigo / dolly zoom)** · 0:14 · **exige gravação**
+A pessoa fica do mesmo tamanho enquanto o fundo se aproxima, sensação de "chão sumindo". Na edição: camada de fundo ampliando 1,0 → 1,25 e pessoa recortada parada por cima; a pessoa ampliada no fundo vaza pelas bordas, então precisa de 2 s da sala vazia no mesmo enquadramento (gravar antes) ou fazer na gravação (andar pra trás dando zoom). Avisar a aluna ANTES de ela gravar.
+
+**F16 Capa de revista (Cover Story)** · 0:15
+Título gigante em serifada clássica branca, letras subindo de baixo, ocupando a largura toda atrás da cabeça (a cabeça cobre parte das letras), com moldura fina clara na borda do quadro, como capa de revista. Versão editorial do T11. Instrument Serif em caixa alta funciona bem.
+
+**F17 Letra de vidro (Glass Type)** · 0:16
+Palavra em 3D de vidro/cromo transparente, em perspectiva inclinada, atrás da pessoa na parede, letras entrando uma a uma com reflexo de luz passando. No HyperFrames: texto com degradê prata translúcido, borda clara, sombra interna e `rotateY` ≈ -25°; o brilho é uma faixa clara atravessando com máscara.
+
+### Peças prontas do HyperFrames pra cada F
+
+O registro do HyperFrames (skill `hyperframes-registry`: blocos e componentes, cada um com demonstração) já tem peças que fazem a base de vários efeitos. Partir delas em vez de escrever do zero, e trocar cores e fontes pelas do manual da marca.
+
+| Efeito | Peça pronta | O que ela faz |
+| --- | --- | --- |
+| F1 Órbita | `carousel-orbit-1` a `-5`, `three-orbiting-cards` | cartões de imagem girando em órbita 3D |
+| F2 Parede no sofá | `logo-wall`, `grid-card-assemble` | grade que se monta peça a peça |
+| F3 Mundo da interface | `claude-exchange`, `typed-prompt`, `cursor-drag-drop` | tela do Claude digitando e respondendo; prompt digitado; arrastar arquivo |
+| F5 Zoom digital | `push-in`, `motion-blur`, `cinematic-zoom` | empurrão de câmera e borrão de movimento |
+| F6 Celular flutuando | `device-frame-stage`, `vfx-iphone-device`, `gesture-tap` | celular em cena com tela editável; toque |
+| F7 Checklist | `marker-checklist-card`, `success-check` | cartão com ✓ se desenhando; check animado |
+| F8 Parede de manchetes | `notification-pileup`, `overwhelm-surround`, `x-post`, `reddit-post`, `yt-comment-card` | pilha de avisos acelerando; coisas cercando a pessoa; cartões de post e comentário |
+| F9 Zoom atravessando | `zoom-through-transition`, `whip-pan-cut` | transição atravessando pro plano seguinte |
+| F10 Gráfico que cresce | `mk-line-graph`, `chart-story` | linha que se desenha com rótulo de valor |
+| F11 Afastar e revelar | `pull-back-reveal`, `parallax-unzoom` | câmera recua e revela o contexto |
+| F13 Recorte de papel | `paper-collage-reveal`, `torn-paper-rip` | colagem de papel rasgado; rasgo como transição |
+| F14 Rabisco vivo | `hw-boil`, `hw-arrow`, `hw-callout-circle`, `hw-underline`, `stop-motion-cadence`, `whiteboard-ink` | o tremido de desenho à mão que "ferve", setas, círculos e sublinhados à mão |
+| F15 Vertigem | `camera-dolly-zoom` | dolly zoom (fundo corre, pessoa fica do mesmo tamanho) |
+| F16 Capa de revista | `bottom-up-letters`, `titlecard-lockup` | letras subindo de baixo |
+| F17 Letra de vidro | `glass-shard-title`, `glass-hero`, `gloss-sweep` | título de vidro; brilho atravessando |
+| Título com faixa colorida | `colorama-wipe` | frase revelada por uma faixa borrada colorida (usada no P4) |
+
+F4 e F12 não têm peça pronta: são montagem com a máscara da pessoa (pessoa por cima da moldura / pessoa por cima do print). Se uma peça não existir na versão instalada, construir do zero com a descrição acima.
+
+## P · Métodos de animação (7)
+
+Origem: acervo https://github.com/yihui-dev/awesome-opus5-5-videos (prompts de vídeos em que o Claude escreveu a animação em código; licença MIT). Quase tudo lá é vídeo de lançamento de app em tela cheia; ficaram os 7 métodos que servem pra Reels. Mais que um efeito: são jeitos inteiros de montar o vídeo.
+
+**P1 Encher o vídeo falado de animações**
+Ler a transcrição inteira e marcar todo momento em que uma animação em tela cheia explica a ideia ou prende o olho (num reel, uma a cada 4 a 6 s). Regras: quando a animação ocupa a tela, a pessoa continua num quadradinho no canto inferior direito; texto fiel ao que foi dito, nunca número ou frase inventada; cada animação sincronizada com as palavras e dentro de um trecho sem corte; alguns segundos de rosto entre uma animação e outra. Antes de fazer as peças, escrever um guia de estilo e um kit de componentes pra todas parecerem do mesmo programa. Processo: um agente acha os momentos, outro constrói cada animação, um juiz olha cada uma uma vez só e manda refazer só o que estiver muito ruim.
+
+**P2 Explicativo em papel com marcador**
+Fundo de papel claro, anotações de marcador que se desenham (Caveat escrita pelo traço), letra gigante em movimento (Anton), viradas bruscas de claro pra escuro, uma ideia nova a cada 1,5 a 2 s, um som em cada batida (pop, rabisco de caneta, whoosh, grave no logo). Proibido inventar resultado (porcentagem, cliente, número). Áudio final em -14 LUFS. Serve de abertura ou de inserção em tela cheia no P1.
+
+**P3 Uma forma que vira tudo**
+Pra mostrar um app ou ferramenta: um único elemento que nunca corta, só muda de tamanho, canto e cor enquanto vira botão, carregando, check, player, gráfico, busca, aviso. Um cursor faz tudo com cliques e arrastos reais. Música a 120 BPM, algo acontece em cada batida. Regras que valem pra qualquer peça: tudo calculado a partir do tempo (sem estado guardado), molas fechadas, um quadro por batida renderizado e conferido antes do render inteiro, último quadro igual ao primeiro quando for loop.
+
+**P4 Câmera lenta contínua sobre a tela**
+Uma câmera só, sem corte, passeando devagar (movimentos de 1,5 a 3 s, metade da velocidade de costume) sobre uma tela de computador: frase grande entrando palavra a palavra com `colorama-wipe`, lista girando rápido que para devagar no item certo, janelas de apps empilhando vindas de trás da câmera, cursor grande, e fecha num checklist com ✓ se desenhando. Grão leve de filme. Bom pra vídeo de bastidor/ferramenta.
+
+**P5 Explicativo do negócio em 5 cenas**
+30 s, 5 cenas: o problema da cliente, o que eu faço, como funciona em 3 passos, uma prova, meu nome no fim. Texto forte, transição suave, cores da marca. Ponto de partida pra vídeo de apresentação de serviço.
+
+**P6 Receita passo a passo com medidas**
+Explicativo tipo receita: cada ingrediente entra com a medida aparecendo, contador de passo ("passo 5 de 6") e trilha de etapas com ✓ embaixo. Serve pra qualquer "receita": montar um curso, conta do faturamento, protocolo de atendimento.
+
+**P7 Conferir antes de renderizar e legenda na zona segura**
+Não revisar assistindo render: tirar ≈20 quadros e montar uma folha de contato (`conferir.sh`; fazer ANTES do render final também). Legenda medida na fonte real e encolhida pra caber na zona segura do 9:16 (Q3). Quando tiver música, cada corte cai na grade da batida. Versões de 30, 15 e 6 s saem do mesmo projeto como listas de cenas diferentes.
+
+## L · Luz e cor (3)
+
+Origem: skill /video-edit do @tenfoldmarc. Aplicadas no vídeo base com `luz_e_cor.py` (ffmpeg, antes das camadas do HyperFrames); versão CSS/GSAP em `luz-e-cor.css`.
+Pele nunca escurece nem satura mais (avermelha). Sem grão de filme (vira ruído no rosto).
+
+**L1 Sala escura, pessoa acesa** · `luz_e_cor.py base.mp4 saida.mp4 --mascara mascara.mp4 --sala [--forca 0.5..1.5]`
+O fundo perde luz e cor (contraste 1,10, saturação 0,84, brilho -0,09, leve tom frio) e a pessoa, pela máscara (`mascara.py`), fica clara e natural; vinheta suave por cima. Deixa o vídeo com cara de estúdio sem mexer na gravação. Combina com a receita Editorial e com vídeo gravado em sala clara demais.
+
+**L2 Abertura em foco** · `--foco 0,12.4` (instantes em s)
+O quadro entra borrado e mais claro e foca em 0,45 s. No começo do vídeo e/ou na virada de seção (no máximo 2 ou 3 por vídeo). Dura menos de meio segundo e pega o quadro inteiro (não é desfoque de fundo).
+
+**L3 Varredura de luz** · `--varredura 12.4`
+Uma faixa de luz suave atravessa o quadro na diagonal em 0,8 s, ao abrir uma seção ou no resultado. Uma por seção. Som que casa: `whoosh-short` baixinho ou `sparkle`.
+
+## Q · Conferência e montagem (4)
+
+Origem: skill /video-edit do @tenfoldmarc. Ferramentas, não efeitos: entram em TODO vídeo, sem a aluna precisar pedir.
+
+**Q1 Melhor tentativa de cada frase** · `melhor_tentativa.py bruto.MOV [outro.MOV ...]` (ou o transcript.json de palavras)
+Pra gravação em que a pessoa repete a frase até sair (não para a câmera, só fala de novo). Agrupa as repetições (4 primeiras palavras iguais, ou quase todas as palavras de conteúdo iguais) e fica com a ÚLTIMA tentativa completa. Gera `tentativas.md` (tabela: frase escolhida, quantas tentativas, as descartadas riscadas) e `tentativas.json` (trechos em ordem). Mostrar a tabela pra aluna antes de cortar. Limite: frase refeita com palavras bem diferentes não é pega; ler a tabela procurando ideia repetida em linhas vizinhas.
+
+**Q2 Posição da cabeça** · `cabeca.py mascara.mp4` e `cabeca.py mascara.mp4 --de 3.2 --ate 4.1 --tamanho 220`
+Lê a máscara da pessoa a cada 0,1 s (topo da cabeça, largura da cabeça, caixa do corpo) e grava `cabeca.json`. Pra palavra de tamanho S atrás da cabeça (line-height .9): `top = topo_cabeça + 0,15·S - 0,72·S`, a cabeça cobre só a base. Avisa quando a cabeça mexe mais que 0,3·S no trecho (a pessoa se inclina): aí a palavra vai pra frente, no peito (y 950–1300). Serve também pra órbita (F1), cartões embaixo do queixo e emoji que não pode cair no rosto.
+
+**Q3 Zona segura pintada** · `zona_segura.py final.mp4 [instantes...] [--n 12]` → `zona-segura.jpg`
+Folha de quadros com a área proibida em vermelho: topo 220 px, tudo abaixo de y=1470, 35 px nas laterais e a coluna direita de 100 px a partir de y=1155 (botões). Linha amarela tracejada em y=330 = limite do título pra grade do perfil. Rodar na prévia ANTES do render final, com os instantes em que entra cada título/cartão. Pra prévia do HyperFrames: colar `ZONA_HTML` (do script) dentro do root e tirar antes do render.
+
+**Q4 Conferência de cada corte** · `conferir_cortes.py final.mp4 [--cortes 3.2,7.9 | --cortes plano.json] [--celular]`
+Último quadro antes | primeiro quadro depois de cada corte, tirados do vídeo final, numa folha (`cortes-conferir.jpg`). O "depois" tem que estar limpo: sem legenda velha, sem a pessoa recortada do plano anterior, sem cartão sobrando, sem quadro preto. Sem `--cortes` acha os cortes sozinho. `--celular` gera a cópia 720p crf 27 pra mandar pro celular.
+
+## V · Efeitos prontos da Vibha (24)
+
+Origem e crédito: skill /effects da **@vibha.in.progress** (Vibha Ramprakash), https://github.com/Vibha-Ramprakash/claude-video-effects, licença MIT. Instalada em `~/.claude/skills/effects` (ver INSTALAR.md do kit). Ela segue o rosto e põe a coisa atrás da cabeça sozinha. Dos 45 efeitos dela, os outros 21 já existem neste catálogo com outro código (órbita F1/C15, palavra atrás T11, aproximação M1/F5, holofote e cor L1, checklist T17/F7, comentário C20, vídeo encolhendo F4, capa F16, rabisco F14, manchete T1/T10, paredes C3/C4/F8, leque C2, gráfico C5/F10, linha do tempo C7). Ficaram aqui só os que não existiam.
+
+Como rodar (sempre no vídeo base, ANTES de legenda, sons e camadas do HyperFrames, porque ela não põe som nem legenda). Na primeira vez a skill se prepara sozinha (≈2 min); se faltar o ambiente, seguir o README dela.
+```
+PY=~/.claude/skills/effects/.venv/bin/python; FX=~/.claude/skills/effects/scripts   # Windows: .venv\Scripts\python.exe
+$PY $FX/words.py base.mp4                                    # tempo de cada palavra (ou usar a transcrição do modelo)
+$PY $FX/fx.py --plan plano.json base.mp4 conf.png --still 4.5,15.2   # quadros de conferência (rápido)
+$PY $FX/fx.py --plan plano.json base.mp4 base-fx.mp4         # render 1080p, áudio original intacto
+```
+`plano.json`: `{"effects":[{"fx":"reject-stamp","start":3.2,"end":4.7,"text":"NÃO","color":"#8B1E3F"}, ...]}` (opções no mesmo nível). Exemplo com os 24: `exemplo-plano-vibha.json`. Janela boa: 1,5 a 4 s por efeito. Efeitos de câmera (V2, V22) primeiro na lista.
+
+**Sempre passar** `handle` e `name` com o @ e o nome da aluna (lidos do `~/minha-marca/MINHA-MARCA.md`; o padrão é o @ da Vibha) e `color` com a cor de destaque do manual onde houver cor.
+**Textos fixos em inglês no código** (traduzir no `fx.py` da aluna antes de usar): "Following"/"Follow" (V5, V14), "before/after" (V4), "in seconds" (V13), as páginas de jornal do V19 e o "Edited by Claude". Conferir o quadro antes do render.
+
+| Código | `fx` | O que faz | Opções principais | Onde usar |
+| --- | --- | --- | --- | --- |
+| **V1** | `lineup` | Peças numeradas abrem em leque acima da cabeça | `text` (nomes com \|) | etapas de um processo |
+| **V2** | `locked-on` | Colchetes travam no rosto e a câmera segue | `zoom` 1.35, `text` (etiqueta) | gancho, "você que é ..." |
+| **V3** | `the-bill` | Instruções saindo impressas como recibo na parede | `text` (linhas com \|) | passo a passo; casa com a receita Recibo |
+| **V4** | `swipe` | Antes e depois deslizando por cima da pessoa | `grade` (moody, bw, warm, cool, pop) | antes/depois de procedimento ou de cliente |
+| **V5** | `tap` | Botão Seguir vira Seguindo | `at` (s), `x`, `y`, `color` | chamada pra seguir |
+| **V6** | `pause-point` | Congela a imagem e uma seta à mão aponta pra pessoa | `text` (rótulo), `color`, `label_x` | "essa sou eu há 3 anos", "repara nisso" |
+| **V7** | `uninstall` | Barra de desinstalar com falha quebrando o quadro | `text` | virada de crença ("desinstalando o medo de vender") |
+| **V8** | `shortcut-rain` | Teclas de teclado chovendo atrás | `text` (teclas com \|), `count` | vídeo de ferramenta/Claude |
+| **V9** | `reject-stamp` | Carimbo grande batendo na tela | `text`, `color`, `angle`, `y` | mito, erro comum, "não faça isso" |
+| **V10** | `countdown-flip` | Relógio de virar 3, 2, 1 acima da cabeça | `from` | contagem pra revelar, abertura de vagas |
+| **V11** | `rabbit-hole` | O quadro vira túnel girando pra dentro | `ratio`, `speed`, `spin` | "e aí a coisa piorou", entrada de história |
+| **V12** | `red-collage` | Pessoa em preto e branco, palavra gigante colorida atrás, 3 frases batendo | `text`, `lines` (\|), `tag`, `color` | frase-tese |
+| **V13** | `split-headline` | Manchete desce e empurra a pessoa pra metade de baixo | `text` (\|), `hl` (palavra destacada), `pill` | gancho de vídeo-tese |
+| **V14** | `pastel-word` | Sala lilás, palavra gigante atrás, cartão de perfil sendo seguido | `text`, `name`, `handle` | apresentação, chamada final |
+| **V15** | `check-pills` | Sala de papel quadriculado, reels pregados atrás, cursor clicando pílulas | `text` (\|), `images`, `handle`, `board` | checklist de conteúdo |
+| **V16** | `tier-list` | Ranking S a F cai na tela e o item voa pro S | `title`, `item`, `others` (\|) | "o que mais vende", comparação |
+| **V17** | `broll-split` | Imagem de apoio em cima com etiqueta de preço, pessoa embaixo | `images`, `text` (etiqueta), `pick` | preço de procedimento/curso, resultado |
+| **V18** | `dot-reveal` | A imagem se monta com pontinhos de luz e entra nítida | `color`, `cell` | abertura do vídeo |
+| **V19** | `match-cut` | Páginas de jornal trocam numa palavra, presa numa caixa atrás da cabeça | `text` (a palavra), `color` | "todo mundo fala de X" |
+| **V20** | `apple-toggles` | Cartão de ajustes do iPhone ligando os botões, um por frase | `text` (\|), `ticks` (s com \|), `color`, `pos` | lista de conquistas/hábitos |
+| **V21** | `led-sign` | Luz cai e um letreiro de LED se digita atrás | `text` (\|), `color`, `push` | nome de evento/produto |
+| **V22** | `over-the-shoulder-zoom` | Câmera entra num canto, gráfico de vidro ao lado da cabeça; depois o outro canto | `text` (2 rótulos), `to` (2 números), `zoom` | dois números reais lado a lado |
+| **V23** | `place-in-grid` | Pessoa encolhe pro centro da grade 3x3 do perfil, reels em volta com visualizações | `images` (pasta de capas), `views` (9 com \|) | prova de alcance (só views reais) |
+| **V24** | `glitter-spotlight` | Sala escurece, raios dourados atrás da cabeça, palavra dourada com brilho | `text`, `color`, `push` | resultado, revelação (1 por vídeo) |
 
 ---
 
@@ -170,7 +350,7 @@ Cores: creme `#FCE478` + branco. Som: S1 + S2. Esforço alto: gravação em vár
 
 **Bastidor** (base: Zoe e Marc): mostrar ferramenta e processo.
 Câmera parada. Texto: legenda serifada pequena (Calistoga), manuscrita pra listas, T11.
-Cartões: C6, C7, C20, C21, C22, C23, C24, C25. Cores: creme, verde-escuro, preto. Som: sem música, S3. Esforço médio.
+Cartões: C6, C7, C20, C21, C22, C23, C24, C25. Efeitos que casam: F3, F6, F7, F11, F12. Cores: creme, verde-escuro, preto. Som: sem música, S3. Esforço médio.
 
 ## Formatos com nome
 
@@ -179,6 +359,9 @@ Formatos inteiros (gravação + edição) com nome próprio. A pessoa pede pelo 
 | Nome | O que é | Receita |
 | --- | --- | --- |
 | **Narradinho** | Vídeo narrado tipo vlog: cenas gravadas numeradas (00 abertura, 01, 02...) + narração gravada à parte, frases emendadas (≈0,1 s), cena troca na palavra que cita a coisa nova, som das cenas sai, legenda pequena branca de 2 a 3 palavras, títulos grandes em itálico elegante, corte seco com clarão de luz só no gancho e no resultado, música 9 dB abaixo da voz que sobe no resultado, fim escuro. | `receita-narradinho/NARRADINHO.md` |
+| **Sanfoninha** | Vídeos brutos sem fala, cenas curtas que entram com zoom in e zoom out na batida da música, com transição de cena. | skill `sanfoninha` |
+| **Amarelinho** | Carrossel com letra grande creme sobre foto escura do dia a dia, com cara nativa do Instagram. | skill `conteudo-amarelinho` |
+| **Emenda sobreposta** | Jeito de cortar vídeo falado: o corte entra mais cedo (0,06 s depois da última sílaba, 0,04 s antes da primeira) e a próxima frase começa 0,1 s antes da anterior acabar (áudio cruzado com `acrossfade=d=0.1:c1=qsin:c2=qsin`; a imagem troca quando a frase nova começa). Pedaços menores que 0,28 s saem (estalo de boca). Testar só no áudio antes do render e retranscrever pra ver se nenhuma palavra sumiu. | aplicar no corte (`corte.py`) |
 
 ## Como aplicar
 
@@ -187,3 +370,5 @@ Formatos inteiros (gravação + edição) com nome próprio. A pessoa pede pelo 
 3. Se der, assistir o trecho do reel de referência das técnicas escolhidas antes de montar.
 4. Sincronizar tudo pela transcrição com tempo por palavra (pílula na palavra do item, número na palavra-número).
 5. Conferir na folha de quadros (`conferir.sh`) que cada código aparece no segundo certo e nada cobre o rosto.
+6. Efeitos V (Vibha): aplicar no vídeo base antes das camadas; conferir com `--still`, passar o @ e o nome da aluna e trocar os textos em inglês.
+7. Antes do render final: `zona_segura.py` (Q3) nos instantes de cada título/cartão. Depois: `conferir_cortes.py` (Q4) no final.mp4.
